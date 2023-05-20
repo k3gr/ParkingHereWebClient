@@ -10,5 +10,21 @@
     {
       "path": "./tsconfig.vitest.json"
     }
-  ]
+  ],
+  "include": [
+    "src/**/*.json",
+    "src/plugins/i18n.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "compilerOptions": {
+    "types": ["@intlify/vite-plugin-vue-i18n/client"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }
