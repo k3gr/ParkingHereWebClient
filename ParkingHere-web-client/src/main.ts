@@ -6,9 +6,23 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
 
-app.use(createPinia())
-app.use(router)
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-app.mount('#app')
+import i18n from '@/plugins/i18n'
+export { i18n }
+
+import './styles/main.less'
+
+library.add(faSearch)
+
+createApp(App)
+  .use(createPinia())
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .use(i18n)
+  .use(router)
+  .mount('#app')
