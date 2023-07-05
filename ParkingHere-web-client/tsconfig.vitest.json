@@ -6,4 +6,6 @@
     "lib": [],
     "types": ["node", "jsdom"]
   },
+  "resolveJsonModule": true,
+  "moduleResolution": "node",
 }

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ReservationFormComp from '@/appModules/common/component/ReservationFormComp.vue'
+import ReservationFormComp from '@/appModules/reservation/component/ReservationFormComp.vue'
 
 export default defineComponent({
   name: 'HomeView',

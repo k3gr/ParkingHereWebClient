@@ -1,3 +1,6 @@
+import { RoleEnum } from "../enumerated/RoleEnum"
+import Role from "./Role"
+import Vehicle from "./Vehicle"
 
         export interface IUserAccount {
             id: number
@@ -6,8 +9,8 @@
             email: string
             dateOfBirth: Date
             passwordHash: string
-            // role: Role
-            // vehicle: Vehicle
+            role: Role
+            vehicle: Vehicle
           }
           
           export class UserAccountDTO implements IUserAccount {
@@ -18,24 +21,10 @@
               public email: string = '',
               public dateOfBirth: Date = new Date(),
               public passwordHash: string = '',
-              public role: string = '',
-              public vehicle: string = '',
+              public role: Role = new Role(),
+              public vehicle: Vehicle = new Vehicle(),
             ) {}
           }
-          
-          // export class SaveUserDTO implements IUser {
-          //   public id: string = ''
-          //   public plannedStartDate: string = ''
-          //   public endDate: string = ''
-          //   public comments: string = ''
-          //   public eventStatus: EventStatusEnum = EventStatusEnum.New
-          //   public eventCondition: EventConditionEnum = EventConditionEnum.New
-          //   public eventType: EventTypeEnum = EventTypeEnum.General
-          //   public policyId: string | null = null
-          //   public vehicleId: string | null = null
-          //   public thingId: string | null = null
-          //   public customerId: string | null = null
-          // }
           
           export default class User extends UserAccountDTO {
             constructor(dto?: UserAccountDTO) {
