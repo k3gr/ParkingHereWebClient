@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar fixed-top navbar-expand-lg bg-transparent" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-light fs-1" href="#">{{ $t('ParkingHere') }}</a>
+      <router-link class="navbar-brand text-light fs-1" href="#" :to="{name: 'home'}">{{ $t('ParkingHere') }}</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -48,21 +48,15 @@
           </li>
         </ul>
         <button class="btn btn-outline-success border-success border-3 px-4 mx-2" type="submit">
-          <span class="text-light">{{ $t('SignIn') }}</span>
+          <router-link class="text-light text-decoration-none" :to="{name: 'login'}">{{ $t('SignIn') }}</router-link>
         </button>
       </div>
     </div>
   </nav>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'HeaderComp',
-  setup() {
-    const options = ['PL', 'ENG']
-    return { options }
-  }
-}
+<script setup lang="ts">
+  const options = ['PL', 'ENG']
 </script>
 
 <style scoped>

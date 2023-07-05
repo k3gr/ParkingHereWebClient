@@ -1,21 +1,18 @@
 <template class="justify-content-center d-flex">
+  <div class="main-img" alt="Main view">
   <HeaderComp />
   <RouterView />
   <FooterComp />
+  </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderComp from '@/appModules/common/component/HeaderComp.vue'
 import FooterComp from '@/appModules/common/component/FooterComp.vue'
-import { defineComponent } from 'vue'
-
-export default defineComponent({
   components: {
-    HeaderComp,
+    HeaderComp
     FooterComp
-  },
-  setup() {}
-})
+  }
 </script>
 <style scoped></style>

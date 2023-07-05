@@ -7,14 +7,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'FooterComp',
-  components: {},
-  setup() {}
-})
+<script setup lang="ts">
 </script>
 <style scoped>
 .container-fluid {
