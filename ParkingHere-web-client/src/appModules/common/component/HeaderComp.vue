@@ -1,36 +1,55 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg bg-transparent">
+  <nav class="navbar fixed-top navbar-expand-lg bg-transparent" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-light fs-1" href="#">ParkingHere</a>
+      <a class="navbar-brand text-light fs-1" href="#">{{ $t('ParkingHere') }}</a>
       <button
         class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#navbarTogglerDemo02"
-        aria-controls="navbarTogglerDemo02"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="#">{{ $t('Home') }}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+          <!-- <li class="nav-item py-2 bg-transparent">
+            <select class="text-light border bg-transparent border-0">
+              <option
+                class="text-light border-0 bg-transparent"
+                :value="lang"
+                v-for="(lang, index) in options"
+                :key="index"
+              >
+                <span>{{ lang }}</span>
+              </option>
+            </select>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ $t('PL') }}
+            </a>
+            <ul class="dropdown-menu bg-transparent border-0 py-0">
+              <li>
+                <a class="dropdown-item px-2 py-0" href="#">{{ $t('EN') }}</a>
+              </li>
+            </ul>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-success border-success border-3 px-4" type="submit">
-            <span class="text-light">{{ $t('Search') }}</span>
-          </button>
-        </form>
+        <button class="btn btn-outline-success border-success border-3 px-4 mx-2" type="submit">
+          <span class="text-light">{{ $t('SignIn') }}</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -38,10 +57,16 @@
 
 <script lang="ts">
 export default {
+  name: 'HeaderComp',
   setup() {
-    return {}
+    const options = ['PL', 'ENG']
+    return { options }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+a {
+  color: #fff;
+}
+</style>

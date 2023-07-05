@@ -6,11 +6,22 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+//Bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
+//Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import {
+  faSearch,
+  faCalendar,
+  faCalendarDays,
+  faEnvelope,
+  faLocationDot
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(faSearch, faCalendar, faCalendarDays, faEnvelope, faLocationDot)
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import i18n from '@/plugins/i18n'

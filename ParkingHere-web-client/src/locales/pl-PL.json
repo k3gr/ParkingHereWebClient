@@ -1,1 +1,9 @@
-{ "language": "pl", "AllRightsReserved": "Wszelkie prawa zastrzeżone", "Search": "Szukaj" }
+{
+  "language": "pl",
+  "AllRightsReserved": "Wszelkie prawa zastrzeżone",
+  "EnterParkingLocation": "Wprowadź lokalizację parkingu",
+  "SignIn": "Zaloguj",
+  "StartDate": "Data rozpoczęcia",
+  "EndDate": "Data zakończenia",
+  "Search": "Szukaj"
+}

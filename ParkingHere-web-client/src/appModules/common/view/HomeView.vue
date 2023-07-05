@@ -1,15 +1,30 @@
 <template>
-  <div class="main-img">
-    <img class="img-fluid" src="@/assets/images/parking-main.jpg" alt="Search" />
+  <div class="main-img" alt="Main view">
+    <ReservationFormComp />
   </div>
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+import ReservationFormComp from '@/appModules/reservation/component/ReservationFormComp.vue'
+
+export default defineComponent({
+  name: 'HomeView',
+  components: {
+    ReservationFormComp
+  },
   setup() {
     return {}
   }
-}
+})
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.main-img {
+  width: 100%;
+  height: 100vh;
+  background-image: url('@/assets/images/parking-main.jpg');
+  background-size: cover;
+  /* background-image: url(@/assets/images/parking-main.jpg); */
+}
+</style>
