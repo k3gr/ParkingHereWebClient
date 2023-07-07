@@ -17,10 +17,11 @@ import {
   faCalendar,
   faCalendarDays,
   faEnvelope,
-  faLocationDot
+  faLocationDot,
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch, faCalendar, faCalendarDays, faEnvelope, faLocationDot)
+library.add(faSearch, faCalendar, faCalendarDays, faEnvelope, faLocationDot, faUser)
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -28,6 +29,7 @@ import i18n from '@/plugins/i18n'
 export { i18n }
 
 import './styles/main.less'
+import User from './appModules/user/domain/dto/UserAccount'
 
 library.add(faSearch)
 
