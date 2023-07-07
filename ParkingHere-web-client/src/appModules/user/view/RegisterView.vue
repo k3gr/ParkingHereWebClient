@@ -14,7 +14,7 @@
             size="3x"
           />
         </div>
-        <h2 class="h3 ps-3 border-start">{{ $t('Login') }}</h2>
+        <h2 class="h3 ps-3 border-start">{{ $t('Registration') }}</h2>
       </div>
       <div class="form-floating my-3">
         <input type="email" class="form-control" id="email" :placeholder="$t('EmailAddress')" />
@@ -24,21 +24,30 @@
         <input type="password" class="form-control" id="password" :placeholder="$t('Password')" />
         <label for="password">{{ $t('Password') }}</label>
       </div>
+      <div class="form-floating my-3">
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          :placeholder="$t('ConfirmPassword')"
+        />
+        <label for="confirmPassword">{{ $t('ConfirmPassword') }}</label>
+      </div>
       <div class="checkbox mb-3">
         <div class="form-check">
           <input type="checkbox" class="form-check-input bg-success" id="submit" />
-          <label class="form-check-label" for="submit">{{ $t('RememberMe') }}</label>
+          <label class="form-check-label" for="submit">{{ $t('AcceptTermsAndConditions') }}</label>
         </div>
       </div>
       <div class="d-flex justify-content-center">
-        <button class="w-50 btn btn-lg btn-success" type="submit">{{ $t('SignIn') }}</button>
+        <button class="w-50 btn btn-lg btn-success" type="submit">{{ $t('Register') }}</button>
       </div>
       <div class="mt-3">
-        <span class="m-0 me-2">{{ $t('FirstTimeOnParkingHere') }}</span>
-        <router-link
+        <span class="m-0 me-2">{{ $t('Mam już konto.') }}</span
+        ><router-link
           class="text-decoration-none text-success d-block d-sm-inline"
           :to="{ name: 'login' }"
-          >{{ $t('SignUp') }}.</router-link
+          >{{ $t('SignIn') }}.</router-link
         >
       </div>
     </form>

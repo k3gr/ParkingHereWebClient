@@ -11,7 +11,12 @@
   "EmailAddressPlaceHolder": "Wpisz e-mail",
   "Password": "Hasło",
   "PasswordPlaceHolder": "Wpisz hasło",
+  "ConfirmPassword": "Hasło",
+  "ConfirmPasswordPlaceHolder": "Wpisz hasło",
   "FirstTimeOnParkingHere": "Pierwszy raz na ParkingHere?",
   "RememberMe": "Zapamiętaj",
+  "AcceptTermsAndConditions": "Akceptuję regulamin",
+  "Register": "Zarejestruj",
+  "Registration": "Rejestracja",
   "Login": "Logowanie"
 }
