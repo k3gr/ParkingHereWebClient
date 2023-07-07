@@ -1,7 +1,8 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg bg-transparent" data-bs-theme="dark">
+  <nav class="navbar fixed-top navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-light fs-1" href="#">{{ $t('ParkingHere') }}</a>
+      <router-link class="navbar-brand fs-1" href="#" :to="{ name: 'home' }">
+        {{ $t('ParkingHere') }}</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,6 +16,65 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end">
+          <div class="btn-group mx-2">
+            <div v-if="isSignIn">
+              <a href="#" class="d-block text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://github.com/mdo.png" alt="mdo" width="48" height="48" class="rounded-circle border border-3 border-success">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser1" style="">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+            <div v-else>
+              <div class="btn-group mx-2">
+              <button type="button" class="btn btn-outline-success border-3">
+                <router-link class="text-light text-decoration-none" :to="{name: 'login'}">{{ $t('Login') }}</router-link>
+              </button>
+              <button
+                type="button"
+                class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <form class="dropdown-menu dropdown-menu-end p-3">
+                <div class="mb-3">
+                  <label for="username" class="form-label">{{ $t('EmailAddress') }}</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="username"
+                    :placeholder=" $t('EmailAddressPlaceHolder')"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">{{ $t('Password') }}</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    :placeholder=" $t('PasswordPlaceHolder')"
+                  />
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input bg-success" id="submit" />
+                    <label class="form-check-label" for="submit">{{ $t('RememberMe') }}</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success">{{ $t('SignIn') }}</button>
+                <div class="mt-3">
+                    <p class="m-0">{{ $t('FirstTimeOnParkingHere') }}<span><router-link class="text-success text-decoration-none d-block" :to="{name: 'login'}">{{ $t('SignUp') }}.</router-link></span></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">{{ $t('Home') }}</a>
           </li>
@@ -47,26 +107,27 @@
             </ul>
           </li>
         </ul>
-        <button class="btn btn-outline-success border-success border-3 px-4 mx-2" type="submit">
-          <span class="text-light">{{ $t('SignIn') }}</span>
-        </button>
       </div>
     </div>
   </nav>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'HeaderComp',
-  setup() {
-    const options = ['PL', 'ENG']
-    return { options }
-  }
-}
+<script setup lang="ts">
+  const options = ['PL', 'ENG']
+  const isSignIn = false;
 </script>
 
 <style scoped>
-a {
-  color: #fff;
+.dropdown-menu
+{
+  width: 300px;
 }
+
+.navbar
+{
+  background: rgb(33,37,41);
+  background: linear-gradient(0deg, rgba(33,37,41,0.5) 0%, rgba(33,37,41, 1) 25%);
+}
+
+
 </style>

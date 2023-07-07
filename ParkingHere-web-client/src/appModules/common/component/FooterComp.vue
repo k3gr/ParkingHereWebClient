@@ -1,20 +1,13 @@
 <template>
   <div class="container-fluid fixed-bottom footer_css text-center py-2">
-    <span class="text-light"
+    <span
       >{{ $t('AllRightsReserved') }}
       <a href="http://kiwwwano.com/" class="text-success" target="_blank">kiwwwano.com</a></span
     >
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'FooterComp',
-  components: {},
-  setup() {}
-})
+<script setup lang="ts">
 </script>
 <style scoped>
 .container-fluid {

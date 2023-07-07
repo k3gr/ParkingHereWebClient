@@ -3,7 +3,15 @@
   "AllRightsReserved": "Wszelkie prawa zastrzeżone",
   "EnterParkingLocation": "Wprowadź lokalizację parkingu",
   "SignIn": "Zaloguj",
+  "SignUp": "Załóż konto",
   "StartDate": "Data rozpoczęcia",
   "EndDate": "Data zakończenia",
-  "Search": "Szukaj"
+  "Search": "Szukaj",
+  "EmailAddress": "E-mail",
+  "EmailAddressPlaceHolder": "Wpisz e-mail",
+  "Password": "Hasło",
+  "PasswordPlaceHolder": "Wpisz hasło",
+  "FirstTimeOnParkingHere": "Pierwszy raz na ParkingHere?",
+  "RememberMe": "Zapamiętaj",
+  "Login": "Logowanie"
 }
