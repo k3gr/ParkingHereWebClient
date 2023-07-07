@@ -11,7 +11,17 @@
   "EmailAddressPlaceHolder": "Wpisz e-mail",
   "Password": "Hasło",
   "PasswordPlaceHolder": "Wpisz hasło",
+  "ConfirmPassword": "Powtórz hasło",
+  "FirstName": "Imię",
+  "NamePlaceHolder": "Wpisz imię",
+  "LastName": "Nazwisko",
+  "LastNamePlaceHolder": "Wpisz nazwisko",
+  "VehicleName": "Marka i model",
+  "VehicleRegistrationPlate": "Numer rejestracyjny",
   "FirstTimeOnParkingHere": "Pierwszy raz na ParkingHere?",
   "RememberMe": "Zapamiętaj",
+  "AcceptTermsAndConditions": "Akceptuję regulamin",
+  "Register": "Zarejestruj",
+  "Registration": "Rejestracja",
   "Login": "Logowanie"
 }

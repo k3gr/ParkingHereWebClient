@@ -1,5 +1,5 @@
-import Parking from '@/appModules/parking/domain/Parking'
-import Spot from '@/appModules/parking/domain/Spot'
+import Parking from '@/appModules/parking/domain/dto/Parking'
+import Spot from '@/appModules/parking/domain/dto/Spot'
 
 export interface IReservation {
   id: number
