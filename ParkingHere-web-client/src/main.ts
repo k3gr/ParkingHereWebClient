@@ -18,10 +18,11 @@ import {
   faCalendarDays,
   faEnvelope,
   faLocationDot,
-  faUser
+  faUser,
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch, faCalendar, faCalendarDays, faEnvelope, faLocationDot, faUser)
+library.add(faSearch, faCalendar, faCalendarDays, faEnvelope, faLocationDot, faUser, faUserPlus)
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 

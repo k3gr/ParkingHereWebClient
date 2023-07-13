@@ -7,8 +7,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <style scoped>
 .container-fluid {
   background-color: rgba(0, 0, 0, 0.5);

@@ -18,12 +18,18 @@
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('StartDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input id="startDate" class="date-picker bg-transparent" type="date" :value="startDate"/>
+          <input id="startDate" class="date-picker bg-transparent" type="date" :value="startDate" />
         </div>
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('EndDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input id="endDate" class="date-picker bg-transparent" type="date" max="2199-12-31" :value="endDate" />
+          <input
+            id="endDate"
+            class="date-picker bg-transparent"
+            type="date"
+            max="2199-12-31"
+            :value="endDate"
+          />
         </div>
         <div
           class="search-btn d-flex justify-content-center align-items-center bg-success col-12 col-md-2 col-xl-1"
@@ -36,12 +42,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import moment from "moment";
+import moment from 'moment'
 
-  const today = moment();
-  const startDate = today.toISOString().substring(0, 10);
-  const endDate = today.add(7, 'd').toISOString().substring(0, 10);
-
+const today = moment()
+const startDate = today.toISOString().substring(0, 10)
+const endDate = today.add(7, 'd').toISOString().substring(0, 10)
 </script>
 <style scoped>
 .icon {
@@ -72,7 +77,7 @@ label {
 }
 
 form {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   overflow: hidden;
 }
 
