@@ -1,7 +1,12 @@
 {
   "language": "pl",
+  "ParkingHere": "ParkingHere",
+  "EN": "EN",
+  "PL": "PL",
+  "Home": "Home",
   "AllRightsReserved": "Wszelkie prawa zastrzeżone",
   "EnterParkingLocation": "Wprowadź lokalizację parkingu",
+  "Loading": "Proszę czekać",
   "SignIn": "Zaloguj",
   "SignUp": "Załóż konto",
   "StartDate": "Data rozpoczęcia",
@@ -13,7 +18,7 @@
   "PasswordPlaceHolder": "Wpisz hasło",
   "ConfirmPassword": "Powtórz hasło",
   "FirstName": "Imię",
-  "NamePlaceHolder": "Wpisz imię",
+  "FirstNamePlaceHolder": "Wpisz imię",
   "LastName": "Nazwisko",
   "LastNamePlaceHolder": "Wpisz nazwisko",
   "VehicleName": "Marka i model",
@@ -23,5 +28,11 @@
   "AcceptTermsAndConditions": "Akceptuję regulamin",
   "Register": "Zarejestruj",
   "Registration": "Rejestracja",
-  "Login": "Logowanie"
+  "Login": "Logowanie",
+  "IAlreadyHaveAccount": "Mam już konto",
+  "WasSuccessful": "powodzeniem",
+  "WasFailure": "niepowodzeniem",
+  "OperationWas": "zakończyła się",
+  "PleaseTryAgainLaterIfTheErrorReoccursContactYourAdministrator": "Spróbuj ponownie za chwilę.\nJeśli ponownie wystąpi błąd, skontaktuj się z administratorem.",
+  "AnEmailWithLinkToActivateYourAccountHasBeenSentToEmailAddressProvided": "Na podany adres e-mail została wysłana wiadomość z linkiem do aktywacji konta."
 }

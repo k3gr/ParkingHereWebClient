@@ -10,24 +10,24 @@
         >
           <font-awesome-icon
             :icon="['fa', 'user']"
-            class="icon text-success position-absolute top-50 start-50 translate-middle"
+            class="icon text-light position-absolute top-50 start-50 translate-middle"
             size="2x"
           />
         </div>
-        <h2 class="h3 ps-3 border-start">{{ $t('Login') }}</h2>
+        <h2 class="h3 ps-3 border-start text-light">{{ $t('Login') }}</h2>
       </div>
       <div class="form-floating my-3">
         <input type="email" class="form-control" id="email" :placeholder="$t('EmailAddress')" />
-        <label for="email">{{ $t('EmailAddress') }}</label>
+        <label class="text-secondary-emphasis" for="email">{{ $t('EmailAddress') }}</label>
       </div>
       <div class="form-floating my-3">
         <input type="password" class="form-control" id="password" :placeholder="$t('Password')" />
-        <label for="password">{{ $t('Password') }}</label>
+        <label class="text-secondary-emphasis" for="password">{{ $t('Password') }}</label>
       </div>
       <div class="checkbox mb-3">
         <div class="form-check">
           <input type="checkbox" class="form-check-input bg-success" id="submit" />
-          <label class="form-check-label" for="submit">{{ $t('RememberMe') }}</label>
+          <label class="form-check-label text-light" for="submit">{{ $t('RememberMe') }}</label>
         </div>
       </div>
       <div class="d-flex justify-content-center">
@@ -36,7 +36,7 @@
         </button>
       </div>
       <div class="mt-3">
-        <span class="m-0 me-2">{{ $t('FirstTimeOnParkingHere') }}</span>
+        <span class="m-0 me-2 text-light">{{ $t('FirstTimeOnParkingHere') }}</span>
         <router-link
           class="text-decoration-none text-success d-block d-sm-inline"
           :to="{ name: 'signup' }"

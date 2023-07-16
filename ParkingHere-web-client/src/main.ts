@@ -19,10 +19,20 @@ import {
   faEnvelope,
   faLocationDot,
   faUser,
-  faUserPlus
+  faUserPlus,
+  faCheckCircle
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch, faCalendar, faCalendarDays, faEnvelope, faLocationDot, faUser, faUserPlus)
+library.add(
+  faSearch,
+  faCalendar,
+  faCalendarDays,
+  faEnvelope,
+  faLocationDot,
+  faUser,
+  faUserPlus,
+  faCheckCircle
+)
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -30,7 +40,6 @@ import i18n from '@/plugins/i18n'
 export { i18n }
 
 import './styles/main.less'
-import User from './appModules/user/domain/dto/UserAccount'
 
 library.add(faSearch)
 

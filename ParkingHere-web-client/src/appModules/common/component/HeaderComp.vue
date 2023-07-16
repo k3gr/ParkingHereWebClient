@@ -49,7 +49,7 @@
                   class="text-light text-decoration-none btn btn-outline-success border-3"
                   :to="{ name: 'login' }"
                 >
-                  <button type="button" class="btn p-0">
+                  <button type="button" class="btn p-0 text-light">
                     {{ $t('Login') }}
                   </button>
                 </router-link>
@@ -86,12 +86,15 @@
                       <label class="form-check-label" for="submit">{{ $t('RememberMe') }}</label>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-success">{{ $t('SignIn') }}</button>
+                  <button type="submit" class="btn btn-success">
+                    {{ $t('SignIn') }}
+                  </button>
                   <div class="mt-3">
                     <p class="m-0">
                       {{ $t('FirstTimeOnParkingHere')
                       }}<span
                         ><router-link
+                          @click="resetRegistrationParams"
                           class="text-success text-decoration-none d-block"
                           :to="{ name: 'signup' }"
                           >{{ $t('SignUp') }}.</router-link
@@ -141,8 +144,18 @@
 </template>
 
 <script setup lang="ts">
+import { useUserRegistrationStore } from '@/appModules/account/store/UserRegistrationStore'
+import { onUnmounted } from 'vue'
+
 const options = ['PL', 'ENG']
 const isSignIn = false
+
+const store = useUserRegistrationStore()
+const { resetRegistrationParams } = store
+
+onUnmounted(() => {
+  resetRegistrationParams()
+})
 </script>
 
 <style scoped>
