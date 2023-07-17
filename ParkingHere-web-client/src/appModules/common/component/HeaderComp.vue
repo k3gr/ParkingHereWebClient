@@ -16,9 +16,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end">
+        <ul
+          class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end align-items-center"
+        >
           <div class="btn-group mx-2">
-            <div v-if="isSignIn">
+            <div class="d-flex align-items-center" v-if="isLoggedIn">
+              <span class="text-success fw-bold me-3">{{ getUserFullName }}</span>
               <a
                 href="#"
                 class="d-block text-decoration-none dropdown-toggle"
@@ -35,12 +38,18 @@
                 />
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser1" style="">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                  <a class="dropdown-item text-light" href="#">{{ $t('Profile') }}</a>
+                </li>
+                <li>
+                  <a class="dropdown-item text-light" href="#">{{ $t('Settings') }}</a>
+                </li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li>
+                  <a class="dropdown-item text-light" href="#" @click="logOutUser">{{
+                    $t('SignOut')
+                  }}</a>
+                </li>
               </ul>
             </div>
             <div v-else>
@@ -58,50 +67,9 @@
                   class="btn btn-success dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                >
-                  <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
-                </button>
-                <form class="dropdown-menu dropdown-menu-end p-3">
-                  <div class="mb-3">
-                    <label for="username" class="form-label">{{ $t('EmailAddress') }}</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="username"
-                      :placeholder="$t('EmailAddressPlaceHolder')"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="form-label">{{ $t('Password') }}</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="password"
-                      :placeholder="$t('PasswordPlaceHolder')"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input bg-success" id="submit" />
-                      <label class="form-check-label" for="submit">{{ $t('RememberMe') }}</label>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-success">
-                    {{ $t('SignIn') }}
-                  </button>
-                  <div class="mt-3">
-                    <p class="m-0">
-                      {{ $t('FirstTimeOnParkingHere')
-                      }}<span
-                        ><router-link
-                          @click="resetRegistrationParams"
-                          class="text-success text-decoration-none d-block"
-                          :to="{ name: 'signup' }"
-                          >{{ $t('SignUp') }}.</router-link
-                        ></span
-                      >
-                    </p>
-                  </div>
+                ></button>
+                <form class="dropdown-menu dropdown-form dropdown-menu-end p-3">
+                  <UserLoginFormComp />
                 </form>
               </div>
             </div>
@@ -131,9 +99,9 @@
             >
               {{ $t('PL') }}
             </a>
-            <ul class="dropdown-menu bg-transparent border-0 py-0">
+            <ul class="dropdown-menu bg-transparent border-0 m-0">
               <li>
-                <a class="dropdown-item px-2 py-0" href="#">{{ $t('EN') }}</a>
+                <a class="dropdown-item px-2 py-0 text-light" href="#">{{ $t('EN') }}</a>
               </li>
             </ul>
           </li>
@@ -144,14 +112,23 @@
 </template>
 
 <script setup lang="ts">
+import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
+import UserLoginFormComp from '@/appModules/account/component/UserLoginFormComp.vue'
 import { useUserRegistrationStore } from '@/appModules/account/store/UserRegistrationStore'
+import { storeToRefs } from 'pinia'
 import { onUnmounted } from 'vue'
 
-const options = ['PL', 'ENG']
-const isSignIn = false
+components: {
+  UserLoginFormComp
+}
 
-const store = useUserRegistrationStore()
-const { resetRegistrationParams } = store
+const options = ['PL', 'ENG']
+
+const userRegistrationStore = useUserRegistrationStore()
+const { resetRegistrationParams } = userRegistrationStore
+const userLoginStore = useUserLoginStore()
+const { logOutUser } = userLoginStore
+const { isLoggedIn, getUserFullName } = storeToRefs(userLoginStore)
 
 onUnmounted(() => {
   resetRegistrationParams()
@@ -159,12 +136,12 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.dropdown-menu {
-  width: 300px;
+.dropdown-form {
+  width: 295px;
 }
 
 .navbar {
   background: rgb(33, 37, 41);
-  background: linear-gradient(0deg, rgba(33, 37, 41, 0.5) 0%, rgba(33, 37, 41, 1) 25%);
+  background: linear-gradient(0deg, rgba(33, 37, 41, 0.6) 0%, rgba(33, 37, 41, 1) 25%);
 }
 </style>

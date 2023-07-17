@@ -2,7 +2,7 @@
   <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
   <div>
     <div
-      class="login-form position-absolute top-50 start-50 translate-middle p-3 bg-dark col-12 col-sm-9 col-lg-7 col-xl-5"
+      class="position-absolute top-50 start-50 translate-middle p-3 bg-dark col-12 col-sm-9 col-lg-7 col-xl-5"
       data-bs-theme="dark"
     >
       <form @submit.prevent="submitSave">

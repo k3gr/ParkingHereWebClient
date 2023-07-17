@@ -6,7 +6,7 @@
   "Home": "Home",
   "AllRightsReserved": "Wszelkie prawa zastrzeżone",
   "EnterParkingLocation": "Wprowadź lokalizację parkingu",
-  "Loading": "Proszę czekać",
+  "PleaseWait": "Proszę czekać",
   "SignIn": "Zaloguj",
   "SignUp": "Załóż konto",
   "StartDate": "Data rozpoczęcia",
@@ -34,5 +34,10 @@
   "WasFailure": "niepowodzeniem",
   "OperationWas": "zakończyła się",
   "PleaseTryAgainLaterIfTheErrorReoccursContactYourAdministrator": "Spróbuj ponownie za chwilę.\nJeśli ponownie wystąpi błąd, skontaktuj się z administratorem.",
-  "AnEmailWithLinkToActivateYourAccountHasBeenSentToEmailAddressProvided": "Na podany adres e-mail została wysłana wiadomość z linkiem do aktywacji konta."
+  "AnEmailWithLinkToActivateYourAccountHasBeenSentToEmailAddressProvided": "Na podany adres e-mail została wysłana wiadomość z linkiem do aktywacji konta.",
+  "SignOut": "Wyloguj",
+  "Profile": "Profil",
+  "Settings": "Ustawienia",
+  "ForgotPassword": "Zapomniałeś hasła",
+  "RemindPassword": "Przypomnij"
 }
