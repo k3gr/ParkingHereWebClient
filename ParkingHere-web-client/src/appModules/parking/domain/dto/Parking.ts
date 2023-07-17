@@ -1,5 +1,7 @@
-import type Reservation from '@/appModules/reservation/domain/dto/Reservation'
-import type Spot from './Spot'
+import ReservationDTO from '@/appModules/reservation/domain/dto/Reservation'
+import SpotDto from './Spot'
+import UserDTO from '@/appModules/account/domain/dto/User'
+import AddressDTO from './Address'
 
 export interface IParking {
   id: number
@@ -8,13 +10,13 @@ export interface IParking {
   type: string
   contactEmail: string
   contactNumber: string
-  // user: User
-  // address: Address
-  spots: Array<Spot>
-  reservations: Array<Reservation>
+  user: UserDTO
+  address: AddressDTO
+  spots: Array<SpotDto>
+  reservations: Array<ReservationDTO>
 }
 
-export class ParkingDTO implements IParking {
+export default class ParkingDTO implements IParking {
   constructor(
     public id: number = 0,
     public name: string = '',
@@ -22,32 +24,9 @@ export class ParkingDTO implements IParking {
     public type: string = '',
     public contactEmail: string = '',
     public contactNumber: string = '',
-    // public user: User = new user(),
-    // public address: Address = new Address(),
-    public spots: Array<Spot> = new Array(),
-    public reservations: Array<Reservation> = new Array()
+    public user: UserDTO = new UserDTO(),
+    public address: AddressDTO = new AddressDTO(),
+    public spots: Array<SpotDto> = new Array(),
+    public reservations: Array<ReservationDTO> = new Array()
   ) {}
-}
-
-// export class SaveParkingDTO implements IParking {
-//   public id: string = ''
-//   public plannedStartDate: string = ''
-//   public endDate: string = ''
-//   public comments: string = ''
-//   public eventStatus: EventStatusEnum = EventStatusEnum.New
-//   public eventCondition: EventConditionEnum = EventConditionEnum.New
-//   public eventType: EventTypeEnum = EventTypeEnum.General
-//   public policyId: string | null = null
-//   public vehicleId: string | null = null
-//   public thingId: string | null = null
-//   public customerId: string | null = null
-// }
-
-export default class Parking extends ParkingDTO {
-  constructor(dto?: ParkingDTO) {
-    super()
-    if (!dto) dto = new ParkingDTO()
-
-    Object.assign(this, dto)
-  }
 }
