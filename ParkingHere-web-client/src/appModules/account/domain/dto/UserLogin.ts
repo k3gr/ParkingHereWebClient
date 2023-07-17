@@ -1,5 +1,8 @@
-class UserLogin {
-  constructor(public email: string, public password: string) {}
+export interface IUserLogin {
+  email: string
+  password: string
 }
 
-export default UserLogin
+export default class UserLoginDTO implements IUserLogin {
+  constructor(public email: string = '', public password: string = '') {}
+}

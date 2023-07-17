@@ -15,7 +15,7 @@
         <div class="spinner-grow text-success mx-2" role="status"></div>
         <div class="spinner-grow text-success mx-2" role="status"></div>
         <p class="sr mt-2 text-light bg-dark rounded border border-success border-2">
-          {{ $t('Loading') }}...
+          {{ $t('PleaseWait') }}...
         </p>
       </div>
     </div>
