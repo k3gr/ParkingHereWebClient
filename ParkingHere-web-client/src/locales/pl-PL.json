@@ -39,5 +39,22 @@
   "Profile": "Profil",
   "Settings": "Ustawienia",
   "ForgotPassword": "Zapomniałeś hasła",
-  "RemindPassword": "Przypomnij"
+  "RemindPassword": "Przypomnij",
+  "Book": "Rezerwuj",
+  "Price": "Cena",
+  "PricePerDay": "Cena za 1 dzień",
+  "From": "od",
+  "Currency": "zł",
+  "DetailsOfReservation": "Szczegóły rezerwacji",
+  "Address": "Adres",
+  "Availability": "Dostępność",
+  "Absence": "BraK",
+  "Prices": "Ceny",
+  "SpotType": "Rodzaj miejsca",
+  "ChooseType": "Wybierz rodzaj",
+  "Summary": "Podsumowanie",
+  "1Day": "1 dzień",
+  "Days": "dni",
+  "ToPay": "Do zapłaty",
+  "Period": "Okres"
 }

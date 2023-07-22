@@ -1,7 +1,4 @@
-import ReservationDTO from '@/appModules/reservation/domain/dto/Reservation'
 import SpotDto from './Spot'
-import UserDTO from '@/appModules/account/domain/dto/User'
-import AddressDTO from './Address'
 
 export interface IParking {
   id: number
@@ -10,10 +7,13 @@ export interface IParking {
   type: string
   contactEmail: string
   contactNumber: string
-  user: UserDTO
-  address: AddressDTO
+  street: string
+  city: string
+  prices: number[]
+  // user: UserDTO
+  // address: AddressDTO
   spots: Array<SpotDto>
-  reservations: Array<ReservationDTO>
+  // reservations: Array<ReservationDTO>
 }
 
 export default class ParkingDTO implements IParking {
@@ -24,9 +24,11 @@ export default class ParkingDTO implements IParking {
     public type: string = '',
     public contactEmail: string = '',
     public contactNumber: string = '',
-    public user: UserDTO = new UserDTO(),
-    public address: AddressDTO = new AddressDTO(),
-    public spots: Array<SpotDto> = new Array(),
-    public reservations: Array<ReservationDTO> = new Array()
+    public street: string = '',
+    public city: string = '',
+    public prices: number[] = [],
+    // public user: UserDTO = new UserDTO(),
+    // public address: AddressDTO = new AddressDTO(),
+    public spots: Array<SpotDto> = new Array() // public reservations: Array<ReservationDTO> = new Array()
   ) {}
 }

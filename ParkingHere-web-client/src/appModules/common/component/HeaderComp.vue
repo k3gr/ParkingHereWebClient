@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg" data-bs-theme="dark">
-    <div class="container-fluid">
+  <nav class="navbar navbar-nav fixed-top navbar-expand-lg" data-bs-theme="dark">
+    <div class="container">
       <router-link class="navbar-brand fs-1" href="#" :to="{ name: 'home' }">
         {{ $t('ParkingHere') }}</router-link
       >
@@ -53,9 +53,9 @@
               </ul>
             </div>
             <div v-else>
-              <div class="btn-group mx-2">
+              <div class="btn-group mx-2 mt-3 mt-lg-0">
                 <router-link
-                  class="text-light text-decoration-none btn btn-outline-success border-3"
+                  class="text-light text-decoration-none btn btn-outline-success border-3 rounded"
                   :to="{ name: 'login' }"
                 >
                   <button type="button" class="btn p-0 text-light">
@@ -64,7 +64,7 @@
                 </router-link>
                 <button
                   type="button"
-                  class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                  class="d-none d-lg-block btn btn-success dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 ></button>
@@ -74,9 +74,6 @@
               </div>
             </div>
           </div>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">{{ $t('Home') }}</a>
-          </li>
           <!-- <li class="nav-item py-2 bg-transparent">
             <select class="text-light border bg-transparent border-0">
               <option
@@ -142,6 +139,16 @@ onUnmounted(() => {
 
 .navbar {
   background: rgb(33, 37, 41);
-  background: linear-gradient(0deg, rgba(33, 37, 41, 0.6) 0%, rgba(33, 37, 41, 1) 25%);
+  min-height: 80px;
+}
+.navbar-brand {
+  font-size: 35px !important;
+}
+
+@media screen and (min-width: 992px) {
+  .rounded {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
 }
 </style>

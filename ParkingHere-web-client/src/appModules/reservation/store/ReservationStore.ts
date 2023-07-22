@@ -7,7 +7,7 @@ const service = new ReservationService()
 const params = useParams()
 
 export const useReservationStore = defineStore({
-  id: 'ReservationStore',
+  id: 'reservationStore',
   state: () => ({
     reservationDTO: new ReservationDTO(),
     reservationSuccess: 0
@@ -20,6 +20,7 @@ export const useReservationStore = defineStore({
   actions: {
     async makeReservation() {
       params.isLoading.value = true
+      this.reservationDTO = new ReservationDTO()
 
       service
         .create(this.reservationDTO)

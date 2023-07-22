@@ -20,7 +20,8 @@ import {
   faLocationDot,
   faUser,
   faUserPlus,
-  faCheckCircle
+  faCheckCircle,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -31,7 +32,8 @@ library.add(
   faLocationDot,
   faUser,
   faUserPlus,
-  faCheckCircle
+  faCheckCircle,
+  faArrowRight
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

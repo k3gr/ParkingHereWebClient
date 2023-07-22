@@ -9,7 +9,7 @@
     </div>
   </div>
   <div v-else>
-    <div v-if="isLoading" class="row loading-panel">
+    <div v-if="delayedLoading" class="row loading-panel">
       <div class="col-12">
         <div class="spinner-grow text-success mx-2" role="status"></div>
         <div class="spinner-grow text-success mx-2" role="status"></div>
@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import { watch, ref } from 'vue'
+
 const props = defineProps({
   isError: {
     type: Boolean,
@@ -33,6 +35,19 @@ const props = defineProps({
     default: false
   }
 })
+const delayedLoading = ref(false)
+
+watch(
+  () => props.isLoading,
+  (newValue) => {
+    if (newValue == false) {
+      return setTimeout(() => {
+        delayedLoading.value = newValue
+      }, 500)
+    }
+    delayedLoading.value = newValue
+  }
+)
 </script>
 
 <style scoped>
@@ -47,11 +62,11 @@ const props = defineProps({
   z-index: 99;
 }
 
-.spinner-grow:nth-child(2) {
-  animation-delay: 0.1s;
+.spinner-grow:nth-child(1) {
+  animation-delay: -0.2s;
 }
 
-.spinner-grow:nth-child(3) {
-  animation-delay: 0.2s;
+.spinner-grow:nth-child(2) {
+  animation-delay: -0.1s;
 }
 </style>
