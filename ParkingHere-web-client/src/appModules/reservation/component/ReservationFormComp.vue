@@ -39,7 +39,7 @@
           class="col-12 col-md-2 col-xl-1 px-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
           type="submit"
           :to="{ name: 'parkings' }"
-          @click="findParkings"
+          @click="fetchParkings"
         >
           <span class="text-light">{{ $t('Search') }}</span>
         </router-link>
@@ -50,10 +50,31 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
+import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
+import { watch } from 'vue'
+import moment from 'moment'
+
+const reservationsStore = useReservationStore()
+const { getReservationParams } = storeToRefs(reservationsStore)
 
 const store = useParkingStore()
-const { findParkings, getParams } = store
-const { getReservationParams } = storeToRefs(store)
+const { findParkings } = store
+
+watch(
+  () => getReservationParams.value.startDate,
+  () => {
+    if (getReservationParams.value.startDate > getReservationParams.value.endDate) {
+      getReservationParams.value.endDate = moment(getReservationParams.value.startDate)
+        .add(2, 'd')
+        .toISOString()
+        .substring(0, 10)
+    }
+  }
+)
+
+function fetchParkings() {
+  findParkings(getReservationParams.value)
+}
 </script>
 <style scoped>
 .icon {
@@ -186,3 +207,4 @@ input:not(:placeholder-shown) ~ label {
   }
 }
 </style>
+useParkingStore

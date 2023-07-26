@@ -3,7 +3,6 @@
     v-if="parking"
     class="col-10 col-md-8 col-lg-9 p-3 parking box-shadow bg-light text-dark mx-auto mb-4 d-flex justify-content-between flex-column flex-lg-row"
   >
-    <SpotComp />
     <div class="col-12 col-lg-3 parking d-flex justify-content-center">
       <img
         src="https://katowice.eu/SitePages/znizki-kkm/Znizki-KKM-parking.png"
@@ -93,19 +92,20 @@
 <script setup lang="ts">
 import ParkingDTO from '@/appModules/parking/domain/dto/Parking'
 import { useSpotStore } from '@/appModules/parking/store/SpotStore'
-import SpotComp from '../component/SpotComp.vue'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
-
-components: {
-  SpotComp
-}
+import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 const props = defineProps({
   parking: ParkingDTO
 })
-const parkingsStore = useParkingStore()
-const { findParking, getReservationParams } = parkingsStore
-const spotsStore = useSpotStore()
-const { findSpots } = spotsStore
+const parkingStore = useParkingStore()
+const { findParking } = parkingStore
+
+const spotStore = useSpotStore()
+const { findSpots } = spotStore
+
+const reservationStore = useReservationStore()
+const { getReservationParams } = reservationStore
+
 const lowestPrice = props.parking.prices[0]
 
 function showModal() {

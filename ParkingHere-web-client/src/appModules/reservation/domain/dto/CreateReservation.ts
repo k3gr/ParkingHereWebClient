@@ -1,15 +1,17 @@
 import moment from 'moment'
 import { SpotTypeEnum } from '../enumerated/SpotTypeEnum'
 
-export interface IReservationParams {
+export interface ICreateReservation {
+  parkingId: number
   city: string
   startDate: string | null
   endDate: string | null
   type: SpotTypeEnum
 }
 
-export class ReservationParamsDTO implements IReservationParams {
+export class CreateReservationDTO implements ICreateReservation {
   constructor(
+    public parkingId: number = 0,
     public city: string = '',
     public startDate: string | null = null,
     public endDate: string | null = null,
@@ -17,10 +19,10 @@ export class ReservationParamsDTO implements IReservationParams {
   ) {}
 }
 
-export default class ReservationParams extends ReservationParamsDTO {
-  constructor(dto?: ReservationParamsDTO) {
+export default class CreateReservation extends CreateReservationDTO {
+  constructor(dto?: CreateReservationDTO) {
     super()
-    if (!dto) dto = new ReservationParamsDTO()
+    if (!dto) dto = new CreateReservationDTO()
 
     Object.assign(this, dto)
 

@@ -68,7 +68,6 @@
           :disabled="standardSpots.length == 0"
           v-model="getReservationParams.type"
           :value="SpotTypeEnum.Standard"
-          checked="true"
         />
         <label
           class="btn btn-outline-success"
@@ -127,15 +126,24 @@
         </div>
         <span>
           {{ $t('SpotType') }}:
-          <span class="fw-bold">{{ getReservationParams.type }}</span>
+          <span v-if="getReservationParams.type != SpotTypeEnum.Empty" class="fw-bold">{{
+            getReservationParams.type
+          }}</span>
         </span>
         <span class="mt-3">
           {{ $t('ToPay') }}:
-          <span class="fw-bold">{{ totalPrice }} {{ $t('Currency') }}</span>
+          <span v-if="totalPrice" class="fw-bold">{{ totalPrice }} {{ $t('Currency') }}</span>
         </span>
       </div>
       <div class="modal-footer mt-3">
-        <button type="button" class="btn btn-success">{{ $t('Book') }}</button>
+        <button
+          type="button"
+          class="btn btn-success"
+          @click="bookSpot"
+          :disabled="getReservationParams.type === SpotTypeEnum.Empty"
+        >
+          {{ $t('Book') }}
+        </button>
       </div>
     </div>
   </div>
@@ -147,12 +155,20 @@ import { SpotTypeEnum } from '@/appModules/reservation/domain/enumerated/SpotTyp
 import { useSpotStore } from '@/appModules/parking/store/SpotStore'
 import { storeToRefs } from 'pinia'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
+import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
+import { watch } from 'vue'
 
 const parkingsStore = useParkingStore()
-const { getPrices, getParking, getReservationParams } = storeToRefs(parkingsStore)
+const { getPrices, getParking } = storeToRefs(parkingsStore)
 
 const spotsStore = useSpotStore()
+const { findSpots } = spotsStore
 const { getSpots } = storeToRefs(spotsStore)
+
+const reservationStore = useReservationStore()
+const { makeReservation } = reservationStore
+const { getCreateReservation, getReservationParams, isReservationSuccess } =
+  storeToRefs(reservationStore)
 
 const rentalDays = computed(() => {
   return moment
@@ -184,6 +200,23 @@ const vipPrice = computed(() => {
   return getPrices.value[2]
 })
 
+watch(
+  () => isReservationSuccess.value,
+  () => {
+    if (isReservationSuccess.value === 1) {
+      findSpots(getParking.value.id, getReservationParams.value)
+    }
+  }
+)
+
+function bookSpot() {
+  getCreateReservation.value.parkingId = getParking.value.id
+  getCreateReservation.value.startDate = getReservationParams.value.startDate
+  getCreateReservation.value.endDate = getReservationParams.value.endDate
+  getCreateReservation.value.type = getReservationParams.value.type
+  makeReservation()
+}
+
 const totalPrice = computed(() => {
   switch (getReservationParams.value.type) {
     case SpotTypeEnum.Standard:
@@ -210,3 +243,4 @@ const totalPrice = computed(() => {
   opacity: 0.3 !important;
 }
 </style>
+useParkingStore
