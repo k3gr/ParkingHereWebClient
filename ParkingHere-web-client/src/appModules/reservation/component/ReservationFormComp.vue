@@ -1,24 +1,28 @@
 <template>
-  <div class="d-flex justify-content-center">
-    <form
-      class="position-absolute top-50 translate-middle-y rounded border border-4 border-success"
-    >
+  <div class="col-10 col-md-8 col-lg-9 mx-auto mb-4">
+    <form class="rounded border border-4 border-success w-100 box-shadow">
       <div class="d-flex col-12 flex-wrap form-section">
         <div class="enter-location col-12 col-xl-5 position-relative py-4">
           <font-awesome-icon :icon="['fas', 'location-dot']" class="icon text-success" />
           <input
             class="bg-transparent col-12"
-            type="text"
+            type="search"
             id="parkings"
             name="parkings"
             placeholder=" "
+            v-model="getReservationParams.city"
           />
           <label for="parkings">{{ $t('EnterParkingLocation') }}</label>
         </div>
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('StartDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input id="startDate" class="date-picker bg-transparent" type="date" :value="startDate" />
+          <input
+            id="startDate"
+            class="date-picker bg-transparent"
+            type="date"
+            v-model="getReservationParams.startDate"
+          />
         </div>
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('EndDate') }}</label>
@@ -28,25 +32,28 @@
             class="date-picker bg-transparent"
             type="date"
             max="2199-12-31"
-            :value="endDate"
+            v-model="getReservationParams.endDate"
           />
         </div>
-        <div
-          class="search-btn d-flex justify-content-center align-items-center bg-success col-12 col-md-2 col-xl-1"
+        <router-link
+          class="col-12 col-md-2 col-xl-1 px-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
           type="submit"
+          :to="{ name: 'parkings' }"
+          @click="findParkings"
         >
           <span class="text-light">{{ $t('Search') }}</span>
-        </div>
+        </router-link>
       </div>
     </form>
   </div>
 </template>
 <script setup lang="ts">
-import moment from 'moment'
+import { storeToRefs } from 'pinia'
+import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 
-const today = moment()
-const startDate = today.toISOString().substring(0, 10)
-const endDate = today.add(7, 'd').toISOString().substring(0, 10)
+const store = useParkingStore()
+const { findParkings, getParams } = store
+const { getReservationParams } = storeToRefs(store)
 </script>
 <style scoped>
 .icon {
@@ -55,9 +62,11 @@ const endDate = today.add(7, 'd').toISOString().substring(0, 10)
   transform: translate(8px, -50%);
   font-size: 20px;
 }
-form {
-  width: 60%;
+
+.search-btn {
+  box-shadow: -2px 0px 0px 0px #198754, 2px 0px 0px 0px #198754;
 }
+
 .search-btn:hover {
   background-color: rgba(25, 135, 84, 0.9) !important;
   border-radius: 0px, 2px;
@@ -117,7 +126,6 @@ input.date-picker {
 .date input {
   position: absolute;
   top: 50%;
-  /* transform: translate(40px, -25%); */
   color: #fff;
   border: 0;
   font-size: 16px;
@@ -136,7 +144,7 @@ input.date-picker {
 }
 
 input:focus {
-  outline: none;
+  outline: 0 none !important;
 }
 
 label,

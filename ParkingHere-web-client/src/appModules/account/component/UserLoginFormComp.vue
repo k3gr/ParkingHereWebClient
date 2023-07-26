@@ -7,7 +7,7 @@
         class="form-control"
         id="email"
         :placeholder="$t('EmailAddress')"
-        v-model="store.getUserLogin.email"
+        v-model="getUserLogin.email"
       />
       <label class="text-secondary-emphasis" for="email">{{ $t('EmailAddress') }}</label>
     </div>
@@ -18,7 +18,7 @@
         class="form-control"
         id="password"
         :placeholder="$t('Password')"
-        v-model="store.getUserLogin.password"
+        v-model="getUserLogin.password"
       />
       <label class="text-secondary-emphasis" for="password">{{ $t('Password') }}</label>
     </div>
@@ -62,7 +62,7 @@ import { useUserLoginStore } from '../store/UserLoginStore'
 
 const store = useUserLoginStore()
 const { userSignIn } = store
-const { getParams } = storeToRefs(store)
+const { getParams, getUserLogin } = storeToRefs(store)
 
 async function submitSignIn() {
   userSignIn()

@@ -1,5 +1,5 @@
-<template class="justify-content-center d-flex">
-  <div class="main-img" alt="Main view">
+<template>
+  <div class="container-fluid main-img g-0">
     <HeaderComp />
     <RouterView />
     <FooterComp />
@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import HeaderComp from '@/appModules/common/component/HeaderComp.vue'
 import FooterComp from '@/appModules/common/component/FooterComp.vue'
 components: {
