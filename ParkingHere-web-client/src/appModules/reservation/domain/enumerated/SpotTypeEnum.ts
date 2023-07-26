@@ -1,5 +1,6 @@
 export enum SpotTypeEnum {
   Standard = 'Standard',
   Bus = 'Bus',
-  Vip = 'Vip'
+  Vip = 'Vip',
+  Empty = 'Empty'
 }

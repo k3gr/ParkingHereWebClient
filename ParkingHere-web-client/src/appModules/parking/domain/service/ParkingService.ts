@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type CreateParkingDTO from '../dto/CreateParking'
 import type ParkingDTO from '../dto/Parking'
-import type ReservationParamsDTO from '@/appModules/reservation/domain/dto/ReservationParams'
+import type ReservationParams from '@/appModules/reservation/domain/dto/ReservationParams'
 
 const urlParking = '/api/parking/'
 
@@ -14,10 +14,10 @@ export default class ParkingService {
     return axios.get<Array<ParkingDTO>>(import.meta.env.VITE_APP_API_DOMAIN + urlParking)
   }
 
-  findByParams(reservationParamsDTO: ReservationParamsDTO) {
+  findByParams(reservationParams: ReservationParams) {
     return axios.post<Array<ParkingDTO>>(
       import.meta.env.VITE_APP_API_DOMAIN + urlParking + 'city',
-      reservationParamsDTO
+      reservationParams
     )
   }
 

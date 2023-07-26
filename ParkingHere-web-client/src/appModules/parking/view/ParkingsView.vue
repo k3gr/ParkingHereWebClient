@@ -10,6 +10,7 @@
       >
         <ParkingComp :parking="parking" />
       </div>
+      <SpotComp />
     </div>
   </div>
 </template>
@@ -57,3 +58,4 @@ const { getParkings, getParams } = storeToRefs(store)
   width: 100%;
 }
 </style>
+useParkingStore

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import SpotService from '../domain/service/SpotService'
 import SpotDTO from '../domain/dto/Parking'
 import useParams from '@/appModules/common/composable/Params'
-import ReservationParamsDTO from '@/appModules/reservation/domain/dto/ReservationParams'
+import type ReservationParams from '@/appModules/reservation/domain/dto/ReservationParams'
 
 const service = new SpotService()
 const params = useParams()
@@ -19,11 +19,11 @@ export const useSpotStore = defineStore({
     getParams: () => params
   },
   actions: {
-    async findSpots(parkingId: number, reservationParamsDTO: ReservationParamsDTO) {
+    async findSpots(parkingId: number, reservationParams: ReservationParams) {
       params.isLoading.value = true
 
       service
-        .findAll(parkingId, reservationParamsDTO)
+        .findAll(parkingId, reservationParams)
         .then(
           (success) => {
             if (success.status === 200) {

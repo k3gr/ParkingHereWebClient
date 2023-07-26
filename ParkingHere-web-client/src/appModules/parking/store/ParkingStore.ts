@@ -1,10 +1,8 @@
 import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router'
 import ParkingService from '../domain/service/ParkingService'
 import ParkingDTO from '../domain/dto/Parking'
 import useParams from '@/appModules/common/composable/Params'
-import ReservationParamsDTO from '../../reservation/domain/dto/ReservationParams'
-import { SpotTypeEnum } from '@/appModules/reservation/domain/enumerated/SpotTypeEnum'
+import type ReservationParams from '../../reservation/domain/dto/ReservationParams'
 
 const service = new ParkingService()
 const params = useParams()
@@ -13,18 +11,16 @@ export const useParkingStore = defineStore({
   id: 'parkingStore',
   state: () => ({
     parkingDto: new ParkingDTO(),
-    reservationParams: new ReservationParamsDTO(),
     parkings: [] as ParkingDTO[]
   }),
   getters: {
     getParking: (state) => state.parkingDto,
-    getReservationParams: (state) => state.reservationParams,
     getParkings: (state) => state.parkings,
     getPrices: (state) => state.parkingDto.prices,
     getParams: () => params
   },
   actions: {
-    async findAll() {
+    async findAllParkings() {
       params.isLoading.value = true
 
       service
@@ -48,10 +44,10 @@ export const useParkingStore = defineStore({
         })
     },
 
-    async findParkings() {
+    async findParkings(reservationParams: ReservationParams) {
       params.isLoading.value = true
       service
-        .findByParams(this.reservationParams)
+        .findByParams(reservationParams)
         .then(
           (success) => {
             if (success.status === 200) {
@@ -72,8 +68,6 @@ export const useParkingStore = defineStore({
     },
 
     async findParking(id: number) {
-      this.reservationParams.type = SpotTypeEnum.Standard
-
       service
         .findById(id)
         .then(
