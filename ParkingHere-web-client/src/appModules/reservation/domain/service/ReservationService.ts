@@ -1,16 +1,16 @@
 import axios from 'axios'
-import type CreateReservationDTO from '../dto/CreateReservation'
+import type CreateReservationDto from '../dto/CreateReservation'
 
 const urlReservation = '/api/parking/'
 
 export default class ReservationService {
-  create(reservationDTO: CreateReservationDTO) {
+  create(reservationDto: CreateReservationDto) {
     return axios.post(
       import.meta.env.VITE_APP_API_DOMAIN +
         urlReservation +
-        reservationDTO.parkingId +
+        reservationDto.parkingId +
         '/spot/reservation',
-      reservationDTO
+      reservationDto
     )
   }
 }

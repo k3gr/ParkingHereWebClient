@@ -1,7 +1,7 @@
-import ReservationDTO from '@/appModules/reservation/domain/dto/Reservation'
+import ReservationDto from '@/appModules/reservation/domain/dto/Reservation'
 import SpotDto from './Spot'
-import UserDTO from '@/appModules/account/domain/dto/User'
-import AddressDTO from './Address'
+import UserDto from '@/appModules/account/domain/dto/User'
+import AddressDto from './Address'
 
 export interface ICreateParking {
   name: string
@@ -9,22 +9,22 @@ export interface ICreateParking {
   type: string
   contactEmail: string
   contactNumber: string
-  user: UserDTO
-  address: AddressDTO
+  user: UserDto
+  address: AddressDto
   spots: Array<SpotDto>
-  reservations: Array<ReservationDTO>
+  reservations: Array<ReservationDto>
 }
 
-export default class CreateParkingDTO implements ICreateParking {
+export default class CreateParkingDto implements ICreateParking {
   constructor(
     public name: string = '',
     public description: string = '',
     public type: string = '',
     public contactEmail: string = '',
     public contactNumber: string = '',
-    public user: UserDTO = new UserDTO(),
-    public address: AddressDTO = new AddressDTO(),
+    public user: UserDto = new UserDto(),
+    public address: AddressDto = new AddressDto(),
     public spots: Array<SpotDto> = new Array(),
-    public reservations: Array<ReservationDTO> = new Array()
+    public reservations: Array<ReservationDto> = new Array()
   ) {}
 }

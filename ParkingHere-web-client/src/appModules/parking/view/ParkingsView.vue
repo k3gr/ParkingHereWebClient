@@ -58,4 +58,3 @@ const { getParkings, getParams } = storeToRefs(store)
   width: 100%;
 }
 </style>
-useParkingStore

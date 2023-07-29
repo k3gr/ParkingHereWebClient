@@ -3,6 +3,6 @@ export interface IUserLogin {
   password: string
 }
 
-export default class UserLoginDTO implements IUserLogin {
+export default class UserLoginDto implements IUserLogin {
   constructor(public email: string = '', public password: string = '') {}
 }

@@ -56,5 +56,14 @@
   "1Day": "1 dzień",
   "Days": "dni",
   "ToPay": "Do zapłaty",
-  "Period": "Okres"
+  "Period": "Okres",
+  "Management": "Zarządzanie",
+  "ParkingManagement": "Zarządzanie Parkingami",
+  "MyAccount": "Moje konto",
+  "Parkings": "Parkingi",
+  "MyReservations": "Moje rezerwacje",
+  "MyVehicle": "Mój pojazd",
+  "Change": "Zmień",
+  "Save": "Zapisz",
+  "Email": "E-mail"
 }

@@ -8,7 +8,7 @@ export interface IReservationParams {
   type: SpotTypeEnum
 }
 
-export class ReservationParamsDTO implements IReservationParams {
+export class ReservationParamsDto implements IReservationParams {
   constructor(
     public city: string = '',
     public startDate: string | null = null,
@@ -17,10 +17,10 @@ export class ReservationParamsDTO implements IReservationParams {
   ) {}
 }
 
-export default class ReservationParams extends ReservationParamsDTO {
-  constructor(dto?: ReservationParamsDTO) {
+export default class ReservationParams extends ReservationParamsDto {
+  constructor(dto?: ReservationParamsDto) {
     super()
-    if (!dto) dto = new ReservationParamsDTO()
+    if (!dto) dto = new ReservationParamsDto()
 
     Object.assign(this, dto)
 

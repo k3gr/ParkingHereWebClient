@@ -243,4 +243,3 @@ const totalPrice = computed(() => {
   opacity: 0.3 !important;
 }
 </style>
-useParkingStore

@@ -20,38 +20,7 @@
           class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end align-items-center"
         >
           <div class="btn-group mx-2">
-            <div class="d-flex align-items-center" v-if="isLoggedIn">
-              <span class="text-success fw-bold me-3">{{ getUserFullName }}</span>
-              <a
-                href="#"
-                class="d-block text-decoration-none dropdown-toggle"
-                id="dropdownUser1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://github.com/mdo.png"
-                  alt="mdo"
-                  width="48"
-                  height="48"
-                  class="rounded-circle border border-3 border-success"
-                />
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser1" style="">
-                <li>
-                  <a class="dropdown-item text-light" href="#">{{ $t('Profile') }}</a>
-                </li>
-                <li>
-                  <a class="dropdown-item text-light" href="#">{{ $t('Settings') }}</a>
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item text-light" href="#" @click="logOutUser">{{
-                    $t('SignOut')
-                  }}</a>
-                </li>
-              </ul>
-            </div>
+            <UserAccountComp v-if="isLoggedIn" />
             <div v-else>
               <div class="btn-group mx-2 mt-3 mt-lg-0">
                 <router-link
@@ -111,12 +80,14 @@
 <script setup lang="ts">
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 import UserLoginFormComp from '@/appModules/account/component/UserLoginFormComp.vue'
+import UserAccountComp from '@/appModules/account/component/UserAccountComp.vue'
 import { useUserRegistrationStore } from '@/appModules/account/store/UserRegistrationStore'
 import { storeToRefs } from 'pinia'
 import { onUnmounted } from 'vue'
 
 components: {
   UserLoginFormComp
+  UserAccountComp
 }
 
 const options = ['PL', 'ENG']
@@ -124,8 +95,7 @@ const options = ['PL', 'ENG']
 const userRegistrationStore = useUserRegistrationStore()
 const { resetRegistrationParams } = userRegistrationStore
 const userLoginStore = useUserLoginStore()
-const { logOutUser } = userLoginStore
-const { isLoggedIn, getUserFullName } = storeToRefs(userLoginStore)
+const { isLoggedIn } = storeToRefs(userLoginStore)
 
 onUnmounted(() => {
   resetRegistrationParams()

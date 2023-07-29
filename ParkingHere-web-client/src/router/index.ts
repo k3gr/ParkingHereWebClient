@@ -3,6 +3,7 @@ import HomeView from '@/appModules/common/view/HomeView.vue'
 import UserLoginView from '@/appModules/account/view/UserLoginView.vue'
 import UserRegistrationView from '@/appModules/account/view/UserRegistrationView.vue'
 import ParkingsView from '@/appModules/parking/view/ParkingsView.vue'
+import UserAccountManagementView from '@/appModules/account/view/UserAccountManagementView.vue'
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/parkings',
       name: 'parkings',
       component: ParkingsView
+    },
+    {
+      path: '/account',
+      name: 'userAccount',
+      component: UserAccountManagementView
     }
   ]
 })

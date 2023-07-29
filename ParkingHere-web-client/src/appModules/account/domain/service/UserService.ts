@@ -1,33 +1,65 @@
 import axios from 'axios'
-import type UserRegistrationDTO from '../dto/UserRegistration'
+import type UserRegistrationDto from '../dto/UserRegistration'
 import type UserLoginDto from '../dto/UserLogin'
-import type ClientTokenDTO from '../dto/ClientToken'
-import type ClientToken from '../dto/ClientToken'
+import type UserDto from '../dto/User'
+import UpdateUserDto from '../dto/UpdateUserDto'
+import UserToken, { UserTokenDto } from '../dto/UserToken'
 
 const urlUser = '/api/account/'
 const keyUserLocalStorage = 'authUser'
 
 export default class UserService {
-  create(userRegistrationDTO: UserRegistrationDTO) {
+  create(userRegistrationDto: UserRegistrationDto) {
     return axios.post(
       import.meta.env.VITE_APP_API_DOMAIN + urlUser + 'register',
-      userRegistrationDTO
+      userRegistrationDto
     )
+  }
+
+  update(id: number, updateUserDto: UpdateUserDto) {
+    return axios.put(import.meta.env.VITE_APP_API_DOMAIN + urlUser + id, updateUserDto)
+  }
+
+  findById(id: number) {
+    return axios.get<UserDto>(import.meta.env.VITE_APP_API_DOMAIN + urlUser + id)
   }
 
   signIn(userLoginDto: UserLoginDto) {
     return axios.post(import.meta.env.VITE_APP_API_DOMAIN + urlUser + 'login', userLoginDto)
   }
 
-  setUserToLocalStorage(clientToken: ClientToken) {
-    localStorage.setItem(keyUserLocalStorage, JSON.stringify(clientToken))
+  setUserToLocalStorage(userToken: UserToken) {
+    localStorage.setItem(keyUserLocalStorage, JSON.stringify(userToken))
   }
 
   getUserFromLocalStorage() {
-    return JSON.parse(localStorage.getItem(keyUserLocalStorage) as string) as ClientToken
+    return JSON.parse(localStorage.getItem(keyUserLocalStorage) as string) as UserToken
   }
 
   removeUserFromLocalStorage() {
     localStorage.removeItem(keyUserLocalStorage)
+  }
+
+  convertUserDTOToUpdateUserDto(userDto: UserDto) {
+    let updateUserDto = new UpdateUserDto()
+
+    if (userDto) {
+      updateUserDto.firstName = userDto.firstName
+      updateUserDto.lastName = userDto.lastName
+      updateUserDto.email = userDto.email
+    }
+    return updateUserDto
+  }
+
+  convertUserDTOToUserTokenDto(userDto: UserDto) {
+    let userToken = new UserTokenDto()
+
+    if (userDto) {
+      userToken.id = userDto.id
+      userToken.firstName = userDto.firstName
+      userToken.lastName = userDto.lastName
+      userToken.email = userDto.email
+    }
+    return userToken
   }
 }

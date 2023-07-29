@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import useParams from '@/appModules/common/composable/Params'
 import ReservationService from '../domain/service/ReservationService'
 import ReservationParams from '../domain/dto/ReservationParams'
-import CreateReservationDTO from '../domain/dto/CreateReservation'
+import CreateReservationDto from '../domain/dto/CreateReservation'
 import { SpotTypeEnum } from '../domain/enumerated/SpotTypeEnum'
 
 const service = new ReservationService()
@@ -13,13 +13,13 @@ export const useReservationStore = defineStore({
   state: () => {
     return {
       reservationParams: new ReservationParams(),
-      createReservationDTO: new CreateReservationDTO(),
+      createReservationDto: new CreateReservationDto(),
       reservationSuccess: 0
     }
   },
   getters: {
     getReservationParams: (state) => state.reservationParams,
-    getCreateReservation: (state) => state.createReservationDTO,
+    getCreateReservation: (state) => state.createReservationDto,
     isReservationSuccess: (state) => state.reservationSuccess,
     getParams: () => params
   },
@@ -29,7 +29,7 @@ export const useReservationStore = defineStore({
       this.reservationSuccess = 0
 
       service
-        .create(this.createReservationDTO)
+        .create(this.createReservationDto)
         .then(
           (success) => {
             if (success.status === 201) {
