@@ -1,8 +1,13 @@
 export interface IVehicle {
-  name: string
+  brand: string
+  model: string
   registrationPlate: string
 }
 
-export default class VehicleDTO implements IVehicle {
-  constructor(public name: string = '', public registrationPlate: string = '') {}
+export default class VehicleDto implements IVehicle {
+  constructor(
+    public brand: string = '',
+    public model: string = '',
+    public registrationPlate: string = ''
+  ) {}
 }

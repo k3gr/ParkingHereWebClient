@@ -9,7 +9,7 @@ export interface IReservation {
   endDate: string | null
 }
 
-export default class ReservationDTO implements IReservation {
+export default class ReservationDto implements IReservation {
   constructor(
     public parkingId: number = 0,
     public spotId: number = 0,

@@ -1,12 +1,14 @@
-export interface IClientToken {
+export interface IUserToken {
+  id: number
   firstName: string
   lastName: string
   email: string
   token: string
 }
 
-export class ClientTokenDTO implements IClientToken {
+export class UserTokenDto implements IUserToken {
   constructor(
+    public id: number = 0,
     public firstName: string = '',
     public lastName: string = '',
     public email: string = '',
@@ -14,11 +16,12 @@ export class ClientTokenDTO implements IClientToken {
   ) {}
 }
 
-export default class ClientToken extends ClientTokenDTO {
-  constructor(dto?: ClientTokenDTO) {
+export default class UserToken extends UserTokenDto {
+  constructor(dto?: UserTokenDto) {
     super()
-    if (!dto) dto = new ClientTokenDTO()
+    if (!dto) dto = new UserTokenDto()
 
+    this.id = dto.id
     this.firstName = dto.firstName
     this.lastName = dto.lastName
     this.email = dto.email

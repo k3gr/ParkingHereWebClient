@@ -5,7 +5,7 @@ export interface IAddress {
   postalCode: string
 }
 
-export default class AddressDTO implements IAddress {
+export default class AddressDto implements IAddress {
   constructor(
     public id: number = 0,
     public city: string = '',

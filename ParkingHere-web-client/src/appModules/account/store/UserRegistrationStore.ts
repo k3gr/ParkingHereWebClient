@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { i18n } from '@/main'
 import UserService from '../domain/service/UserService'
-import UserRegistrationDTO from '../domain/dto/UserRegistration'
+import UserRegistrationDto from '../domain/dto/UserRegistration'
 import useParams from '@/appModules/common/composable/Params'
 
 const service = new UserService()
@@ -10,11 +10,11 @@ const params = useParams()
 export const useUserRegistrationStore = defineStore({
   id: 'userRegistrationStore',
   state: () => ({
-    userRegistrationDTO: new UserRegistrationDTO(),
+    userRegistrationDto: new UserRegistrationDto(),
     registrationSuccess: 0
   }),
   getters: {
-    getUserRegistration: (state) => state.userRegistrationDTO,
+    getUserRegistration: (state) => state.userRegistrationDto,
     isRegistrationSuccess: (state) => state.registrationSuccess,
     getParams: () => params
   },
@@ -23,12 +23,12 @@ export const useUserRegistrationStore = defineStore({
       params.isLoading.value = true
 
       service
-        .create(this.userRegistrationDTO)
+        .create(this.userRegistrationDto)
         .then(
           (success) => {
             if (success.status === 201) {
               this.registrationSuccess = 1
-              this.userRegistrationDTO = new UserRegistrationDTO()
+              this.userRegistrationDto = new UserRegistrationDto()
             }
           },
           (error) => {
@@ -46,7 +46,7 @@ export const useUserRegistrationStore = defineStore({
     },
 
     resetRegistrationParams() {
-      this.userRegistrationDTO = new UserRegistrationDTO()
+      this.userRegistrationDto = new UserRegistrationDto()
       this.registrationSuccess = 0
     }
   }

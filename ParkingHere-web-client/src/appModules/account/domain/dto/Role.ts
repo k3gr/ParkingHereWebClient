@@ -5,14 +5,14 @@ export interface IRole {
   name: RoleEnum
 }
 
-export class RoleDTO implements IRole {
+export class RoleDto implements IRole {
   constructor(public id: number = 0, public name: RoleEnum = RoleEnum.User) {}
 }
 
-export default class Role extends RoleDTO {
-  constructor(dto?: RoleDTO) {
+export default class Role extends RoleDto {
+  constructor(dto?: RoleDto) {
     super()
-    if (!dto) dto = new RoleDTO()
+    if (!dto) dto = new RoleDto()
 
     Object.assign(this, dto)
   }

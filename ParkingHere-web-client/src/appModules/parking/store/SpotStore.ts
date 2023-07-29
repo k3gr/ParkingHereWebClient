@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import SpotService from '../domain/service/SpotService'
-import SpotDTO from '../domain/dto/Parking'
+import SpotDto from '../domain/dto/Parking'
 import useParams from '@/appModules/common/composable/Params'
 import type ReservationParams from '@/appModules/reservation/domain/dto/ReservationParams'
 
@@ -10,8 +10,8 @@ const params = useParams()
 export const useSpotStore = defineStore({
   id: 'spotStore',
   state: () => ({
-    spotDto: new SpotDTO(),
-    spots: [] as SpotDTO[]
+    spotDto: new SpotDto(),
+    spots: [] as SpotDto[]
   }),
   getters: {
     getSpot: (state) => state.spotDto,

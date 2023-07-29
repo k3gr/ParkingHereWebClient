@@ -10,13 +10,13 @@ export interface IParking {
   street: string
   city: string
   prices: number[]
-  // user: UserDTO
-  // address: AddressDTO
+  // user: UserDto
+  // address: AddressDto
   spots: Array<SpotDto>
-  // reservations: Array<ReservationDTO>
+  // reservations: Array<ReservationDto>
 }
 
-export default class ParkingDTO implements IParking {
+export default class ParkingDto implements IParking {
   constructor(
     public id: number = 0,
     public name: string = '',
@@ -27,8 +27,8 @@ export default class ParkingDTO implements IParking {
     public street: string = '',
     public city: string = '',
     public prices: number[] = [],
-    // public user: UserDTO = new UserDTO(),
-    // public address: AddressDTO = new AddressDTO(),
-    public spots: Array<SpotDto> = new Array() // public reservations: Array<ReservationDTO> = new Array()
+    // public user: UserDto = new UserDto(),
+    // public address: AddressDto = new AddressDto(),
+    public spots: Array<SpotDto> = new Array() // public reservations: Array<ReservationDto> = new Array()
   ) {}
 }

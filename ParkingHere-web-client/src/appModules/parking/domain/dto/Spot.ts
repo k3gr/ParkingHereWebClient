@@ -7,7 +7,7 @@ export interface ISpot {
   reservations: Array<Reservation>
 }
 
-export default class SpotDTO implements ISpot {
+export default class SpotDto implements ISpot {
   constructor(
     public id: number = 0,
     public price: number = 0,

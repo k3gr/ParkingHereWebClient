@@ -21,7 +21,8 @@ import {
   faUser,
   faUserPlus,
   faCheckCircle,
-  faArrowRight
+  faArrowRight,
+  faSquareParking
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -33,7 +34,8 @@ library.add(
   faUser,
   faUserPlus,
   faCheckCircle,
-  faArrowRight
+  faArrowRight,
+  faSquareParking
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

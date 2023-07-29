@@ -1,5 +1,5 @@
 import Role from './Role'
-import VehicleDTO from './Vehicle'
+import VehicleDto from './Vehicle'
 
 export interface IUserRegistration {
   firstName: string
@@ -9,10 +9,10 @@ export interface IUserRegistration {
   password: string
   confirmPassword: string
   role: Role
-  vehicle: VehicleDTO
+  vehicle: VehicleDto
 }
 
-export default class UserRegistrationDTO implements IUserRegistration {
+export default class UserRegistrationDto implements IUserRegistration {
   constructor(
     public firstName: string = '',
     public lastName: string = '',
@@ -21,6 +21,6 @@ export default class UserRegistrationDTO implements IUserRegistration {
     public password: string = '',
     public confirmPassword: string = '',
     public role: Role = new Role(),
-    public vehicle: VehicleDTO = new VehicleDTO()
+    public vehicle: VehicleDto = new VehicleDto()
   ) {}
 }

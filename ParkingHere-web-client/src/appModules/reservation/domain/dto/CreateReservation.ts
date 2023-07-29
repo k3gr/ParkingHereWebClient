@@ -9,7 +9,7 @@ export interface ICreateReservation {
   type: SpotTypeEnum
 }
 
-export class CreateReservationDTO implements ICreateReservation {
+export class CreateReservationDto implements ICreateReservation {
   constructor(
     public parkingId: number = 0,
     public city: string = '',
@@ -19,10 +19,10 @@ export class CreateReservationDTO implements ICreateReservation {
   ) {}
 }
 
-export default class CreateReservation extends CreateReservationDTO {
-  constructor(dto?: CreateReservationDTO) {
+export default class CreateReservation extends CreateReservationDto {
+  constructor(dto?: CreateReservationDto) {
     super()
-    if (!dto) dto = new CreateReservationDTO()
+    if (!dto) dto = new CreateReservationDto()
 
     Object.assign(this, dto)
 

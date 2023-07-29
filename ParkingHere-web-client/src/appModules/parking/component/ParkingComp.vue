@@ -28,7 +28,7 @@
       </div>
     </div>
     <span class="divider"></span>
-    <divs
+    <div
       class="col-12 col-lg-3 col-xxl-2 d-flex flex-row-reverse flex-lg-column align-items-center align-items-lg-end justify-content-between justify-content-lg-end"
     >
       <button
@@ -48,7 +48,7 @@
         >
         <span class="d-sm-block fs-6">{{ $t('PricePerDay') }} </span>
       </div>
-    </divs>
+    </div>
   </div>
   <div
     v-else
@@ -90,12 +90,12 @@
 </template>
 
 <script setup lang="ts">
-import ParkingDTO from '@/appModules/parking/domain/dto/Parking'
+import ParkingDto from '@/appModules/parking/domain/dto/Parking'
 import { useSpotStore } from '@/appModules/parking/store/SpotStore'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 const props = defineProps({
-  parking: ParkingDTO
+  parking: ParkingDto
 })
 const parkingStore = useParkingStore()
 const { findParking } = parkingStore
