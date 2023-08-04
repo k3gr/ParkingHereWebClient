@@ -1,5 +1,5 @@
 <template>
-  <div class="parkings-view">
+  <div class="light-view">
     <div class="container-xxl p-0">
       <UserAccountManagementComp class="my-4" />
     </div>
@@ -15,15 +15,6 @@ const store = useUserLoginStore
 </script>
 
 <style scoped>
-.parkings-view {
-  background-color: rgba(222, 222, 222, 0.95);
-  padding-top: 80px;
-  display: flex;
-  align-items: flex-start;
-  height: 100vh;
-  /* overflow-y: hidden; */
-}
-
 .show {
   right: 0;
 }

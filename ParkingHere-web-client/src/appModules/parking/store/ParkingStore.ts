@@ -3,6 +3,8 @@ import ParkingService from '../domain/service/ParkingService'
 import ParkingDto from '../domain/dto/Parking'
 import useParams from '@/appModules/common/composable/Params'
 import type ReservationParams from '../../reservation/domain/dto/ReservationParams'
+import UpdateParkingDto from '../domain/dto/UpdateParking'
+import CreateParkingDto from '../domain/dto/CreateParking'
 
 const service = new ParkingService()
 const params = useParams()
@@ -11,11 +13,17 @@ export const useParkingStore = defineStore({
   id: 'parkingStore',
   state: () => ({
     parkingDto: new ParkingDto(),
-    parkings: [] as ParkingDto[]
+    updateParkingDto: new UpdateParkingDto(),
+    createParkingDto: new CreateParkingDto(),
+    parkings: [] as ParkingDto[],
+    myParkings: [] as ParkingDto[]
   }),
   getters: {
     getParking: (state) => state.parkingDto,
+    getUpdateParkingDto: (state) => state.updateParkingDto,
+    getCreateParkingDto: (state) => state.createParkingDto,
     getParkings: (state) => state.parkings,
+    getMyParkings: (state) => state.myParkings,
     getPrices: (state) => state.parkingDto.prices,
     getParams: () => params
   },
@@ -67,6 +75,29 @@ export const useParkingStore = defineStore({
         })
     },
 
+    async findMyParkings() {
+      params.isLoading.value = true
+      service
+        .findMyParkings()
+        .then(
+          (success) => {
+            if (success.status === 200) {
+              this.myParkings = success.data
+            }
+          },
+          (error) => {
+            if (error.response) {
+              if (error.response.status == 400) {
+              }
+            }
+          }
+        )
+        .catch((exception) => {})
+        .finally(() => {
+          params.isLoading.value = false
+        })
+    },
+
     async findParking(id: number) {
       service
         .findById(id)
@@ -80,6 +111,50 @@ export const useParkingStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            }
+          }
+        )
+        .catch((exception) => {})
+        .finally(() => {
+          params.isLoading.value = false
+        })
+    },
+
+    async addParking(id: number) {
+      this.createParkingDto.createdById = id
+      service
+        .create(this.createParkingDto)
+        .then(
+          (success) => {
+            if (success.status === 200) {
+            }
+          },
+          (error) => {
+            if (error.response) {
+              if (error.response.status == 400) {
+              }
+            }
+          }
+        )
+        .catch((exception) => {})
+        .finally(() => {
+          params.isLoading.value = false
+        })
+    },
+
+    async saveParking(parkingDto: ParkingDto) {
+      params.isLoading.value = true
+      this.updateParkingDto = service.convertParkingDTOToUpdateParkingDto(parkingDto)
+
+      service
+        .update(parkingDto.id, this.updateParkingDto)
+        .then(
+          (success) => {
+            if (success.status === 200) {
+            }
+          },
+          (error) => {
+            if (error.response) {
             }
           }
         )

@@ -4,7 +4,7 @@
     data-bs-theme="dark"
   >
     <div class="d-flex flex-wrap align-items-center justify-content-center">
-      <div class="person-icon position-relative rounded-circle border border-3 border-success m-3">
+      <div class="circle-icon position-relative rounded-circle border border-3 border-success m-3">
         <font-awesome-icon
           :icon="['fa', 'user']"
           class="text-light position-absolute top-50 start-50 translate-middle"
@@ -41,9 +41,4 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
-.person-icon {
-  width: 80px;
-  height: 80px;
-}
-</style>
+<style scoped></style>

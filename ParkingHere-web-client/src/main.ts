@@ -16,26 +16,36 @@ import {
   faSearch,
   faCalendar,
   faCalendarDays,
+  faCalendarXmark,
+  faCalendarCheck,
   faEnvelope,
   faLocationDot,
   faUser,
   faUserPlus,
   faCheckCircle,
   faArrowRight,
-  faSquareParking
+  faArrowUp,
+  faSquareParking,
+  faCar,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faSearch,
   faCalendar,
   faCalendarDays,
+  faCalendarXmark,
+  faCalendarCheck,
   faEnvelope,
   faLocationDot,
   faUser,
   faUserPlus,
   faCheckCircle,
   faArrowRight,
-  faSquareParking
+  faArrowUp,
+  faSquareParking,
+  faCar,
+  faPlus
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

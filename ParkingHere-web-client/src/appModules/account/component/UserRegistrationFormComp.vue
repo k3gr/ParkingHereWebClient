@@ -92,11 +92,28 @@
               class="form-control"
               id="vehicleName"
               :placeholder="$t('VehicleName')"
-              v-model="getUserRegistration.vehicle.name"
+              v-model="getUserRegistration.vehicle.brand"
             />
             <label class="text-secondary-emphasis" for="vehicleName">{{ $t('VehicleName') }}</label>
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="vehicleRegistrationPlate"
+              :placeholder="$t('VehicleRegistrationPlate')"
+              v-model="getUserRegistration.vehicle.model"
+            />
+            <label class="text-secondary-emphasis" for="vehicleRegistrationPlate">{{
+              $t('VehicleRegistrationPlate')
+            }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row g-3 mt-0">
+        <span class="fs-6 ms-3 text-secondary">Dane pojazdu:</span>
         <div class="col-md-6">
           <div class="form-floating">
             <input
