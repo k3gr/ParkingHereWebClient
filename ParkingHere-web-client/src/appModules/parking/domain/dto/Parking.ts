@@ -9,11 +9,13 @@ export interface IParking {
   contactNumber: string
   street: string
   city: string
+  postalCode: string
   prices: number[]
   // user: UserDto
   // address: AddressDto
   spots: Array<SpotDto>
   // reservations: Array<ReservationDto>
+  open: boolean
 }
 
 export default class ParkingDto implements IParking {
@@ -26,9 +28,11 @@ export default class ParkingDto implements IParking {
     public contactNumber: string = '',
     public street: string = '',
     public city: string = '',
+    public postalCode: string = '',
     public prices: number[] = [],
     // public user: UserDto = new UserDto(),
     // public address: AddressDto = new AddressDto(),
-    public spots: Array<SpotDto> = new Array() // public reservations: Array<ReservationDto> = new Array()
+    public spots: Array<SpotDto> = new Array(), // public reservations: Array<ReservationDto> = new Array()
+    public open: boolean = false
   ) {}
 }

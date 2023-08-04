@@ -5,27 +5,29 @@ import type UserDto from '../dto/User'
 import UpdateUserDto from '../dto/UpdateUserDto'
 import UserToken, { UserTokenDto } from '../dto/UserToken'
 
-const urlUser = '/api/account/'
+const urlUser = '/api/account'
 const keyUserLocalStorage = 'authUser'
 
 export default class UserService {
   create(userRegistrationDto: UserRegistrationDto) {
     return axios.post(
-      import.meta.env.VITE_APP_API_DOMAIN + urlUser + 'register',
+      import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/register',
       userRegistrationDto
     )
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return axios.put(import.meta.env.VITE_APP_API_DOMAIN + urlUser + id, updateUserDto)
+    return axios.put(import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/' + id, updateUserDto, {
+      headers: this.getAuthHeader()
+    })
   }
 
   findById(id: number) {
-    return axios.get<UserDto>(import.meta.env.VITE_APP_API_DOMAIN + urlUser + id)
+    return axios.get<UserDto>(import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/' + id)
   }
 
   signIn(userLoginDto: UserLoginDto) {
-    return axios.post(import.meta.env.VITE_APP_API_DOMAIN + urlUser + 'login', userLoginDto)
+    return axios.post(import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/login', userLoginDto)
   }
 
   setUserToLocalStorage(userToken: UserToken) {
@@ -38,6 +40,16 @@ export default class UserService {
 
   removeUserFromLocalStorage() {
     localStorage.removeItem(keyUserLocalStorage)
+  }
+
+  getAuthHeader() {
+    const user = this.getUserFromLocalStorage()
+    if (user && user.token) {
+      return {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer ' + user.token
+      }
+    }
   }
 
   convertUserDTOToUpdateUserDto(userDto: UserDto) {

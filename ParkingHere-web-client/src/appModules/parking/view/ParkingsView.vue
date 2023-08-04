@@ -1,5 +1,5 @@
 <template>
-  <div :class="[getParkings.length === 0 ? 'search-bar-view' : 'parkings-view']">
+  <div :class="[getParkings.length === 0 ? 'search-bar-view' : 'light-view']">
     <div class="container-xxl p-0">
       <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
       <ReservationFormComp class="my-4" />
@@ -33,15 +33,6 @@ const { getParkings, getParams } = storeToRefs(store)
 </script>
 
 <style scoped>
-.parkings-view {
-  background-color: rgba(222, 222, 222, 0.95);
-  padding-top: 80px;
-  display: flex;
-  align-items: flex-start;
-  height: 100vh;
-  /* overflow-y: hidden; */
-}
-
 .show {
   right: 0;
 }

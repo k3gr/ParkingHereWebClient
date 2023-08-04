@@ -1,5 +1,5 @@
 import Role from './Role'
-import VehicleDto from './Vehicle'
+import VehicleDto from '../../../vehicle/domain/dto/Vehicle'
 
 export interface IUserRegistration {
   firstName: string

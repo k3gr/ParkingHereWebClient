@@ -1,6 +1,6 @@
 import useParams from '@/appModules/common/composable/Params'
 import { defineStore } from 'pinia'
-import UpdateVehicleDto from '../domain/dto/UpdateVehicleDto'
+import UpdateVehicleDto from '../../account/domain/dto/UpdateVehicleDto'
 import VehicleService from '../domain/service/VehicleService'
 import VehicleDto from '../domain/dto/Vehicle'
 
@@ -44,9 +44,7 @@ export const useVehicleStore = defineStore({
         })
     },
 
-    async findVehicle(id: number) {
-      params.isLoading.value = true
-
+    async findById(id: number) {
       service
         .findById(id)
         .then(
@@ -63,9 +61,7 @@ export const useVehicleStore = defineStore({
           }
         )
         .catch((exception) => {})
-        .finally(() => {
-          params.isLoading.value = false
-        })
+        .finally(() => {})
     }
   }
 })

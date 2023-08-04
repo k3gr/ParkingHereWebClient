@@ -73,8 +73,6 @@ export const useUserLoginStore = defineStore({
     },
 
     async findUser(id: number) {
-      params.isLoading.value = true
-
       service
         .findById(id)
         .then(
@@ -92,9 +90,7 @@ export const useUserLoginStore = defineStore({
           }
         )
         .catch((exception) => {})
-        .finally(() => {
-          params.isLoading.value = false
-        })
+        .finally(() => {})
     },
 
     async saveUser(id: number) {
@@ -106,7 +102,7 @@ export const useUserLoginStore = defineStore({
         .then(
           (success) => {
             if (success.status === 200) {
-              this.findUser(id)
+              this.findUser(this.getUserId)
               const userToken = service.convertUserDTOToUserTokenDto(this.getUserDto)
               service.setUserToLocalStorage(userToken)
             }

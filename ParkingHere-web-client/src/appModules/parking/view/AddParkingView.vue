@@ -1,14 +1,14 @@
 <template>
   <div class="light-view">
     <div class="container-xxl p-0">
-      <ParkingManagementComp class="my-4" />
+      <AddParkingComp class="my-4" />
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import ParkingManagementComp from '@/appModules/parking/component/ParkingManagementComp.vue'
+import AddParkingComp from '@/appModules/parking/component/AddParkingComp.vue'
 components: {
-  ParkingManagementComp
+  AddParkingComp
 }
 </script>
 

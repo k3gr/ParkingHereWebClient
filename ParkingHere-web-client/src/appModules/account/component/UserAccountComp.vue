@@ -21,12 +21,12 @@
         <span class="px-3 text-light">{{ $t('Management') }}</span>
         <hr class="dropdown-divider" />
         <div class="mx-2">
-          <router-link class="text-decoration-none" :to="{ name: 'userAccount' }"
+          <router-link class="text-decoration-none" :to="{ name: 'parkingManagement' }"
             ><span class="dropdown-item" href="#">{{ $t('Parkings') }}</span></router-link
           >
           <router-link
             class="text-decoration-none text-success d-block d-sm-inline"
-            :to="{ name: 'userAccount' }"
+            :to="{ name: 'reservationManagement' }"
             ><span class="dropdown-item" href="#">{{ $t('MyReservations') }}</span></router-link
           >
         </div>
