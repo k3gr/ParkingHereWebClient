@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-nav fixed-top navbar-expand-lg" data-bs-theme="dark">
+  <nav class="navbar navbar-nav sticky-top navbar-expand-lg border-bottom" data-bs-theme="dark">
     <div class="container">
       <router-link class="navbar-brand fs-1" href="#" :to="{ name: 'home' }">
         {{ $t('ParkingHere') }}</router-link
@@ -7,22 +7,37 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        class="offcanvas offcanvas-start border-0"
+        tabindex="-1"
+        id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel"
+      >
+        <div class="d-lg-none offcanvas-header d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
         <ul
           class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end align-items-center"
         >
           <div class="btn-group mx-2">
-            <UserAccountComp v-if="isLoggedIn" />
+            <div v-if="isLoggedIn">
+              <UserAccountMobileComp class="d-lg-none" />
+              <UserAccountComp class="d-none d-lg-flex" />
+            </div>
             <div v-else>
-              <div class="btn-group mx-2 mt-3 mt-lg-0">
+              <div class="btn-group mx-2 mt-3 mt-lg-0" data-bs-dismiss="offcanvas">
                 <router-link
                   class="text-light text-decoration-none btn btn-outline-success border-3 rounded"
                   :to="{ name: 'login' }"
@@ -81,6 +96,7 @@
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 import UserLoginFormComp from '@/appModules/account/component/UserLoginFormComp.vue'
 import UserAccountComp from '@/appModules/account/component/UserAccountComp.vue'
+import UserAccountMobileComp from '@/appModules/account/component/UserAccountMobileComp.vue'
 import { useUserRegistrationStore } from '@/appModules/account/store/UserRegistrationStore'
 import { storeToRefs } from 'pinia'
 import { onUnmounted } from 'vue'
@@ -88,6 +104,7 @@ import { onUnmounted } from 'vue'
 components: {
   UserLoginFormComp
   UserAccountComp
+  UserAccountMobileComp
 }
 
 const options = ['PL', 'ENG']
@@ -113,6 +130,12 @@ onUnmounted(() => {
 }
 .navbar-brand {
   font-size: 35px !important;
+}
+
+@media (max-width: 768px) {
+  a {
+    font-size: 20px;
+  }
 }
 
 @media screen and (min-width: 992px) {

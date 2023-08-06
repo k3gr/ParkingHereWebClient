@@ -1,9 +1,7 @@
 <template>
-  <!-- <div class="container-fluid"> -->
-  <div class="container-xxl search-bar-view">
+  <div class="container-xxl">
     <ReservationFormComp class="my-4" />
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup lang="ts">

@@ -17,7 +17,10 @@ export const useReservationStore = defineStore({
       createReservationDto: new CreateReservationDto(),
       myReservationDto: [] as ReservationDto[],
       myPastReservationDto: [] as ReservationDto[],
-      reservationSuccess: 0
+      allParkingsCurrentReservationDto: [] as ReservationDto[],
+      allParkingsPastReservation: [] as ReservationDto[],
+      reservationSuccess: 0,
+      reservationFormFlag: 0
     }
   },
   getters: {
@@ -25,7 +28,10 @@ export const useReservationStore = defineStore({
     getCreateReservation: (state) => state.createReservationDto,
     getMyReservation: (state) => state.myReservationDto,
     getMyPastReservation: (state) => state.myPastReservationDto,
+    getAllParkingsCurrentReservation: (state) => state.allParkingsCurrentReservationDto,
+    getAllParkingsPastReservation: (state) => state.myReservationDto,
     isReservationSuccess: (state) => state.reservationSuccess,
+    getReservationFormFlag: (state) => state.reservationFormFlag,
     getParams: () => params
   },
   actions: {
@@ -60,7 +66,7 @@ export const useReservationStore = defineStore({
       params.isLoading.value = true
 
       service
-        .findMyReservation()
+        .findMyCurrentReservation()
         .then(
           (success) => {
             if (success.status === 200) {
@@ -89,6 +95,54 @@ export const useReservationStore = defineStore({
           (success) => {
             if (success.status === 200) {
               this.myPastReservationDto = success.data
+            }
+          },
+          (error) => {
+            if (error.response) {
+              if (error.response.status == 400) {
+              }
+            }
+          }
+        )
+        .catch((exception) => {})
+        .finally(() => {
+          params.isLoading.value = false
+        })
+    },
+
+    async findAllParkingsCurrentReservation() {
+      params.isLoading.value = true
+
+      service
+        .findAllParkingsCurrentReservation()
+        .then(
+          (success) => {
+            if (success.status === 200) {
+              this.allParkingsCurrentReservationDto = success.data
+            }
+          },
+          (error) => {
+            if (error.response) {
+              if (error.response.status == 400) {
+              }
+            }
+          }
+        )
+        .catch((exception) => {})
+        .finally(() => {
+          params.isLoading.value = false
+        })
+    },
+
+    async findAllParkingsPastReservation() {
+      params.isLoading.value = true
+
+      service
+        .findAllParkingsPastReservation()
+        .then(
+          (success) => {
+            if (success.status === 200) {
+              this.allParkingsPastReservation = success.data
             }
           },
           (error) => {

@@ -7,6 +7,7 @@ import AddParkingView from '@/appModules/parking/view/AddParkingView.vue'
 import UserAccountManagementView from '@/appModules/account/view/UserAccountManagementView.vue'
 import ParkingManagementView from '@/appModules/parking/view/ParkingManagementView.vue'
 import ReservationManagementView from '@/appModules/reservation/view/ReservationManagementView.vue'
+import ReservationAllParkingsManagementView from '@/appModules/reservation/view/ReservationAllParkingsManagementView.vue'
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 
 const router = createRouter({
@@ -51,6 +52,11 @@ const router = createRouter({
       path: '/account/reservation',
       name: 'reservationManagement',
       component: ReservationManagementView
+    },
+    {
+      path: '/parking/reservation',
+      name: 'allParkingsReservationManagement',
+      component: ReservationAllParkingsManagementView
     }
   ]
 })

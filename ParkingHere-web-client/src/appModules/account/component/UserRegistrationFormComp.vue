@@ -1,9 +1,6 @@
 <template>
   <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
-  <div
-    class="position-absolute container-xxl top-50 start-50 translate-middle p-3 bg-dark col-12 col-sm-9 col-lg-8 col-xl-5"
-    data-bs-theme="dark"
-  >
+  <div class="center-form p-4 bg-dark col-12 col-lg-8 col-xl-5" data-bs-theme="dark">
     <form @submit.prevent="submitSave">
       <div class="d-flex align-items-center justify-content-center mb-3">
         <div
@@ -17,8 +14,8 @@
         </div>
         <h2 class="h3 ps-3 border-start text-light">{{ $t('Registration') }}</h2>
       </div>
-      <div class="row g-3">
-        <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="text"
@@ -30,7 +27,7 @@
             <label class="text-secondary-emphasis" for="firstName">{{ $t('FirstName') }}</label>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="text"
@@ -43,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 my-3">
+      <div class="col-md-12 my-2">
         <div class="form-floating">
           <input
             type="email"
@@ -55,8 +52,8 @@
           <label class="text-secondary-emphasis" for="email">{{ $t('EmailAddress') }}</label>
         </div>
       </div>
-      <div class="row g-3">
-        <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="password"
@@ -68,7 +65,7 @@
             <label class="text-secondary-emphasis" for="password2">{{ $t('Password') }}</label>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="password"
@@ -83,9 +80,9 @@
           </div>
         </div>
       </div>
-      <div class="row g-3 mt-0">
+      <div class="row">
         <span class="fs-6 ms-3 text-secondary">Dane pojazdu:</span>
-        <div class="col-md-6">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="text"
@@ -97,7 +94,7 @@
             <label class="text-secondary-emphasis" for="vehicleName">{{ $t('VehicleName') }}</label>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="text"
@@ -112,9 +109,9 @@
           </div>
         </div>
       </div>
-      <div class="row g-3 mt-0">
+      <div class="row">
         <span class="fs-6 ms-3 text-secondary">Dane pojazdu:</span>
-        <div class="col-md-6">
+        <div class="col-md-6 my-2">
           <div class="form-floating">
             <input
               type="text"
@@ -129,7 +126,7 @@
           </div>
         </div>
       </div>
-      <div class="checkbox my-3">
+      <div class="checkbox my-2">
         <div class="form-check">
           <input type="checkbox" class="form-check-input bg-success" id="checkbox" />
           <label class="form-check-label text-light" for="checkbox">{{
@@ -137,12 +134,12 @@
           }}</label>
         </div>
       </div>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center my-3">
         <button class="btn btn-lg btn-success col-12 col-sm-5 col-xxl-4" type="submit">
           {{ $t('Register') }}
         </button>
       </div>
-      <div class="mt-3">
+      <div class="mt-2">
         <span class="m-0 me-2 text-light">{{ $t('IAlreadyHaveAccount') }}.</span
         ><router-link
           class="text-decoration-none text-success d-block d-sm-inline"

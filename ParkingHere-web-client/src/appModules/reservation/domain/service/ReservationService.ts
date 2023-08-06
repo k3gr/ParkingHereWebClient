@@ -22,7 +22,7 @@ export default class ReservationService {
     )
   }
 
-  findMyReservation() {
+  findMyCurrentReservation() {
     return axios.get<Array<ReservationDto>>(
       import.meta.env.VITE_APP_API_DOMAIN + urlReservation + '/my-reservations',
       {
@@ -34,6 +34,24 @@ export default class ReservationService {
   findMyPastReservation() {
     return axios.get<Array<ReservationDto>>(
       import.meta.env.VITE_APP_API_DOMAIN + urlReservation + '/my-past-reservations',
+      {
+        headers: this.userService.getAuthHeader()
+      }
+    )
+  }
+
+  findAllParkingsCurrentReservation() {
+    return axios.get<Array<ReservationDto>>(
+      import.meta.env.VITE_APP_API_DOMAIN + urlReservation + '/all-parkings-reservations',
+      {
+        headers: this.userService.getAuthHeader()
+      }
+    )
+  }
+
+  findAllParkingsPastReservation() {
+    return axios.get<Array<ReservationDto>>(
+      import.meta.env.VITE_APP_API_DOMAIN + urlReservation + '/all-parkings-past-reservations',
       {
         headers: this.userService.getAuthHeader()
       }

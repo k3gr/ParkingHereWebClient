@@ -18,7 +18,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser1" style="">
       <div>
-        <span class="px-3 text-light">{{ $t('Management') }}</span>
+        <span class="px-3 text-light dropdown-item">{{ $t('ParkingHereBusiness') }}</span>
         <hr class="dropdown-divider" />
         <div class="mx-2">
           <router-link class="text-decoration-none" :to="{ name: 'parkingManagement' }"
@@ -26,8 +26,20 @@
           >
           <router-link
             class="text-decoration-none text-success d-block d-sm-inline"
+            :to="{ name: 'allParkingsReservationManagement' }"
+            ><span class="dropdown-item" href="#">{{ $t('Reservations') }}</span></router-link
+          >
+        </div>
+      </div>
+      <hr class="dropdown-divider" />
+      <div>
+        <span class="px-3 text-light">{{ $t('MyParkingHere') }}</span>
+        <hr class="dropdown-divider" />
+        <div class="mx-2">
+          <router-link
+            class="text-decoration-none text-success d-block d-sm-inline"
             :to="{ name: 'reservationManagement' }"
-            ><span class="dropdown-item" href="#">{{ $t('MyReservations') }}</span></router-link
+            ><span class="dropdown-item" href="#">{{ $t('Reservations') }}</span></router-link
           >
         </div>
       </div>

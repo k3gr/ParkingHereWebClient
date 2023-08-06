@@ -1,19 +1,20 @@
 <template>
-  <div
-    class="position-absolute top-50 start-50 translate-middle p-3 bg-dark col-12 col-sm-8 col-lg-6 col-xl-4"
-    data-bs-theme="dark"
-  >
-    <div class="d-flex flex-wrap align-items-center justify-content-center">
-      <div class="circle-icon position-relative rounded-circle border border-3 border-success m-3">
-        <font-awesome-icon
-          :icon="['fa', 'user']"
-          class="text-light position-absolute top-50 start-50 translate-middle"
-          size="2x"
-        />
+  <div class="bg-dark h-lg-100">
+    <div class="center-form p-4 bg-dark col-12 col-lg-8 col-xl-4" data-bs-theme="dark">
+      <div class="d-flex flex-wrap align-items-center justify-content-center">
+        <div
+          class="circle-icon position-relative rounded-circle border border-3 border-success m-3"
+        >
+          <font-awesome-icon
+            :icon="['fa', 'user']"
+            class="text-light position-absolute top-50 start-50 translate-middle"
+            size="2x"
+          />
+        </div>
+        <h2 class="h3 ps-3 border-start text-light">{{ $t('Login') }}</h2>
       </div>
-      <h2 class="h3 ps-3 border-start text-light">{{ $t('Login') }}</h2>
+      <UserLoginFormComp />
     </div>
-    <UserLoginFormComp />
   </div>
 </template>
 
@@ -41,4 +42,4 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style></style>

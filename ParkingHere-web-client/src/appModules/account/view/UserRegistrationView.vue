@@ -1,5 +1,5 @@
 <template>
-  <div class="container-xxl">
+  <div>
     <UserRegistrationFormComp v-if="isRegistrationSuccess === 0" />
     <OperationMessageComp
       v-else

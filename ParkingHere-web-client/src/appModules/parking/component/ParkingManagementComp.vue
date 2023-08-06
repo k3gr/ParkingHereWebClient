@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
     <div class="col-12 p-3 bg-success rounded-1 box-shadow">
       <h2 class="fw-bold text-center text-light m-0">
         {{ $t('ManageCarParks') }}
@@ -17,7 +18,12 @@
           {{ $t('AddParking') }}
         </button>
       </router-link>
-      <div class="mt-4" v-for="(parking, index) in getMyParkings" :key="index">
+      <div
+        v-if="!getParams.isLoading.value"
+        class="mt-4"
+        v-for="(parking, index) in getMyParkings"
+        :key="index"
+      >
         <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)">
           <div class="row g-3">
             <div class="col-12 col-lg-10 col-xxl-8">
@@ -126,105 +132,23 @@
         </form>
       </div>
     </div>
-    <!-- <div class="mt-4 p-3 bg-light rounded-1">
-      <h2 class="mb-3 fw-bold">{{ $t('MyVehicle') }}</h2>
-      <div class="divider-fluid col-12 col-sm-6"></div>
-      <form @submit.prevent="saveVehicle(getUserId)">
-        <div class="row g-3">
-          <div class="col-12 col-md-6">
-            <label for="vehicleName">{{ $t('VehicleName') }}:</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control border-0 w-0 fw-medium"
-                id="firstName"
-                v-model="getVehicleDto.brand"
-                :readonly="!vehicleBrandChanged"
-                :class="vehicleBrandChanged ? '' : 'bg-transparent'"
-              />
-              <button
-                type="button"
-                class="btn btn-link text-decoration-none text-success fs-6"
-                @click="vehicleBrandChanged = !vehicleBrandChanged"
-              >
-                <span v-if="!vehicleBrandChanged">{{ $t('Change').toUpperCase() }}</span>
-                <span v-else>{{ $t('OK').toUpperCase() }}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="row g-3">
-          <div class="col-12 col-md-6">
-            <label for="vehiclePlate">{{ $t('VehicleRegistrationPlate') }}:</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control border-0 w-50 fw-medium"
-                id="vehiclePlate"
-                v-model="getVehicleDto.model"
-                :readonly="!vehicleModelChanged"
-                :class="vehicleModelChanged ? '' : 'bg-transparent'"
-              />
-              <button
-                type="button"
-                class="btn btn-link text-decoration-none text-success fs-6"
-                @click="vehicleModelChanged = !vehicleModelChanged"
-              >
-                <span v-if="!vehicleModelChanged">{{ $t('Change').toUpperCase() }}</span>
-                <span v-else>{{ $t('OK').toUpperCase() }}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="row g-3">
-          <div class="col-12 col-md-6">
-            <label for="vehiclePlate">{{ $t('VehicleRegistrationPlate') }}:</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control border-0 w-50 fw-medium"
-                id="vehiclePlate"
-                v-model="getVehicleDto.registrationPlate"
-                :readonly="!vehiclePlateChanged"
-                :class="vehiclePlateChanged ? '' : 'bg-transparent'"
-              />
-              <button
-                type="button"
-                class="btn btn-link text-decoration-none text-success fs-6"
-                @click="vehiclePlateChanged = !vehiclePlateChanged"
-              >
-                <span v-if="!vehiclePlateChanged">{{ $t('Change').toUpperCase() }}</span>
-                <span v-else>{{ $t('OK').toUpperCase() }}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 mt-3">
-          <button type="submit" class="btn btn-outline-success">{{ $t('Save') }}</button>
-        </div>
-      </form>
-    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
 import { onMounted } from 'vue'
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
-import ParkingDto from '@/appModules/parking/domain/dto/Parking'
 components: {
   LoadBarComp
 }
 
 const userStore = useUserLoginStore()
-const { getUserId } = storeToRefs(userStore)
 const parkingStore = useParkingStore()
 const { findMyParkings, saveParking } = parkingStore
-const { getMyParkings, getUpdateParkingDto } = storeToRefs(parkingStore)
-const par = new ParkingDto()
+const { getMyParkings, getParams } = storeToRefs(parkingStore)
 
 onMounted(() => {
   findMyParkings()
