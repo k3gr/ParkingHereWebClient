@@ -6,7 +6,7 @@
         {{ $t('Reservations') }}
       </h2>
     </div>
-    <div v-if="!getParams.isLoading.value" class="mt-4 p-3 bg-light rounded-1 box-shadow">
+    <div class="mt-4 p-3 bg-light rounded-1 box-shadow">
       <h2 class="mb-3 fw-bold">
         <font-awesome-icon :icon="['fa', 'calendar-check']" class="icon me-3" size="2x" />{{
           $t('MyCurrentReservation')
@@ -18,7 +18,12 @@
           {{ $t('NewReservation') }}
         </button>
       </router-link>
-      <div class="mt-4" v-for="(reservation, index) in getMyReservation" :key="index">
+      <div
+        v-if="!getParams.isLoading.value"
+        class="mt-4"
+        v-for="(reservation, index) in props.currentReservation"
+        :key="index"
+      >
         <!-- <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)"> -->
         <form class="border-1 rounded p-1">
           <div class="row g-3">
@@ -65,14 +70,19 @@
         </form>
       </div>
     </div>
-    <div v-if="!getParams.isLoading.value" class="mt-4 p-3 bg-light rounded-1 box-shadow">
+    <div class="mt-4 p-3 bg-light rounded-1 box-shadow">
       <h2 class="mb-3 fw-bold">
         <font-awesome-icon :icon="['fa', 'calendar']" class="icon me-3" size="2x" />{{
           $t('MyCompletedReservation')
         }}
       </h2>
       <div class="divider-fluid col-12 col-sm-6"></div>
-      <div class="mt-4" v-for="(reservation, index) in getMyPastReservation" :key="index">
+      <div
+        v-if="!getParams.isLoading.value"
+        class="mt-4"
+        v-for="(reservation, index) in props.pastReservation"
+        :key="index"
+      >
         <!-- <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)"> -->
         <form class="border-1 rounded p-1">
           <div class="row g-3">
@@ -123,30 +133,27 @@
 </template>
 
 <script setup lang="ts">
-import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
-import { onMounted } from 'vue'
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
-import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
-import ParkingDto from '@/appModules/parking/domain/dto/Parking'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 import moment from 'moment'
+import { PropType } from 'vue'
+import ReservationDto from '@/appModules/reservation/domain/dto/Reservation'
 components: {
   LoadBarComp
 }
-
-const userStore = useUserLoginStore()
-const { getUserId } = storeToRefs(userStore)
-const reservationStore = useReservationStore()
-const { findMyReservation, findMyPastReservation } = reservationStore
-const { getMyReservation, getMyPastReservation, getParams } = storeToRefs(reservationStore)
-const par = new ParkingDto()
-
-onMounted(() => {
-  findMyReservation()
-  findMyPastReservation()
+const props = defineProps({
+  pastReservation: {
+    type: Array as PropType<Array<ReservationDto>>,
+    required: true
+  },
+  currentReservation: {
+    type: Array as PropType<Array<ReservationDto>>,
+    required: true
+  }
 })
+const reservationStore = useReservationStore()
+const { getParams } = storeToRefs(reservationStore)
 </script>
 
 <style scoped>

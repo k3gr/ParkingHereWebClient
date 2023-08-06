@@ -136,7 +136,9 @@
         </span>
       </div>
       <div class="modal-footer mt-3">
+        <span v-if="!isLoggedIn" class="me-3">Musisz być zalogowany</span>
         <button
+          v-if="isLoggedIn"
           type="button"
           class="btn btn-success"
           @click="bookSpot"
@@ -144,6 +146,11 @@
         >
           {{ $t('Book') }}
         </button>
+        <router-link v-else class="text-decoration-none" :to="{ name: 'login' }">
+          <button type="button" class="btn btn-success">
+            {{ $t('Login') }}
+          </button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -157,6 +164,8 @@ import { storeToRefs } from 'pinia'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 import { watch } from 'vue'
+import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
+import router from '@/router'
 
 const parkingsStore = useParkingStore()
 const { getPrices, getParking } = storeToRefs(parkingsStore)
@@ -164,6 +173,10 @@ const { getPrices, getParking } = storeToRefs(parkingsStore)
 const spotsStore = useSpotStore()
 const { findSpots } = spotsStore
 const { getSpots } = storeToRefs(spotsStore)
+
+const userLoginStore = useUserLoginStore()
+const {} = userLoginStore
+const { isLoggedIn } = storeToRefs(userLoginStore)
 
 const reservationStore = useReservationStore()
 const { makeReservation } = reservationStore

@@ -43,7 +43,7 @@ watch(
     if (newValue == false) {
       return setTimeout(() => {
         delayedLoading.value = newValue
-      }, 250)
+      }, 100)
     }
     delayedLoading.value = newValue
   }

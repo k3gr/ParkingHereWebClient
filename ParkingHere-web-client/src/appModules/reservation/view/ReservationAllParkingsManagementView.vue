@@ -2,8 +2,8 @@
   <div class="light-view">
     <div class="container-xxl p-0">
       <ReservationManagementComp
-        :currentReservation="getMyReservation"
-        :pastReservation="getMyPastReservation"
+        :pastReservation="getAllParkingsCurrentReservation"
+        :currentReservation="getAllParkingsPastReservation"
         class="my-4"
       />
     </div>
@@ -18,12 +18,13 @@ components: {
   ReservationManagementComp
 }
 const reservationStore = useReservationStore()
-const { findMyReservation, findMyPastReservation } = reservationStore
-const { getMyReservation, getMyPastReservation, getParams } = storeToRefs(reservationStore)
+const { findAllParkingsCurrentReservation, findAllParkingsPastReservation } = reservationStore
+const { getAllParkingsCurrentReservation, getAllParkingsPastReservation, getParams } =
+  storeToRefs(reservationStore)
 
 onMounted(() => {
-  findMyReservation()
-  findMyPastReservation()
+  findAllParkingsCurrentReservation()
+  findAllParkingsPastReservation()
 })
 </script>
 

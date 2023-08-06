@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid main-img g-0">
+  <div class="main-img">
     <HeaderComp />
     <RouterView />
     <FooterComp />

@@ -1,5 +1,6 @@
 <template>
   <div class="col-10 col-md-8 col-lg-9 mx-auto mb-4">
+    <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
     <form class="rounded border border-4 border-success w-100 box-shadow">
       <div class="d-flex col-12 flex-wrap form-section">
         <div class="enter-location col-12 col-xl-5 position-relative py-4">
@@ -36,7 +37,7 @@
           />
         </div>
         <router-link
-          class="col-12 col-md-2 col-xl-1 px-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
+          class="col-12 col-md-2 col-xl-1 p-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
           type="submit"
           :to="{ name: 'parkings' }"
           @click="fetchParkings"
@@ -51,14 +52,18 @@
 import { storeToRefs } from 'pinia'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
+import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
 import { watch } from 'vue'
 import moment from 'moment'
-
+components: {
+  LoadBarComp
+}
 const reservationsStore = useReservationStore()
-const { getReservationParams } = storeToRefs(reservationsStore)
+const { getReservationParams, reservationFormFlag } = storeToRefs(reservationsStore)
 
 const store = useParkingStore()
 const { findParkings } = store
+const { getParams } = storeToRefs(store)
 
 watch(
   () => getReservationParams.value.startDate,
@@ -74,6 +79,11 @@ watch(
 
 function fetchParkings() {
   findParkings(getReservationParams.value)
+  if (getReservationParams.value.city.length > 0) {
+    reservationFormFlag.value = 2
+  } else {
+    reservationFormFlag.value = 1
+  }
 }
 </script>
 <style scoped>

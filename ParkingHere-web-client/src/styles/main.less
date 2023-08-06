@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f1f1f1;
+    background-color: var(--bs-body-color);
     overflow-y: scroll;
     margin: 0 auto;
 }
@@ -19,12 +19,6 @@ button, a{
     letter-spacing: 1px;
 }
 
-.search-bar-view {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-}
-
 .main-img {
     width: 100%;
     min-height: 100vh;
@@ -35,10 +29,14 @@ button, a{
 
 .light-view {
     background-color: rgba(222, 222, 222, 0.95);
-    padding-top: 80px;
     display: flex;
     align-items: flex-start;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
+}
+
+.search-bar-view {
+    display: flex;
+    align-items: center;
 }
 
 .box-shadow{
@@ -89,7 +87,7 @@ textarea[type="text"]:focus
 
 @media only screen and (min-width: 767px) and (min-height: 700px) {
     .center-form {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
