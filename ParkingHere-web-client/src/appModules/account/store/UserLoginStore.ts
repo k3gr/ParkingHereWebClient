@@ -6,9 +6,12 @@ import UserTokenDto from '../domain/dto/UserToken'
 import { useRouter } from 'vue-router'
 import UserDto from '../domain/dto/User'
 import UpdateUserDto from '../domain/dto/UpdateUserDto'
+import { useToast } from 'vue-toastification'
+import i18n from '@/plugins/i18n'
 
 const service = new UserService()
 const params = useParams()
+const toast = useToast()
 
 export const useUserLoginStore = defineStore({
   id: 'userLoginStore',
@@ -17,7 +20,7 @@ export const useUserLoginStore = defineStore({
     userDto: new UserDto(),
     updateUserDto: new UpdateUserDto(),
     loggedIn: (service.getUserFromLocalStorage() ? true : false) as boolean,
-    router: useRouter()
+    router: useRouter
   }),
   getters: {
     getUserLogin: (state) => state.userLoginDto,
@@ -55,14 +58,20 @@ export const useUserLoginStore = defineStore({
               service.setUserToLocalStorage(userToken)
               this.loggedIn = true
               this.userLoginDto = new UserLoginDto()
-              this.router.push('/')
+              toast.success(i18n.global.t('LoginSuccess'))
+              // this.router.push('/')
             }
           },
           (error) => {
+            this.loggedIn = false
             if (error.response) {
-              if (error.response.status == 400) {
-                this.loggedIn = false
+              if (error.response.status == 401) {
+                toast.error(i18n.global.t('IncorrectLoginOrPassword'))
+              } else {
+                toast.error(i18n.global.t('ErrorUnknown'))
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -129,7 +138,8 @@ export const useUserLoginStore = defineStore({
     logOutUser() {
       service.removeUserFromLocalStorage()
       this.loggedIn = false
-      this.router.push('/')
+      toast.success(i18n.global.t('LogoutSuccess'))
+      // this.router.push('/')
     }
   }
 })

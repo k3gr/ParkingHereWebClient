@@ -5,9 +5,12 @@ import ReservationParams from '../domain/dto/ReservationParams'
 import CreateReservationDto from '../domain/dto/CreateReservation'
 import { SpotTypeEnum } from '../domain/enumerated/SpotTypeEnum'
 import ReservationDto from '../domain/dto/Reservation'
+import { useToast } from 'vue-toastification'
+import { i18n } from '@/main'
 
 const service = new ReservationService()
 const params = useParams()
+const toast = useToast()
 
 export const useReservationStore = defineStore({
   id: 'reservationStore',
@@ -44,6 +47,7 @@ export const useReservationStore = defineStore({
         .then(
           (success) => {
             if (success.status === 201) {
+              toast.success(i18n.global.t('ReservationSuccess'))
               this.reservationSuccess = 1
             }
           },
@@ -51,7 +55,12 @@ export const useReservationStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
                 this.reservationSuccess = 2
+                toast.error(i18n.global.t('IncorrectLoginOrPassword'))
+              } else {
+                toast.error(i18n.global.t('ErrorUnknown'))
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
