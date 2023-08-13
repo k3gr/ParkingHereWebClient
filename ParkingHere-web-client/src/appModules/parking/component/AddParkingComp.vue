@@ -150,11 +150,6 @@ const { getParams, getCreateParkingDto } = storeToRefs(parkignStore)
 </script>
 
 <style scoped>
-.person-icon {
-  width: 80px;
-  height: 80px;
-}
-
 input,
 textarea {
   border: solid 1px rgb(175, 175, 175);

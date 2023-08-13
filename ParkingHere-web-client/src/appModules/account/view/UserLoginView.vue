@@ -29,13 +29,10 @@ components: {
   LoadBarComp
   OperationMessageComp
 }
-
-import { storeToRefs } from 'pinia'
 import { onUnmounted } from 'vue'
 
 const store = useUserRegistrationStore()
 const { resetRegistrationParams } = store
-const { isRegistrationSuccess } = storeToRefs(store)
 
 onUnmounted(() => {
   resetRegistrationParams()

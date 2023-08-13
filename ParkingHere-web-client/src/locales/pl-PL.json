@@ -25,7 +25,7 @@
   "VehicleRegistrationPlate": "Numer rejestracyjny",
   "FirstTimeOnParkingHere": "Pierwszy raz na ParkingHere?",
   "RememberMe": "Zapamiętaj",
-  "AcceptTermsAndConditions": "Akceptuję regulamin",
+  "IAcceptTermsAndConditions": "Akceptuję regulamin",
   "Register": "Zarejestruj",
   "Registration": "Rejestracja",
   "Login": "Logowanie",
@@ -91,5 +91,18 @@
   "ParkingHereBusiness": "ParkingHere Biznes",
   "MyParkingHere": "Mój ParkingHere",
   "SearchForTheCarParkYouAreInterestedIn": "Wyszukaj interesujący Cię parking",
-  "NoParkingFound": "Nie znaleziono parkingu"
+  "NoParkingFound": "Nie znaleziono parkingu",
+  "IncorrectLoginOrPassword": "Nieprawidłowy login lub hasło",
+  "LoginSuccess": "Zalogowano pomyślnie",
+  "LogoutSuccess": "Wylogowano pomyślnie",
+  "FieldCanNotBeEmpty": "Pole nie może być puste",
+  "ErrorConnectToServer": "Błąd połączenia z serwerem",
+  "ErrorUnknown": "Nieznany błąd, skontakuj się z administratorem",
+  "ReservationSuccess": "Rezerwacja przebiegła pomyślnie",
+  "IncorrectFormatEmail": "Nieprawidowy format adresu e-mail",
+  "TextMaxLength": "Maksymalna liczba znaków: {0}",
+  "TextMinLength": "Minimalna liczba znaków: {0}",
+  "IncorrectPasswordConfirmedNotMatch": "Powtórzone hasło różni się",
+  "IncorrectPasswordWithMask": "Hasło musi zawierać minimum 8 znaków, jedną wielką literę, jedną małą literę, jedną cyfrę i jeden znak specjalny",
+  "AcceptTermsAndConditions": "Zaakceptuj regulamin"
 }

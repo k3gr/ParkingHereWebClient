@@ -16,33 +16,31 @@
         <span class="text-light">{{ $t('ParkingHereBusiness') }}</span>
         <div class="d-flex flex-column" data-bs-dismiss="offcanvas">
           <router-link
-            class="text-decoration-none text-secondary ms-3"
+            class="text-decoration-none text-secondary"
             :to="{ name: 'parkingManagement' }"
             ><span href="#">{{ $t('Parkings') }}</span></router-link
           >
           <router-link
-            class="text-decoration-none text-secondary ms-3"
+            class="text-decoration-none text-secondary"
             :to="{ name: 'allParkingsReservationManagement' }"
             ><span href="#">{{ $t('Reservations') }}</span></router-link
           >
         </div>
       </div>
-      <div class="d-flex flex-column mt-2">
+      <div class="d-flex flex-column mt-3">
         <span class="text-light">{{ $t('MyParkingHere') }}</span>
         <div class="d-flex flex-column" data-bs-dismiss="offcanvas">
           <router-link
-            class="text-decoration-none text-secondary ms-3"
+            class="text-decoration-none text-secondary"
             :to="{ name: 'reservationManagement' }"
             ><span href="#">{{ $t('Reservations') }}</span></router-link
           >
         </div>
       </div>
-      <div class="d-flex flex-column mt-2">
+      <div class="d-flex flex-column mt-3">
         <span class="text-light">{{ $t('Settings') }}</span>
         <div class="d-flex flex-column" data-bs-dismiss="offcanvas">
-          <router-link
-            class="text-decoration-none text-secondary ms-3"
-            :to="{ name: 'userAccount' }"
+          <router-link class="text-decoration-none text-secondary" :to="{ name: 'userAccount' }"
             ><span href="#">{{ $t('MyAccount') }}</span></router-link
           >
         </div>

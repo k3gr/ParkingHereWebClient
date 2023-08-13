@@ -9,6 +9,9 @@ const urlUser = '/api/account'
 const keyUserLocalStorage = 'authUser'
 
 export default class UserService {
+  public readonly MASK_PASSWORD =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}$/
+
   create(userRegistrationDto: UserRegistrationDto) {
     return axios.post(
       import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/register',

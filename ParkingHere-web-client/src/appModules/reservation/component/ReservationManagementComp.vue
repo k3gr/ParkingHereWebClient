@@ -18,12 +18,8 @@
           {{ $t('NewReservation') }}
         </button>
       </router-link>
-      <div
-        v-if="!getParams.isLoading.value"
-        class="mt-4"
-        v-for="(reservation, index) in props.currentReservation"
-        :key="index"
-      >
+      <div v-if="!getParams.isLoading.value" class="mt-4" v-for="(reservation, index) in props.currentReservation"
+        :key="index">
         <!-- <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)"> -->
         <form class="border-1 rounded p-1">
           <div class="row g-3">
@@ -31,20 +27,12 @@
               <div class="input-group">
                 <div class="form-control border-0 bg-transparent fs-5">
                   <span class="fw-medium">{{ reservation.parkingName }}</span>
-                  <span class="ms-2 fw-light"
-                    >({{ moment(reservation.startDate).format('DD.MM.YYYY') }} -
-                    {{ moment(reservation.endDate).format('DD.MM.YYYY') }})</span
-                  >
+                  <span class="ms-2 fw-light">({{ moment(reservation.startDate).format('DD.MM.YYYY') }} -
+                    {{ moment(reservation.endDate).format('DD.MM.YYYY') }})</span>
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-link text-decoration-none text-success fs-6 transition collapsed"
-                  data-bs-toggle="collapse"
-                  :data-bs-target="'#reservationTarget' + index"
-                  :aria-controls="'reservationTarget' + index"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
+                <button type="button" class="btn btn-link text-decoration-none text-success fs-6 transition collapsed"
+                  data-bs-toggle="collapse" :data-bs-target="'#reservationTarget' + index"
+                  :aria-controls="'reservationTarget' + index" aria-expanded="false" aria-label="Toggle navigation">
                   <font-awesome-icon :icon="['fa', 'arrow-up']" class="icon me-3 fs-4" size="1x" />
                 </button>
               </div>
@@ -77,12 +65,8 @@
         }}
       </h2>
       <div class="divider-fluid col-12 col-sm-6"></div>
-      <div
-        v-if="!getParams.isLoading.value"
-        class="mt-4"
-        v-for="(reservation, index) in props.pastReservation"
-        :key="index"
-      >
+      <div v-if="!getParams.isLoading.value" class="mt-4" v-for="(reservation, index) in props.pastReservation"
+        :key="index">
         <!-- <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)"> -->
         <form class="border-1 rounded p-1">
           <div class="row g-3">
@@ -90,20 +74,12 @@
               <div class="input-group">
                 <div class="form-control border-0 bg-transparent fs-5">
                   <span class="fw-medium">{{ reservation.parkingName }}</span>
-                  <span class="ms-2 fw-light"
-                    >({{ moment(reservation.startDate).format('DD.MM.YYYY') }} -
-                    {{ moment(reservation.endDate).format('DD.MM.YYYY') }})</span
-                  >
+                  <span class="ms-2 fw-light">({{ moment(reservation.startDate).format('DD.MM.YYYY') }} -
+                    {{ moment(reservation.endDate).format('DD.MM.YYYY') }})</span>
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-link text-decoration-none text-success fs-6 transition collapsed"
-                  data-bs-toggle="collapse"
-                  :data-bs-target="'#reservationPastTarget' + index"
-                  :aria-controls="'reservationPastTarget' + index"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
+                <button type="button" class="btn btn-link text-decoration-none text-success fs-6 transition collapsed"
+                  data-bs-toggle="collapse" :data-bs-target="'#reservationPastTarget' + index"
+                  :aria-controls="'reservationPastTarget' + index" aria-expanded="false" aria-label="Toggle navigation">
                   <font-awesome-icon :icon="['fa', 'arrow-up']" class="icon me-3 fs-4" size="1x" />
                 </button>
               </div>

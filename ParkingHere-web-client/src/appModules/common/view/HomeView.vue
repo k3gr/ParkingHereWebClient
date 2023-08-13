@@ -1,6 +1,66 @@
 <template>
-  <div class="container-xxl">
-    <ReservationFormComp class="my-4" />
+  <div class="pb-5">
+    <ReservationFormComp class="reservation-form container col-12 col-md-10 z-1 p-0 px-md-5 my-4" />
+    <div class="col-11 container position-relative path overflow-hidden text-center rounded-4 bg-dark-opacity">
+      <div class="header col-12 col-md-6 px-2">
+        <p class="display-4 fw-bold text-success">Rezerwuj parking online</p>
+        <p class="display-6 fw-normal text-light p-2 bg-dark rounded">Oszczędzaj czas i pieniądze</p>
+      </div>
+      <div class="mobile shadow-sm"></div>
+    </div>
+    <div class="text-center fs-3">
+      <div class="container px-4 py-md-4" id="custom-cards">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4">
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden bg-dark-opacity rounded-4 shadow-lg py-5 px-3">
+              <font-awesome-icon :icon="['fa', 'headset']"
+                class="text-success position-absolute top-50 start-50 translate-middle" size="8x"
+                style="opacity: 0.10;" />
+              <div class="z-2">
+                <h3 class="text-success fw-bold align-center">
+                  Pomoc 24h/7
+                </h3>
+                <div class="divider-fluid col-8 bg-secondary mx-auto"></div>
+                <p class="text-light fs-5">Cenimy Twoją wygodę dlatego pomoc konsultantów dostępna przez całą dobę, 7 dni
+                  w
+                  tygodniu.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden bg-dark-opacity rounded-4 shadow-lg py-5 px-3">
+              <font-awesome-icon :icon="['fa', 'sack-dollar']"
+                class="text-success position-absolute top-50 start-50 translate-middle" size="8x"
+                style="opacity: 0.10;" />
+              <div class="z-2">
+                <h3 class="text-success fw-bold align-center">
+                  Atrakcyjne ceny
+                </h3>
+                <div class="divider-fluid col-8 bg-secondary mx-auto"></div>
+                <p class="text-light fs-5">Wpółpracujemy z parkingami dlatego możemy zagwarantować najniższą cenę na
+                  rynku.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden bg-dark-opacity rounded-4 shadow-lg py-5 px-3">
+              <font-awesome-icon :icon="['fa', 'umbrella']"
+                class="text-success position-absolute top-50 start-50 translate-middle" size="8x"
+                style="opacity: 0.10;" />
+              <div class="z-2">
+                <h3 class="text-success fw-bold align-center">
+                  Bezpieczna rezerwacja
+                </h3>
+                <div class="divider-fluid col-8 bg-secondary mx-auto"></div>
+                <p class="text-light fs-5">Zarezerwuj miejsce postojowe bez obaw. Wszystkie dane są szyfrowane dlatego
+                  rezerwacja jest zawsze bezpieczna.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,4 +71,89 @@ components: {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.mobile {
+  position: absolute;
+  right: 12%;
+  bottom: -45%;
+  width: 300px;
+  height: 540px;
+  background-color: #333;
+  border-radius: 21px;
+  transform: rotate(20deg);
+}
+
+.mobile::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: '';
+  background-image: url('src/assets/images/phone.jpg');
+  background-size: cover;
+  border-radius: 5px;
+}
+
+.path {
+  top: 0;
+  height: 450px;
+  -webkit-clip-path: polygon(50% 0%,
+      100% 0,
+      100% 35%,
+      100% 70%,
+      80% 90%,
+      53% 90%,
+      20% 90%,
+      0% 70%,
+      0% 35%,
+      0 0);
+  clip-path: polygon(50% 0%,
+      100% 0,
+      100% 35%,
+      100% 70%,
+      80% 90%,
+      53% 90%,
+      20% 90%,
+      0% 70%,
+      0% 35%,
+      0 0);
+}
+
+.bg-dark-opacity {
+  background-color: rgba(33, 37, 41, .98)
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+@media only screen and (min-width: 767px) and (min-height: 700px) {
+  .reservation-form {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .header {
+    top: 220px;
+    left: 33%;
+    z-index: 1;
+  }
+
+  .path {
+    top: 40px;
+    height: 550px;
+  }
+
+  .mobile {
+    bottom: -30%;
+  }
+}
+</style>

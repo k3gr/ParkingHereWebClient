@@ -10,6 +10,12 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
+import 'vue-toastification/dist/index.css'
+import Toast, { POSITION } from 'vue-toastification'
+const options = {
+  position: POSITION.BOTTOM_RIGHT
+}
+
 //Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -29,7 +35,10 @@ import {
   faCar,
   faPlus,
   faMagnifyingGlass,
-  faRoadCircleXmark
+  faRoadCircleXmark,
+  faUmbrella,
+  faSackDollar,
+  faHeadset
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -49,7 +58,10 @@ library.add(
   faCar,
   faPlus,
   faMagnifyingGlass,
-  faRoadCircleXmark
+  faRoadCircleXmark,
+  faUmbrella,
+  faSackDollar,
+  faHeadset
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -66,4 +78,5 @@ createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
   .use(i18n)
   .use(router)
+  .use(Toast, options)
   .mount('#app')

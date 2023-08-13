@@ -1,47 +1,28 @@
 <template>
-  <div class="col-10 col-md-8 col-lg-9 mx-auto mb-4">
+  <div class="col-10 col-md-8 col-lg-9 mb-4">
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
-    <form class="rounded border border-4 border-success w-100 box-shadow">
+    <form class="rounded border border-4 border-success w-100">
       <div class="d-flex col-12 flex-wrap form-section">
         <div class="enter-location col-12 col-xl-5 position-relative py-4">
           <font-awesome-icon :icon="['fas', 'location-dot']" class="icon text-success" />
-          <input
-            class="bg-transparent col-12"
-            type="search"
-            id="parkings"
-            name="parkings"
-            placeholder=" "
-            v-model="getReservationParams.city"
-          />
+          <input class="bg-transparent col-12" type="search" id="parkings" name="parkings" placeholder=" "
+            v-model="getReservationParams.city" />
           <label for="parkings">{{ $t('EnterParkingLocation') }}</label>
         </div>
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('StartDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input
-            id="startDate"
-            class="date-picker bg-transparent"
-            type="date"
-            v-model="getReservationParams.startDate"
-          />
+          <input id="startDate" class="date-picker bg-transparent" type="date" v-model="getReservationParams.startDate" />
         </div>
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('EndDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input
-            id="endDate"
-            class="date-picker bg-transparent"
-            type="date"
-            max="2199-12-31"
-            v-model="getReservationParams.endDate"
-          />
+          <input id="endDate" class="date-picker bg-transparent" type="date" max="2199-12-31"
+            v-model="getReservationParams.endDate" />
         </div>
         <router-link
           class="col-12 col-md-2 col-xl-1 p-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
-          type="submit"
-          :to="{ name: 'parkings' }"
-          @click="fetchParkings"
-        >
+          type="submit" :to="{ name: 'parkings' }" @click="fetchParkings">
           <span class="text-light">{{ $t('Search') }}</span>
         </router-link>
       </div>
@@ -179,8 +160,8 @@ input:focus {
 }
 
 label,
-input:focus ~ label,
-input:not(:placeholder-shown) ~ label {
+input:focus~label,
+input:not(:placeholder-shown)~label {
   position: absolute;
   top: 10px;
   transform: translate(30px, -35%);
