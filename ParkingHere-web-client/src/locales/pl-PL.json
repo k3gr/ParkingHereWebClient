@@ -104,5 +104,15 @@
   "TextMinLength": "Minimalna liczba znaków: {0}",
   "IncorrectPasswordConfirmedNotMatch": "Powtórzone hasło różni się",
   "IncorrectPasswordWithMask": "Hasło musi zawierać minimum 8 znaków, jedną wielką literę, jedną małą literę, jedną cyfrę i jeden znak specjalny",
-  "AcceptTermsAndConditions": "Zaakceptuj regulamin"
+  "AcceptTermsAndConditions": "Zaakceptuj regulamin",
+  "BookParkingOnline": "Rezerwuj parking online",
+  "Support24h7Days": "Pomoc 24h/7",
+  "WeValueYourConvenienceHelpOfConsultantsAvailable24": "Cenimy Twoją wygodę dlatego pomoc konsultantów dostępna przez całą dobę, 7 dni w tygodniu.",
+  "SaveYourTimeAndMoney": "Oszczędzaj czas i pieniądze",
+  "WeValueYourConvenienceHelpOfConsultantsAvailable24/7": "Cenimy Twoją wygodę dlatego pomoc konsultantów dostępna przez całą dobę, 7 dni w tygodniu.",
+  "AttractivePrices": "Atrakcyjne ceny",
+  "WeCooperateWithCarParksWhichIsWhyWeCanGuaranteeTheLowestPriceOnTheMarket": "Współpracujemy z parkingami dlatego możemy zagwarantować najniższą cenę na rynku.",
+  "SafeReservation": "Bezpieczna rezerwacja",
+  "ReserveParkingSpaceWithoutWorryAllDataIsEncryptedSoBookingIsAlwaysSecure": "Zarezerwuj miejsce postojowe bez obaw. Wszystkie dane są szyfrowane dlatego rezerwacja jest zawsze bezpieczna.",
+  "ErrorLoadData": "Błąd pobierania danych"
 }

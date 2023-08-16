@@ -53,6 +53,7 @@ export const useParkingStore = defineStore({
     },
 
     async findParkings(reservationParams: ReservationParams) {
+      params.isError.value = false
       params.isLoading.value = true
       service
         .findByParams(reservationParams)
@@ -63,10 +64,7 @@ export const useParkingStore = defineStore({
             }
           },
           (error) => {
-            if (error.response) {
-              if (error.response.status == 400) {
-              }
-            }
+            params.isError.value = true
           }
         )
         .catch((exception) => {})

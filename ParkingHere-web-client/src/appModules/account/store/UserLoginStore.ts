@@ -20,7 +20,7 @@ export const useUserLoginStore = defineStore({
     userDto: new UserDto(),
     updateUserDto: new UpdateUserDto(),
     loggedIn: (service.getUserFromLocalStorage() ? true : false) as boolean,
-    router: useRouter
+    router: useRouter()
   }),
   getters: {
     getUserLogin: (state) => state.userLoginDto,
@@ -59,7 +59,7 @@ export const useUserLoginStore = defineStore({
               this.loggedIn = true
               this.userLoginDto = new UserLoginDto()
               toast.success(i18n.global.t('LoginSuccess'))
-              // this.router.push('/')
+              this.router.push('/')
             }
           },
           (error) => {
@@ -139,7 +139,7 @@ export const useUserLoginStore = defineStore({
       service.removeUserFromLocalStorage()
       this.loggedIn = false
       toast.success(i18n.global.t('LogoutSuccess'))
-      // this.router.push('/')
+      this.router.push('/')
     }
   }
 })

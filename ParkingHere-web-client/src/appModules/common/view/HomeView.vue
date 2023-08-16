@@ -3,10 +3,10 @@
     <ReservationFormComp class="reservation-form container col-12 col-md-10 z-1 p-0 px-md-5 my-4" />
     <div class="col-11 container position-relative path overflow-hidden text-center rounded-4 bg-dark-opacity">
       <div class="header col-12 col-md-6 px-2">
-        <p class="display-4 fw-bold text-success">Rezerwuj parking online</p>
-        <p class="display-6 fw-normal text-light p-2 bg-dark rounded">Oszczędzaj czas i pieniądze</p>
+        <p class="display-4 fw-bold text-success">{{ $t('BookParkingOnline') }}</p>
+        <p class="display-6 fw-normal text-light p-2 bg-dark rounded">{{ $t('SaveYourTimeAndMoney') }}</p>
       </div>
-      <div class="mobile shadow-sm"></div>
+      <div class="mobile"></div>
     </div>
     <div class="text-center fs-3">
       <div class="container px-4 py-md-4" id="custom-cards">
@@ -18,12 +18,10 @@
                 style="opacity: 0.10;" />
               <div class="z-2">
                 <h3 class="text-success fw-bold align-center">
-                  Pomoc 24h/7
+                  {{ $t('Support24h7Days') }}
                 </h3>
                 <div class="divider-fluid col-8 bg-secondary mx-auto"></div>
-                <p class="text-light fs-5">Cenimy Twoją wygodę dlatego pomoc konsultantów dostępna przez całą dobę, 7 dni
-                  w
-                  tygodniu.</p>
+                <p class="text-light fs-5">{{ $t('WeValueYourConvenienceHelpOfConsultantsAvailable24') }}</p>
               </div>
             </div>
           </div>
@@ -34,11 +32,11 @@
                 style="opacity: 0.10;" />
               <div class="z-2">
                 <h3 class="text-success fw-bold align-center">
-                  Atrakcyjne ceny
+                  {{ $t('AttractivePrices') }}
                 </h3>
                 <div class="divider-fluid col-8 bg-secondary mx-auto"></div>
-                <p class="text-light fs-5">Wpółpracujemy z parkingami dlatego możemy zagwarantować najniższą cenę na
-                  rynku.
+                <p class="text-light fs-5">{{
+                  $t('WeCooperateWithCarParksWhichIsWhyWeCanGuaranteeTheLowestPriceOnTheMarket') }}
                 </p>
               </div>
             </div>
@@ -50,11 +48,11 @@
                 style="opacity: 0.10;" />
               <div class="z-2">
                 <h3 class="text-success fw-bold align-center">
-                  Bezpieczna rezerwacja
+                  {{ $t('SafeReservation') }}
                 </h3>
                 <div class="divider-fluid col-8 bg-secondary mx-auto"></div>
-                <p class="text-light fs-5">Zarezerwuj miejsce postojowe bez obaw. Wszystkie dane są szyfrowane dlatego
-                  rezerwacja jest zawsze bezpieczna.</p>
+                <p class="text-light fs-5">{{
+                  $t('ReserveParkingSpaceWithoutWorryAllDataIsEncryptedSoBookingIsAlwaysSecure') }}</p>
               </div>
             </div>
           </div>
@@ -68,6 +66,7 @@
 import ReservationFormComp from '@/appModules/reservation/component/ReservationFormComp.vue'
 components: {
   ReservationFormComp
+
 }
 </script>
 
@@ -76,23 +75,11 @@ components: {
   position: absolute;
   right: 12%;
   bottom: -45%;
-  width: 300px;
+  width: 350px;
   height: 540px;
-  background-color: #333;
-  border-radius: 21px;
   transform: rotate(20deg);
-}
-
-.mobile::before {
-  position: absolute;
-  top: 10%;
-  right: 10px;
-  bottom: 10%;
-  left: 10px;
-  content: '';
-  background-image: url('src/assets/images/phone.jpg');
+  background-image: url('src/assets/images/phone.png');
   background-size: cover;
-  border-radius: 5px;
 }
 
 .path {
@@ -133,7 +120,7 @@ components: {
   border-radius: 20px;
 }
 
-@media only screen and (min-width: 767px) and (min-height: 700px) {
+@media only screen and (min-width: 767px) {
   .reservation-form {
     position: absolute;
     top: 140px;
@@ -153,7 +140,7 @@ components: {
   }
 
   .mobile {
-    bottom: -30%;
+    bottom: -33%;
   }
 }
 </style>
