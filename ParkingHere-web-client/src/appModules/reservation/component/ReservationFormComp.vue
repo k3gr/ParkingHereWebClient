@@ -1,7 +1,7 @@
 <template>
   <div class="col-10 col-md-8 col-lg-9 mb-4">
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
-    <form class="rounded border border-4 border-success w-100">
+    <form class="border border-4 border-success w-100">
       <div class="d-flex col-12 flex-wrap form-section">
         <div class="enter-location col-12 col-xl-5 position-relative py-4">
           <font-awesome-icon :icon="['fas', 'location-dot']" class="icon text-success" />
@@ -182,7 +182,13 @@ input:not(:placeholder-shown)~label {
   letter-spacing: 1px;
 }
 
-/* ##################################### */
+/* Media Queries */
+
+@media only screen and (min-width: 576px) {
+  form {
+    border-radius: var(--bs-border-radius);
+  }
+}
 
 @media only screen and (min-width: 767px) {
   .date {

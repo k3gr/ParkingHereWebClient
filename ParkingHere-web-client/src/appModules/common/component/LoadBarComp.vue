@@ -9,7 +9,7 @@
     </div>
   </div>
   <div v-else>
-    <div v-if="delayedLoading" class="row loading-panel">
+    <div v-if="isLoading" class="row loading-panel">
       <div class="col-12">
         <div class="spinner-grow text-success mx-2" role="status"></div>
         <div class="spinner-grow text-success mx-2" role="status"></div>
@@ -35,19 +35,19 @@ const props = defineProps({
     default: false
   }
 })
-const delayedLoading = ref(false)
+// const delayedLoading = ref(false)
 
-watch(
-  () => props.isLoading,
-  (newValue) => {
-    if (newValue == false) {
-      return setTimeout(() => {
-        delayedLoading.value = newValue
-      }, 100)
-    }
-    delayedLoading.value = newValue
-  }
-)
+// watch(
+//   () => props.isLoading,
+//   (newValue) => {
+//     if (newValue == false) {
+//       return setTimeout(() => {
+//         delayedLoading.value = newValue
+//       }, 100)
+//     }
+//     delayedLoading.value = newValue
+//   }
+// )
 </script>
 
 <style scoped>

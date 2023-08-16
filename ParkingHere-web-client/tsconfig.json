@@ -12,7 +12,6 @@
     }
   ],
   "include": [
-    // "env.d.ts",
     "src/**/*.json",
     "src/plugins/i18n.ts",
     "src/**/*.ts",
@@ -22,7 +21,6 @@
     "tests/**/*.tsx"
   ],
   "compilerOptions": {
-    // "baseUrl": ".",
     "types": ["@intlify/vite-plugin-vue-i18n/client"],
     "paths": {
       "@/*": ["./src/*"]

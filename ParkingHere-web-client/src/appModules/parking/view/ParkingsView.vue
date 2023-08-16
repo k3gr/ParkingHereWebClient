@@ -1,12 +1,12 @@
 <template>
-  <div class="light view">
-    <div class="container-xxl">
-      <ReservationFormComp class="my-4 mx-auto" />
+  <div class="light view pb-5">
+    <div class="container g-0">
+      <ReservationFormComp class="my-4 mx-auto col-12" />
       <div v-if="getParkings.length > 0" class="d-flex justify-content-center" v-for="(parking, index) in getParkings"
         :key="index">
         <ParkingComp :parking="parking" />
       </div>
-      <div v-if="!getParams.isLoading.value && getParkings.length === 0"
+      <div v-if="!getParams.isLoading.value && !getParams.isError.value && getParkings.length === 0"
         class="col-10 col-md-8 col-lg-9 p-3 box-shadow bg-light text-dark mx-auto rounded">
         <div v-if="getReservationFormFlag === 2" class="text-center fs-3">
           <font-awesome-icon :icon="['fa', 'road-circle-xmark']" class="icon me-1 me-2" size="1x" />
@@ -29,6 +29,7 @@ import ReservationFormComp from '@/appModules/reservation/component/ReservationF
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
 import SpotComp from '../component/SpotComp.vue'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
+import { onUnmounted } from 'vue'
 
 components: {
   ParkingComp
@@ -36,6 +37,10 @@ components: {
   LoadBarComp
   SpotComp
 }
+
+onUnmounted(() => {
+  getParams.value.isError.value = false
+})
 
 const parkingStore = useParkingStore()
 const { getParkings, getParams } = storeToRefs(parkingStore)
