@@ -13,7 +13,7 @@
         }}
       </h2>
       <div class="divider-fluid col-12 col-sm-6"></div>
-      <router-link class="text-decoration-none" :to="{ name: 'home' }">
+      <router-link class="text-decoration-none" :to="{ name: 'parkings' }">
         <button class="btn btn-success" type="button" href="#">
           {{ $t('NewReservation') }}
         </button>
@@ -46,11 +46,6 @@
                   <p class="fw-medium ms-2">{{ reservation.parkingAddress }}</p>
                   <span>{{ $t('Vehicle') }}:</span>
                   <p class="fw-medium ms-2">{{ reservation.vehicleDetails }}</p>
-                  <div class="col-12 my-3">
-                    <button type="submit" class="btn btn-outline-success">
-                      {{ $t('Delete') }}
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

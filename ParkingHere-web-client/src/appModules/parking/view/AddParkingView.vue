@@ -1,7 +1,7 @@
 <template>
   <div class="light-view">
     <div class="container-xxl p-0">
-      <AddParkingComp class="my-4" />
+      <AddParkingComp class="mt-4 mb-5" />
     </div>
   </div>
 </template>

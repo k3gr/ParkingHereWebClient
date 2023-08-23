@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/appModules/common/view/HomeView.vue'
 import UserLoginView from '@/appModules/account/view/UserLoginView.vue'
+import ResetPassword from '@/appModules/account/view/ResetPassword.vue'
+import ActivationView from '@/appModules/account/view/ActivationView.vue'
 import UserRegistrationView from '@/appModules/account/view/UserRegistrationView.vue'
 import ParkingsView from '@/appModules/parking/view/ParkingsView.vue'
 import AddParkingView from '@/appModules/parking/view/AddParkingView.vue'
+import AddSpotView from '@/appModules/parking/view/AddSpotView.vue'
 import UserAccountManagementView from '@/appModules/account/view/UserAccountManagementView.vue'
 import ParkingManagementView from '@/appModules/parking/view/ParkingManagementView.vue'
 import ReservationManagementView from '@/appModules/reservation/view/ReservationManagementView.vue'
@@ -29,43 +32,76 @@ const router = createRouter({
       component: UserRegistrationView
     },
     {
+      path: '/account',
+      name: 'userAccount',
+      component: UserAccountManagementView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/reset-password',
+      name: 'resetPassword',
+      component: ResetPassword
+    },
+    {
+      path: '/activation',
+      name: 'activation',
+      component: ActivationView
+    },
+    {
+      path: '/account/parking',
+      name: 'parkingManagement',
+      component: ParkingManagementView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/parking/new',
+      name: 'addParking',
+      component: AddParkingView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/parking/:id/spot/new',
+      name: 'addSpot',
+      component: AddSpotView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/reservation',
+      name: 'reservationManagement',
+      component: ReservationManagementView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/parkings',
       name: 'parkings',
       component: ParkingsView
     },
     {
-      path: '/account',
-      name: 'userAccount',
-      component: UserAccountManagementView
-    },
-    {
-      path: '/account/parking',
-      name: 'parkingManagement',
-      component: ParkingManagementView
-    },
-    {
-      path: '/account/parking/new',
-      name: 'addParking',
-      component: AddParkingView
-    },
-    {
-      path: '/account/reservation',
-      name: 'reservationManagement',
-      component: ReservationManagementView
-    },
-    {
       path: '/parking/reservation',
       name: 'allParkingsReservationManagement',
-      component: ReservationAllParkingsManagementView
+      component: ReservationAllParkingsManagementView,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   const userLoginStore = useUserLoginStore()
-
   if (to.meta.requiresAuth) {
     if (userLoginStore.loggedIn) {
+      userLoginStore.logOutUserWhenTokenExpired()
       next()
       return
     } else {

@@ -5,9 +5,13 @@ import useParams from '@/appModules/common/composable/Params'
 import type ReservationParams from '../../reservation/domain/dto/ReservationParams'
 import UpdateParkingDto from '../domain/dto/UpdateParking'
 import CreateParkingDto from '../domain/dto/CreateParking'
+import { useToast } from 'vue-toastification'
+import i18n from '@/plugins/i18n'
+import CreateSpotDto from '../domain/dto/CreateSpot'
 
 const service = new ParkingService()
 const params = useParams()
+const toast = useToast()
 
 export const useParkingStore = defineStore({
   id: 'parkingStore',
@@ -64,7 +68,10 @@ export const useParkingStore = defineStore({
             }
           },
           (error) => {
-            params.isError.value = true
+            if (error.response) {
+              if (error.response.status == 400) {
+              }
+            }
           }
         )
         .catch((exception) => {})
@@ -118,13 +125,13 @@ export const useParkingStore = defineStore({
         })
     },
 
-    async addParking(id: number) {
-      this.createParkingDto.createdById = id
+    async addParking() {
       service
         .create(this.createParkingDto)
         .then(
           (success) => {
-            if (success.status === 200) {
+            if (success.status === 201) {
+              toast.success(i18n.global.t('ParkingWasCreated'))
             }
           },
           (error) => {
@@ -149,6 +156,7 @@ export const useParkingStore = defineStore({
         .then(
           (success) => {
             if (success.status === 200) {
+              toast.success(i18n.global.t('ChangesSaved'))
             }
           },
           (error) => {

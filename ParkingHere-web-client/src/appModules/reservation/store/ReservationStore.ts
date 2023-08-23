@@ -55,12 +55,7 @@ export const useReservationStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
                 this.reservationSuccess = 2
-                toast.error(i18n.global.t('IncorrectLoginOrPassword'))
-              } else {
-                toast.error(i18n.global.t('ErrorUnknown'))
               }
-            } else {
-              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )

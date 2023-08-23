@@ -11,7 +11,9 @@ export default class ParkingService {
   private userService = new UserService()
 
   create(createParkingDto: CreateParkingDto) {
-    return axios.post(import.meta.env.VITE_APP_API_DOMAIN + urlParking, createParkingDto)
+    return axios.post(import.meta.env.VITE_APP_API_DOMAIN + urlParking, createParkingDto, {
+      headers: this.userService.getAuthHeader()
+    })
   }
 
   findAll() {

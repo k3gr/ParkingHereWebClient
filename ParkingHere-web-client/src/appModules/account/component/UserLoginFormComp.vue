@@ -2,36 +2,16 @@
   <form @submit.prevent="submitSignIn">
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
     <div class="form-floating my-3">
-      <Field
-        name="email"
-        type="email"
-        class="form-control required"
-        :class="{ 'is-invalid': errors.email }"
-        id="email"
-        :placeholder="$t('EmailAddress')"
-        v-model="getUserLogin.email"
-      />
-      <label class="text-secondary-emphasis" for="email">{{ $t('EmailAddress') }}</label>
+      <Field name="email" type="email" class="form-control required" :class="{ 'is-invalid': errors.email }"
+        :placeholder="$t('EmailAddress')" v-model="getUserLogin.email" />
+      <label class="text-secondary-emphasis" for="username">{{ $t('EmailAddress') }}</label>
       <ErrorMessage name="email" class="invalid-feedback" />
     </div>
     <div class="form-floating my-3">
-      <Field
-        name="password"
-        type="password"
-        class="form-control required"
-        :class="{ 'is-invalid': errors.password }"
-        id="password"
-        :placeholder="$t('Password')"
-        v-model="getUserLogin.password"
-      />
+      <Field name="password" type="password" class="form-control required" :class="{ 'is-invalid': errors.password }"
+        :placeholder="$t('Password')" v-model="getUserLogin.password" />
       <label class="text-secondary-emphasis" for="password">{{ $t('Password') }}</label>
       <ErrorMessage name="password" class="invalid-feedback" />
-    </div>
-    <div class="checkbox mb-3">
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input bg-success" id="submit" />
-        <label class="form-check-label text-light" for="submit">{{ $t('RememberMe') }}</label>
-      </div>
     </div>
     <div class="d-flex justify-content-center">
       <button class="btn btn-lg btn-success col-12 col-sm-5 col-xxl-5 py-1" type="submit">
@@ -40,19 +20,13 @@
     </div>
     <div class="mt-3">
       <span class="m-0 me-2 text-light">{{ $t('FirstTimeOnParkingHere') }}</span>
-      <router-link
-        class="text-decoration-none text-success d-block d-sm-inline"
-        :to="{ name: 'signup' }"
-        >{{ $t('SignUp') }}.</router-link
-      >
+      <router-link class="text-decoration-none text-success d-block d-sm-inline" :to="{ name: 'signup' }">{{ $t('SignUp')
+      }}.</router-link>
     </div>
     <div class="mt-1">
       <span class="m-0 me-2 text-light">{{ $t('ForgotPassword') }}?</span>
-      <router-link
-        class="text-decoration-none text-success d-block d-sm-inline"
-        :to="{ name: 'signup' }"
-        >{{ $t('RemindPassword') }}.</router-link
-      >
+      <router-link class="text-decoration-none text-success d-block d-sm-inline" :to="{ name: 'resetPassword' }">{{
+        $t('RemindPassword') }}.</router-link>
     </div>
   </form>
 </template>

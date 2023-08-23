@@ -7,7 +7,7 @@
         aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas offcanvas-start border-0" tabindex="-1" id="offcanvasDarkNavbar"
+      <div class="offcanvas offcanvas-start border-0 w-100" tabindex="-1" id="offcanvasDarkNavbar"
         aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="d-lg-none offcanvas-header d-flex justify-content-end">
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -34,28 +34,6 @@
               </div>
             </div>
           </div>
-          <!-- <li class="nav-item py-2 bg-transparent">
-            <select class="text-light border bg-transparent border-0">
-              <option
-                class="text-light border-0 bg-transparent"
-                :value="lang"
-                v-for="(lang, index) in options"
-                :key="index"
-              >
-                <span>{{ lang }}</span>
-              </option>
-            </select>
-          </li> -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ $t('PL') }}
-            </a>
-            <ul class="dropdown-menu bg-transparent border-0 m-0">
-              <li>
-                <a class="dropdown-item px-2 py-0 text-light" href="#">{{ $t('EN') }}</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </div>
     </div>
@@ -92,15 +70,6 @@ onUnmounted(() => {
 <style scoped>
 .dropdown-form {
   width: 295px;
-}
-
-.navbar {
-  background: rgb(33, 37, 41);
-  min-height: 80px;
-}
-
-.navbar-brand {
-  font-size: 35px !important;
 }
 
 @media (max-width: 768px) {

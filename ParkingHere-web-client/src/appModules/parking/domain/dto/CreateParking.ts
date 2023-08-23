@@ -4,7 +4,6 @@ export interface ICreateParking {
   type: string
   contactEmail: string
   contactNumber: string
-  createdById: number
   city: string
   street: string
   postalCode: string
@@ -17,7 +16,6 @@ export default class CreateParkingDto implements ICreateParking {
     public type: string = '',
     public contactEmail: string = '',
     public contactNumber: string = '',
-    public createdById: number = 0,
     public city: string = '',
     public street: string = '',
     public postalCode: string = ''

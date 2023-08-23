@@ -1,15 +1,9 @@
 <template>
   <div>
     <UserRegistrationFormComp v-if="isRegistrationSuccess === 0" />
-    <OperationMessageComp
-      v-else
-      :isOperationSuccess="isRegistrationSuccess"
-      :operationType="$t('Registration')"
-      :additionalSuccessText="
-        $t('AnEmailWithLinkToActivateYourAccountHasBeenSentToEmailAddressProvided')
-      "
-      :additionalFailureText="$t('PleaseTryAgainLaterIfTheErrorReoccursContactYourAdministrator')"
-    />
+    <OperationMessageComp v-else :isOperationSuccess="isRegistrationSuccess" :operationType="$t('Registration')"
+      :additionalSuccessText="$t('AnEmailWithLinkToActivateYourAccountHasBeenSentToEmailAddressProvided')
+        " :additionalFailureText="$t('PleaseTryAgainLaterIfTheErrorReoccursContactYourAdministrator')" />
   </div>
 </template>
 

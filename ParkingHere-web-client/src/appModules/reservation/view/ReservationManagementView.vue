@@ -1,11 +1,18 @@
 <template>
   <div class="light-view">
     <div class="container-xxl p-0">
-      <ReservationManagementComp
-        :currentReservation="getMyReservation"
-        :pastReservation="getMyPastReservation"
-        class="my-4"
-      />
+      <nav aria-label="breadcrumb" class="container mt-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            {{ $t("MyParkingHere") }}
+          </li>
+          <li class="breadcrumb-item fw-bold active text-success" aria-current="page">
+            {{ $t('Reservations') }}
+          </li>
+        </ol>
+      </nav>
+      <ReservationManagementComp :currentReservation="getMyReservation" :pastReservation="getMyPastReservation"
+        class="mt-4 mb-5" />
     </div>
   </div>
 </template>

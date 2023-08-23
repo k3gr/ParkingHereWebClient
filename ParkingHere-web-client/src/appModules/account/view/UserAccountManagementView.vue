@@ -1,7 +1,17 @@
 <template>
   <div class="light-view">
     <div class="container-xxl p-0">
-      <UserAccountManagementComp class="my-4" />
+      <nav aria-label="breadcrumb" class="container mt-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            {{ $t("Settings") }}
+          </li>
+          <li class="breadcrumb-item fw-bold active text-success" aria-current="page">
+            {{ $t('MyAccount') }}
+          </li>
+        </ol>
+      </nav>
+      <UserAccountManagementComp class="mt-4 mb-5" />
     </div>
   </div>
 </template>

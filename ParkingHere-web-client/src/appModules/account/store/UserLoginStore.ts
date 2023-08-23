@@ -8,6 +8,7 @@ import UserDto from '../domain/dto/User'
 import UpdateUserDto from '../domain/dto/UpdateUserDto'
 import { useToast } from 'vue-toastification'
 import i18n from '@/plugins/i18n'
+import moment from 'moment'
 
 const service = new UserService()
 const params = useParams()
@@ -39,6 +40,12 @@ export const useUserLoginStore = defineStore({
     getUserId() {
       if (this.loggedIn) {
         return service.getUserFromLocalStorage().id
+      }
+      return 0
+    },
+    getTokenExpiration() {
+      if (this.loggedIn) {
+        return service.getUserFromLocalStorage().expires
       }
       return 0
     },
@@ -114,6 +121,7 @@ export const useUserLoginStore = defineStore({
               this.findUser(this.getUserId)
               const userToken = service.convertUserDTOToUserTokenDto(this.getUserDto)
               service.setUserToLocalStorage(userToken)
+              toast.success(i18n.global.t('ChangesSaved'))
             }
           },
           (error) => {
@@ -140,6 +148,15 @@ export const useUserLoginStore = defineStore({
       this.loggedIn = false
       toast.success(i18n.global.t('LogoutSuccess'))
       this.router.push('/')
+    },
+
+    logOutUserWhenTokenExpired() {
+      if (moment(this.getTokenExpiration) < moment()) {
+        service.removeUserFromLocalStorage()
+        this.loggedIn = false
+        toast.success(i18n.global.t('TokenExpired'))
+        this.router.push('/')
+      }
     }
   }
 })

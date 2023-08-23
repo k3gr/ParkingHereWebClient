@@ -12,7 +12,8 @@
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('StartDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input id="startDate" class="date-picker bg-transparent" type="date" v-model="getReservationParams.startDate" />
+          <input name="startDate" id="startDate" class="date-picker bg-transparent" type="date"
+            v-model="getReservationParams.startDate" />
         </div>
         <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
           <label>{{ $t('EndDate') }}</label>
@@ -22,7 +23,7 @@
         </div>
         <router-link
           class="col-12 col-md-2 col-xl-1 p-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
-          type="submit" :to="{ name: 'parkings' }" @click="fetchParkings">
+          type="submit" :to="{ name: 'parkings' }" @click="submitSearch">
           <span class="text-light">{{ $t('Search') }}</span>
         </router-link>
       </div>
@@ -36,6 +37,8 @@ import { useReservationStore } from '@/appModules/reservation/store/ReservationS
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
 import { watch } from 'vue'
 import moment from 'moment'
+import { useToast } from 'vue-toastification'
+import i18n from '@/plugins/i18n'
 components: {
   LoadBarComp
 }
@@ -45,6 +48,25 @@ const { getReservationParams, reservationFormFlag } = storeToRefs(reservationsSt
 const store = useParkingStore()
 const { findParkings } = store
 const { getParams } = storeToRefs(store)
+const toast = useToast()
+
+async function submitSearch() {
+  if (!getReservationParams.value.startDate || !getReservationParams.value.endDate) {
+    toast.error(i18n.global.t('DateFieldCanNotBeEmpty'))
+  }
+  else if (moment().isAfter(getReservationParams.value.startDate, "day")) {
+    toast.error(i18n.global.t('StartDateCannotBePast'))
+  }
+  else {
+    let duration = (moment(getReservationParams.value.endDate).diff(getReservationParams.value.startDate, "days"));
+    if (duration > 30) {
+      toast.error(i18n.global.t('MaximumReservationPeriodIs30Days'))
+    }
+    else {
+      fetchParkings()
+    }
+  }
+}
 
 watch(
   () => getReservationParams.value.startDate,

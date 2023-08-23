@@ -3,9 +3,12 @@ import { defineStore } from 'pinia'
 import UpdateVehicleDto from '../../account/domain/dto/UpdateVehicleDto'
 import VehicleService from '../domain/service/VehicleService'
 import VehicleDto from '../domain/dto/Vehicle'
+import { useToast } from 'vue-toastification'
+import i18n from '@/plugins/i18n'
 
 const service = new VehicleService()
 const params = useParams()
+const toast = useToast()
 
 export const useVehicleStore = defineStore({
   id: 'vehicleStore',
@@ -28,6 +31,7 @@ export const useVehicleStore = defineStore({
         .then(
           (success) => {
             if (success.status === 200) {
+              toast.success(i18n.global.t('ChangesSaved'))
             }
           },
           (error) => {

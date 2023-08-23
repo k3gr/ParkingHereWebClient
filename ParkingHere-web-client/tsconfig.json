@@ -26,7 +26,8 @@
       "@/*": ["./src/*"]
     },
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "lib": ["es2015.promise", "es5", "dom"]
   },
   "exclude": ["node_modules"]
 }
