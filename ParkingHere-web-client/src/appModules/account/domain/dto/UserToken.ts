@@ -4,6 +4,7 @@ export interface IUserToken {
   lastName: string
   email: string
   token: string
+  expires: Date
 }
 
 export class UserTokenDto implements IUserToken {
@@ -12,7 +13,8 @@ export class UserTokenDto implements IUserToken {
     public firstName: string = '',
     public lastName: string = '',
     public email: string = '',
-    public token: string = ''
+    public token: string = '',
+    public expires: Date = new Date()
   ) {}
 }
 
@@ -26,5 +28,6 @@ export default class UserToken extends UserTokenDto {
     this.lastName = dto.lastName
     this.email = dto.email
     this.token = dto.token
+    this.expires = dto.expires
   }
 }

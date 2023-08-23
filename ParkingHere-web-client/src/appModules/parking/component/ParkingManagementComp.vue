@@ -18,12 +18,7 @@
           {{ $t('AddParking') }}
         </button>
       </router-link>
-      <div
-        v-if="!getParams.isLoading.value"
-        class="mt-4"
-        v-for="(parking, index) in getMyParkings"
-        :key="index"
-      >
+      <div v-if="!getParams.isLoading.value" class="mt-4" v-for="(parking, index) in getMyParkings" :key="index">
         <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)">
           <div class="row g-3">
             <div class="col-12 col-lg-10 col-xxl-8">
@@ -31,15 +26,9 @@
                 <span type="text" class="form-control border-0 fw-medium bg-transparent fs-5">
                   {{ parking.name }}, {{ parking.street }} {{ parking.city }}
                 </span>
-                <button
-                  type="button"
-                  class="btn btn-link text-decoration-none text-success fs-6 transition collapsed"
-                  data-bs-toggle="collapse"
-                  :data-bs-target="'#parkingTarget' + index"
-                  :aria-controls="'parkingTarget' + index"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
+                <button type="button" class="btn btn-link text-decoration-none text-success fs-6 transition collapsed"
+                  data-bs-toggle="collapse" :data-bs-target="'#parkingTarget' + index"
+                  :aria-controls="'parkingTarget' + index" aria-expanded="false" aria-label="Toggle navigation">
                   <font-awesome-icon :icon="['fa', 'arrow-up']" class="icon me-3 fs-4" size="1x" />
                 </button>
               </div>
@@ -53,18 +42,10 @@
                     <li>
                       <label :for="'street' + index">{{ $t('Street') }}:</label>
                       <div class="input-group">
-                        <input
-                          type="text"
-                          class="form-control border-0"
-                          :id="'street' + index"
-                          v-model="parking.street"
-                          :class="parking.open ? '' : 'bg-transparent'"
-                        />
-                        <button
-                          type="button"
-                          class="btn btn-link text-decoration-none text-success fs-6"
-                          @click="parking.open = !parking.open"
-                        >
+                        <input type="text" class="form-control border-0" :id="'street' + index" v-model="parking.street"
+                          :readonly="!parking.open" :class="parking.open ? '' : 'bg-transparent'" />
+                        <button type="button" class="btn btn-link text-decoration-none text-success fs-6"
+                          @click="parking.open = !parking.open">
                           <span v-if="!parking.open">{{ $t('Change').toUpperCase() }}</span>
                           <span v-else>{{ $t('OK').toUpperCase() }}</span>
                         </button>
@@ -72,58 +53,43 @@
                     </li>
                     <li>
                       <label :for="'city' + index">{{ $t('City') }}:</label>
-                      <input
-                        type="text"
-                        class="form-control border-0"
-                        :id="'city' + index"
-                        v-model="parking.city"
-                        :class="parking.open ? '' : 'bg-transparent'"
-                      />
+                      <input type="text" class="form-control border-0" :id="'city' + index" v-model="parking.city"
+                        :readonly="!parking.open" :class="parking.open ? '' : 'bg-transparent'" />
                     </li>
                     <li>
                       <label :for="'postalCode' + index">{{ $t('PostalCode') }}:</label>
-                      <input
-                        type="text"
-                        class="form-control border-0"
-                        :id="'postalCode' + index"
-                        v-model="parking.postalCode"
-                        :class="parking.open ? '' : 'bg-transparent'"
-                      />
+                      <input type="text" class="form-control border-0" :id="'postalCode' + index"
+                        v-model="parking.postalCode" :readonly="!parking.open"
+                        :class="parking.open ? '' : 'bg-transparent'" />
                     </li>
                     <li>
                       <label :for="'contactEmail' + index">{{ $t('Email') }}:</label>
-                      <input
-                        type="text"
-                        class="form-control border-0"
-                        :id="'contactEmail' + index"
-                        v-model="parking.contactEmail"
-                        :class="parking.open ? '' : 'bg-transparent'"
-                      />
+                      <input type="text" class="form-control border-0" :id="'contactEmail' + index"
+                        v-model="parking.contactEmail" :readonly="!parking.open"
+                        :class="parking.open ? '' : 'bg-transparent'" />
                     </li>
                     <li>
                       <label :for="'contactNumber' + index">{{ $t('Mobile') }}:</label>
-                      <input
-                        type="text"
-                        class="form-control border-0"
-                        :id="'contactNumber' + index"
-                        v-model="parking.contactNumber"
-                        :class="parking.open ? '' : 'bg-transparent'"
-                      />
+                      <input type="text" class="form-control border-0" :id="'contactNumber' + index"
+                        v-model="parking.contactNumber" :readonly="!parking.open"
+                        :class="parking.open ? '' : 'bg-transparent'" />
                     </li>
                     <li>
                       <label :for="'description' + index">{{ $t('Description') }}:</label>
-                      <textarea
-                        type="text"
-                        class="form-control border-0 fs-5"
-                        :id="'description' + index"
-                        v-model="parking.description"
-                        :class="parking.open ? '' : 'bg-transparent'"
-                      >
+                      <textarea type="text" class="form-control border-0 fs-5" :id="'description' + index"
+                        v-model="parking.description" :readonly="!parking.open"
+                        :class="parking.open ? '' : 'bg-transparent'">
                       </textarea>
                     </li>
                   </ul>
                   <div class="col-12 mt-3">
-                    <button type="submit" class="btn btn-outline-success">{{ $t('Save') }}</button>
+                    <button type="submit" class="btn btn-outline-success me-3 mt-3" :disabled="parking.open">{{
+                      $t('Save') }}</button>
+                    <router-link class="text-decoration-none" :to="{ name: 'addSpot', params: { id: parking.id } }">
+                      <button class="btn btn-success mt-3" type="button" href="#">
+                        {{ $t('AddSpot') }}
+                      </button>
+                    </router-link>
                   </div>
                 </div>
               </div>

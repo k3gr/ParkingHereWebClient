@@ -1,7 +1,7 @@
 <template>
   <div class="light view pb-5">
     <div class="container g-0">
-      <ReservationFormComp class="my-4 mx-auto col-12" />
+      <ReservationFormComp class="mt-4 mx-auto col-12" />
       <div v-if="getParkings.length > 0" class="d-flex justify-content-center" v-for="(parking, index) in getParkings"
         :key="index">
         <ParkingComp :parking="parking" />

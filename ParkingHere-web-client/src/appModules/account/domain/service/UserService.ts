@@ -4,6 +4,9 @@ import type UserLoginDto from '../dto/UserLogin'
 import type UserDto from '../dto/User'
 import UpdateUserDto from '../dto/UpdateUserDto'
 import UserToken, { UserTokenDto } from '../dto/UserToken'
+import type UserResetPassStep1 from '../dto/UserResetPassStep1'
+import type UserResetPassStep2 from '../dto/UserResetPassStep2'
+import moment from 'moment'
 
 const urlUser = '/api/account'
 const keyUserLocalStorage = 'authUser'
@@ -31,6 +34,47 @@ export default class UserService {
 
   signIn(userLoginDto: UserLoginDto) {
     return axios.post(import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/login', userLoginDto)
+  }
+
+  resetPassStep1(userResetPassStep1: UserResetPassStep1) {
+    return axios.post(
+      import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/forgot-password',
+      userResetPassStep1,
+      {
+        headers: this.getAuthHeader()
+      }
+    )
+  }
+
+  resetPassStep2(userResetPassStep2: UserResetPassStep2) {
+    return axios.post(
+      import.meta.env.VITE_APP_API_DOMAIN +
+        urlUser +
+        '/reset-password?token=' +
+        userResetPassStep2.token,
+      userResetPassStep2,
+      {
+        headers: this.getAuthHeader()
+      }
+    )
+  }
+
+  verifyPasswordToken(token: string) {
+    return axios.post(
+      import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/verify-password-token?token=' + token,
+      {
+        headers: this.getAuthHeader()
+      }
+    )
+  }
+
+  activation(token: string) {
+    return axios.post(
+      import.meta.env.VITE_APP_API_DOMAIN + urlUser + '/activation?token=' + token,
+      {
+        headers: this.getAuthHeader()
+      }
+    )
   }
 
   setUserToLocalStorage(userToken: UserToken) {

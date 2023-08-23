@@ -1,6 +1,6 @@
 <template>
-  <div class="pb-5">
-    <ReservationFormComp class="reservation-form container col-12 col-md-10 z-1 p-0 px-md-5 my-4" />
+  <div class="pb-5 mb-5 mb-sm-0">
+    <ReservationFormComp class="reservation-form container col-12 col-md-10 z-1 p-0 px-md-5 mt-4" />
     <div class="col-11 container position-relative path overflow-hidden text-center rounded-4 bg-dark-opacity">
       <div class="header col-12 col-md-6 px-2">
         <p class="display-4 fw-bold text-success">{{ $t('BookParkingOnline') }}</p>

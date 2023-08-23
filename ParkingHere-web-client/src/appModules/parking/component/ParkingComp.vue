@@ -1,8 +1,7 @@
 <template>
   <div v-if="parking"
     class="col-11 col-sm-12 col-md-8 col-lg-9 p-3 parking box-shadow bg-light text-dark mx-auto mb-4 d-flex justify-content-between flex-column flex-lg-row">
-    <div class="col-12 col-lg-3 parking d-flex justify-content-center">
-      <img src="https://katowice.eu/SitePages/znizki-kkm/Znizki-KKM-parking.png" alt="mdo" class="parking parking-img" />
+    <div class="col-12 col-lg-3 parking d-flex justify-content-center parking-photo">
     </div>
     <div class="col-12 col-lg-5 col-xxl-6 mt-3 mt-lg-0 d-flex flex-column align-items-start justify-content-evenly">
       <h3 class="fw-bold text-success">{{ parking.name }}</h3>
@@ -10,13 +9,13 @@
         {{ parking.description }}
       </span>
       <div>
-        <span class="fw-bold">Adres: </span><span>{{ parking.street }} {{ parking.city }}</span>
+        <span class="fw-bold">{{ $t('Address') }}: </span><span>{{ parking.street }} {{ parking.city }}</span>
       </div>
       <div>
-        <span class="fw-bold">Kontakt: </span><span> {{ parking.contactNumber }} </span>
+        <span class="fw-bold">{{ $t('Mobile') }}: </span><span> {{ parking.contactNumber }} </span>
       </div>
       <div>
-        <span class="fw-bold">Email: </span><span>{{ parking.contactEmail }} </span>
+        <span class="fw-bold">{{ $t('EmailAddress') }}: </span><span>{{ parking.contactEmail }} </span>
       </div>
     </div>
     <span class="divider"></span>
@@ -100,6 +99,12 @@ function showModal() {
 
 .parking {
   border-radius: 10px;
+}
+
+.parking-photo {
+  background-image: url("src/assets/images/parking-photo.jpg");
+  background-size: cover;
+  height: 200px;
 }
 
 @media screen and (min-width: 992px) {
