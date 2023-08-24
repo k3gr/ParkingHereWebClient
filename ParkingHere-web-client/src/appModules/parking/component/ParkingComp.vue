@@ -71,7 +71,10 @@ import { useSpotStore } from '@/appModules/parking/store/SpotStore'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 const props = defineProps({
-  parking: ParkingDto
+  parking: {
+    type: ParkingDto,
+    required: true
+  },
 })
 const parkingStore = useParkingStore()
 const { findParking } = parkingStore
@@ -85,8 +88,10 @@ const { getReservationParams } = reservationStore
 const lowestPrice = props.parking.prices[0]
 
 function showModal() {
-  findSpots(props.parking.id, getReservationParams)
-  findParking(props.parking.id)
+  if (props.parking.id) {
+    findSpots(props.parking.id, getReservationParams)
+    findParking(props.parking.id)
+  }
 }
 </script>
 
