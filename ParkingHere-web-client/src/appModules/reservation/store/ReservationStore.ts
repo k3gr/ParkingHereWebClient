@@ -56,6 +56,8 @@ export const useReservationStore = defineStore({
               if (error.response.status == 400) {
                 this.reservationSuccess = 2
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -81,6 +83,9 @@ export const useReservationStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
+              params.isError.value = true
             }
           }
         )
@@ -105,6 +110,9 @@ export const useReservationStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
+              params.isError.value = true
             }
           }
         )
@@ -129,6 +137,9 @@ export const useReservationStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
+              params.isError.value = true
             }
           }
         )
@@ -153,6 +164,9 @@ export const useReservationStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
+              params.isError.value = true
             }
           }
         )

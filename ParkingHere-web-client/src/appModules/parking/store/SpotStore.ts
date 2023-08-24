@@ -41,6 +41,9 @@ export const useSpotStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
+              params.isError.value = true
             }
           }
         )
@@ -63,6 +66,8 @@ export const useSpotStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
