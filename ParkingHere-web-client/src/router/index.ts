@@ -11,6 +11,7 @@ import UserAccountManagementView from '@/appModules/account/view/UserAccountMana
 import ParkingManagementView from '@/appModules/parking/view/ParkingManagementView.vue'
 import ReservationManagementView from '@/appModules/reservation/view/ReservationManagementView.vue'
 import ReservationAllParkingsManagementView from '@/appModules/reservation/view/ReservationAllParkingsManagementView.vue'
+import PageNotFound from '@/appModules/common/view/PageNotFound.vue'
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
 
 const router = createRouter({
@@ -93,6 +94,11 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      name: 'page_not_found',
+      path: '/:pathMatch(.*)*',
+      component: PageNotFound
     }
   ]
 })
@@ -101,15 +107,13 @@ router.beforeEach((to, from, next) => {
   const userLoginStore = useUserLoginStore()
   if (to.meta.requiresAuth) {
     if (userLoginStore.loggedIn) {
-      userLoginStore.logOutUserWhenTokenExpired()
       next()
-      return
     } else {
-      next('/')
+      next({ name: 'login' })
     }
+  } else {
+    next()
   }
-  next()
-  return
 })
 
 export default router

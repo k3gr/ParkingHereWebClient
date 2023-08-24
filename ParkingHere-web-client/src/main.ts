@@ -39,7 +39,8 @@ import {
   faUmbrella,
   faSackDollar,
   faHeadset,
-  faKey
+  faKey,
+  faFaceFrown
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -63,7 +64,8 @@ library.add(
   faUmbrella,
   faSackDollar,
   faHeadset,
-  faKey
+  faKey,
+  faFaceFrown
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -72,6 +74,7 @@ import i18n from '@/plugins/i18n'
 export { i18n }
 
 import './styles/main.less'
+import { formatWithOptions } from 'util'
 
 library.add(faSearch)
 

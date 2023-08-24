@@ -71,11 +71,13 @@ async function submitSearch() {
 watch(
   () => getReservationParams.value.startDate,
   () => {
-    if (getReservationParams.value.startDate > getReservationParams.value.endDate) {
-      getReservationParams.value.endDate = moment(getReservationParams.value.startDate)
-        .add(2, 'd')
-        .toISOString()
-        .substring(0, 10)
+    if (getReservationParams.value.startDate && getReservationParams.value.endDate) {
+      if (getReservationParams.value.startDate > getReservationParams.value.endDate) {
+        getReservationParams.value.endDate = moment(getReservationParams.value.startDate)
+          .add(2, 'd')
+          .toISOString()
+          .substring(0, 10)
+      }
     }
   }
 )

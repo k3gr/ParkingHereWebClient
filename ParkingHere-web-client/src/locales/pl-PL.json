@@ -140,5 +140,7 @@
   "ValueMustByNumber": "Wartość musi być liczbą",
   "ParkingHereBiznes": "ParkingHere Biznes",
   "StartDateCannotBePast": "Data rozpoczęcia nie może być przeszła",
-  "MaximumReservationPeriodIs30Days": "Maksymalny okres rezerwacji wynosi 30 dni"
+  "MaximumReservationPeriodIs30Days": "Maksymalny okres rezerwacji wynosi 30 dni",
+  "PageNotFound": "Nie znaleziono strony",
+  "GoToHomePage": "Przejdź do strony głównej"
 }

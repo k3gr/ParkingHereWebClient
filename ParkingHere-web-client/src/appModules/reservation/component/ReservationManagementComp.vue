@@ -108,7 +108,7 @@ import { storeToRefs } from 'pinia'
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 import moment from 'moment'
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import ReservationDto from '@/appModules/reservation/domain/dto/Reservation'
 components: {
   LoadBarComp
