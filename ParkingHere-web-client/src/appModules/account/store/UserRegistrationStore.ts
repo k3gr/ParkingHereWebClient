@@ -50,6 +50,8 @@ export const useUserRegistrationStore = defineStore({
               if (error.response.status == 400) {
                 this.registrationSuccess = 2
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -80,6 +82,8 @@ export const useUserRegistrationStore = defineStore({
                 this.resetPasswordStep = 0
                 this.resetPasswordSuccess = 2
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -104,6 +108,8 @@ export const useUserRegistrationStore = defineStore({
               if (error.response.status == 401) {
                 this.activationSuccess = 2
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -128,6 +134,8 @@ export const useUserRegistrationStore = defineStore({
               if (error.response.status == 401) {
                 toast.error(i18n.global.t('IncorrectEmail'))
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -156,6 +164,8 @@ export const useUserRegistrationStore = defineStore({
                 this.resetPasswordStep = 2
                 this.resetPasswordSuccess = 2
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )

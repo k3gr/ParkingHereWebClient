@@ -44,10 +44,7 @@ export const useParkingStore = defineStore({
             }
           },
           (error) => {
-            if (error.response) {
-              if (error.response.status == 400) {
-              }
-            }
+            toast.error(i18n.global.t('ErrorConnectToServer'))
           }
         )
         .catch((exception) => {})
@@ -68,10 +65,8 @@ export const useParkingStore = defineStore({
             }
           },
           (error) => {
-            if (error.response) {
-              if (error.response.status == 400) {
-              }
-            }
+            toast.error(i18n.global.t('ErrorConnectToServer'))
+            params.isError.value = true
           }
         )
         .catch((exception) => {})
@@ -91,10 +86,8 @@ export const useParkingStore = defineStore({
             }
           },
           (error) => {
-            if (error.response) {
-              if (error.response.status == 400) {
-              }
-            }
+            toast.error(i18n.global.t('ErrorConnectToServer'))
+            params.isError.value = true
           }
         )
         .catch((exception) => {})
@@ -113,10 +106,8 @@ export const useParkingStore = defineStore({
             }
           },
           (error) => {
-            if (error.response) {
-              if (error.response.status == 400) {
-              }
-            }
+            toast.error(i18n.global.t('ErrorConnectToServer'))
+            params.isError.value = true
           }
         )
         .catch((exception) => {})
@@ -138,6 +129,8 @@ export const useParkingStore = defineStore({
             if (error.response) {
               if (error.response.status == 400) {
               }
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
@@ -161,6 +154,8 @@ export const useParkingStore = defineStore({
           },
           (error) => {
             if (error.response) {
+            } else {
+              toast.error(i18n.global.t('ErrorConnectToServer'))
             }
           }
         )
