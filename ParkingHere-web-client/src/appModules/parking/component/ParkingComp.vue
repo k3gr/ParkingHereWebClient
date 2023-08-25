@@ -107,7 +107,7 @@ function showModal() {
 }
 
 .parking-photo {
-  background-image: url("src/assets/images/parking-photo.jpg");
+  background-image: url("@/assets/images/parking-photo.jpg");
   background-size: cover;
   height: 200px;
 }

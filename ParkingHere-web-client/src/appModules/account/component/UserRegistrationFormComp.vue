@@ -10,7 +10,7 @@
           </div>
           <h2 class="h3 ps-3 border-start text-light">{{ $t('Registration') }}</h2>
         </div>
-        <div class="row">
+        <div class="row gx-0 gx-sm-3">
           <div class="col-md-6 my-2">
             <div class="form-floating">
               <Field name="firstName" type="text" class="form-control required"
@@ -37,11 +37,11 @@
             <ErrorMessage name="email" class="invalid-feedback" />
           </div>
         </div>
-        <div class="row">
+        <div class="row gx-0 gx-sm-3">
           <div class="col-md-6 my-2">
             <div class="form-floating">
               <Field name="password" type="password" class="form-control required"
-                :class="{ 'is-invalid': errors.password }" id="password2" :placeholder="$t('Password')"
+                :class="{ 'is-invalid': errors.password }" id="password" :placeholder="$t('Password')" minLength="10"
                 v-model="getUserRegistration.password" />
               <label class="text-secondary-emphasis" for="password">{{ $t('Password') }}</label>
               <ErrorMessage name="password" class="invalid-feedback" />
@@ -59,7 +59,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row gx-0 gx-sm-3">
           <span class="fs-6 ms-3 text-secondary">{{ $t('VehicleDetails') }}:</span>
           <div class="col-md-6 my-2">
             <div class="form-floating">
@@ -80,12 +80,13 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row gx-0 gx-sm-3">
           <div class="col-md-6 my-2">
             <div class="form-floating">
               <Field name="registrationPlate" type="text" class="form-control required"
                 :class="{ 'is-invalid': errors.registrationPlate }" id="registrationPlate"
-                :placeholder="$t('VehicleRegistrationPlate')" v-model="getUserRegistration.vehicle.registrationPlate" />
+                :placeholder="$t('VehicleRegistrationPlate')" v-model="getUserRegistration.vehicle.registrationPlate"
+                minLength="5" maxLength="7" />
               <label class="text-secondary-emphasis" for="registrationPlate">{{
                 $t('VehicleRegistrationPlate')
               }}</label>
@@ -111,13 +112,12 @@
         <div class="mt-2">
           <span class="m-0 me-2 text-light">{{ $t('IAlreadyHaveAccount') }}.</span><router-link
             class="text-decoration-none text-success d-block d-sm-inline" :to="{ name: 'login' }">{{ $t('SignIn')
-            }}.</router-link>
+            }}</router-link>
         </div>
       </form>
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
 components: {
@@ -128,13 +128,10 @@ import { storeToRefs } from 'pinia'
 import { useForm, Form, Field, ErrorMessage } from 'vee-validate'
 import i18n from '@/plugins/i18n'
 import * as yup from 'yup'
-import UserService from '@/appModules/account/domain/service/UserService'
 
 const store = useUserRegistrationStore()
-const { userRegistration, getUserRegistration } = store
-const { getParams } = storeToRefs(store)
-
-const service = new UserService()
+const { userRegistration } = store
+const { getParams, getUserRegistration } = storeToRefs(store)
 
 const { errors, validate } = useForm({
   validationSchema: yup.object().shape({
@@ -154,7 +151,7 @@ const { errors, validate } = useForm({
     password: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .matches(service.MASK_PASSWORD, i18n.global.t('IncorrectPasswordWithMask')),
+      .min(8, i18n.global.t('TextMinLength', ['8'])),
     confirmPassword: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
@@ -176,6 +173,7 @@ const { errors, validate } = useForm({
     registrationPlate: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
+      .min(5, i18n.global.t('TextMinLength', ['5']))
       .max(7, i18n.global.t('TextMaxLength', ['7'])),
     agreement: yup
       .bool()

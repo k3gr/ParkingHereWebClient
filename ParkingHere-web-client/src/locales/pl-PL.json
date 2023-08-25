@@ -122,7 +122,7 @@
   "RemindMe": "Przypomnij",
   "YouCanNowSignInToYourAccount": "Możesz teraz zalogować się na swoje konto.",
   "IncorrectEmail": "Nieprawidłowy adres e-mail",
-  "ForgotPasswordEmailSent": "Sprawdź skrzynkę mailową",
+  "ForgotPasswordEmailSent": "Wiadomość wysłana. Sprawdź skrzynkę e-mailową",
   "ResetPassword": "Zmień hasło",
   "ResetPasswordOperation": "Operacja zmiany hasła",
   "ActivationOperation": "Aktywacja",
@@ -142,5 +142,7 @@
   "StartDateCannotBePast": "Data rozpoczęcia nie może być przeszła",
   "MaximumReservationPeriodIs30Days": "Maksymalny okres rezerwacji wynosi 30 dni",
   "PageNotFound": "Nie znaleziono strony",
-  "GoToHomePage": "Przejdź do strony głównej"
+  "GoToHomePage": "Przejdź do strony głównej",
+  "DuplicateEmail": "Podany e-mail jest już zajęty",
+  "AccountNotActivated": "Konto nieaktywne"
 }

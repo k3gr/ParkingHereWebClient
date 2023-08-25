@@ -2,14 +2,14 @@
   <form @submit.prevent="submitSignIn">
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
     <div class="form-floating my-3">
-      <Field name="email" type="email" class="form-control required" :class="{ 'is-invalid': errors.email }"
+      <Field id="email" name="email" type="email" class="form-control required" :class="{ 'is-invalid': errors.email }"
         :placeholder="$t('EmailAddress')" v-model="getUserLogin.email" />
-      <label class="text-secondary-emphasis" for="username">{{ $t('EmailAddress') }}</label>
+      <label class="text-secondary-emphasis" for="email">{{ $t('EmailAddress') }}</label>
       <ErrorMessage name="email" class="invalid-feedback" />
     </div>
     <div class="form-floating my-3">
-      <Field name="password" type="password" class="form-control required" :class="{ 'is-invalid': errors.password }"
-        :placeholder="$t('Password')" v-model="getUserLogin.password" />
+      <Field id="password" name="password" type="password" class="form-control required"
+        :class="{ 'is-invalid': errors.password }" :placeholder="$t('Password')" v-model="getUserLogin.password" />
       <label class="text-secondary-emphasis" for="password">{{ $t('Password') }}</label>
       <ErrorMessage name="password" class="invalid-feedback" />
     </div>
@@ -21,12 +21,12 @@
     <div class="mt-3">
       <span class="m-0 me-2 text-light">{{ $t('FirstTimeOnParkingHere') }}</span>
       <router-link class="text-decoration-none text-success d-block d-sm-inline" :to="{ name: 'signup' }">{{ $t('SignUp')
-      }}.</router-link>
+      }}</router-link>
     </div>
     <div class="mt-1">
       <span class="m-0 me-2 text-light">{{ $t('ForgotPassword') }}?</span>
       <router-link class="text-decoration-none text-success d-block d-sm-inline" :to="{ name: 'resetPassword' }">{{
-        $t('RemindPassword') }}.</router-link>
+        $t('RemindPassword') }}</router-link>
     </div>
   </form>
 </template>
