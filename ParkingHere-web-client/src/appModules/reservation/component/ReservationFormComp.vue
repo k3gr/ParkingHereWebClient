@@ -1,31 +1,31 @@
 <template>
   <div class="col-10 col-md-8 col-lg-9 mb-4">
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
-    <form class="border border-4 border-success w-100">
+    <form class="w-100 bg-dark">
       <div class="d-flex col-12 flex-wrap form-section">
-        <div class="enter-location col-12 col-xl-5 position-relative py-4">
+        <div class="enter-location col-12 col-xl-5 position-relative py-4 ps-2">
           <font-awesome-icon :icon="['fas', 'location-dot']" class="icon text-success" />
           <input class="bg-transparent col-12" type="search" id="parkings" name="parkings" placeholder=" "
             v-model="getReservationParams.city" />
           <label for="parkings">{{ $t('EnterParkingLocation') }}</label>
         </div>
-        <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
+        <div class="date col-12 col-md-5 border-black col-xl-3 position-relative ps-2">
           <label>{{ $t('StartDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
           <input name="startDate" id="startDate" class="date-picker bg-transparent" type="date"
             v-model="getReservationParams.startDate" />
         </div>
-        <div class="date col-12 col-md-5 border-success col-xl-3 position-relative">
+        <div class="date col-12 col-md-5 border-black col-xl-3 position-relative ps-2">
           <label>{{ $t('EndDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
           <input id="endDate" class="date-picker bg-transparent" type="date" max="2199-12-31"
             v-model="getReservationParams.endDate" />
         </div>
-        <router-link
-          class="col-12 col-md-2 col-xl-1 p-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none"
-          type="submit" :to="{ name: 'parkings' }" @click="submitSearch">
+        <div
+          class="col-12 col-md-2 col-xl-1 p-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none py-3"
+          type="submit" @click="submitSearch">
           <span class="text-light">{{ $t('Search') }}</span>
-        </router-link>
+        </div>
       </div>
     </form>
   </div>
@@ -39,6 +39,7 @@ import { watch } from 'vue'
 import moment from 'moment'
 import { useToast } from 'vue-toastification'
 import i18n from '@/plugins/i18n'
+import { useRouter } from 'vue-router'
 components: {
   LoadBarComp
 }
@@ -49,6 +50,7 @@ const store = useParkingStore()
 const { findParkings } = store
 const { getParams } = storeToRefs(store)
 const toast = useToast()
+const router = useRouter();
 
 async function submitSearch() {
   if (!getReservationParams.value.startDate || !getReservationParams.value.endDate) {
@@ -84,6 +86,7 @@ watch(
 
 function fetchParkings() {
   findParkings(getReservationParams.value)
+  router.push('parkings')
   if (getReservationParams.value.city.length > 0) {
     reservationFormFlag.value = 2
   } else {
@@ -122,12 +125,12 @@ label {
 }
 
 form {
-  background-color: rgba(0, 0, 0, 0.9);
   overflow: hidden;
+  background-color: rgba(42, 46, 50, 1) !important;
 }
 
 .enter-location {
-  outline: 3px solid #198754;
+  outline: 2px solid black;
 }
 
 .enter-location input {
@@ -154,7 +157,7 @@ input.date-picker {
   color-scheme: dark;
   font-weight: 700;
   letter-spacing: 1px;
-  width: 90px;
+  width: 120px;
   left: 50%;
   transform: translate(-50%, -25%);
 }
@@ -194,7 +197,7 @@ input:not(:placeholder-shown)~label {
 }
 
 .date {
-  border-bottom: 3px solid;
+  border-bottom: 2px solid;
 }
 
 .date span {
@@ -211,19 +214,20 @@ input:not(:placeholder-shown)~label {
 @media only screen and (min-width: 576px) {
   form {
     border-radius: var(--bs-border-radius);
+    border: 2px solid rgb(20, 20, 20) !important;
   }
 }
 
 @media only screen and (min-width: 767px) {
   .date {
     border-bottom: 0;
-    border-right: 3px solid;
+    border-right: 2px solid;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .enter-location {
-    border-right: 3px solid #198754;
+    border-right: 2px solid #000;
     outline: 0;
   }
 }

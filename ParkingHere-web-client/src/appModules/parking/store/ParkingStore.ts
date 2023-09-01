@@ -7,7 +7,6 @@ import UpdateParkingDto from '../domain/dto/UpdateParking'
 import CreateParkingDto from '../domain/dto/CreateParking'
 import { useToast } from 'vue-toastification'
 import i18n from '@/plugins/i18n'
-import CreateSpotDto from '../domain/dto/CreateSpot'
 
 const service = new ParkingService()
 const params = useParams()
@@ -67,6 +66,7 @@ export const useParkingStore = defineStore({
           (error) => {
             toast.error(i18n.global.t('ErrorConnectToServer'))
             params.isError.value = true
+            this.parkings = [] as ParkingDto[]
           }
         )
         .catch((exception) => {})
@@ -88,6 +88,7 @@ export const useParkingStore = defineStore({
           (error) => {
             toast.error(i18n.global.t('ErrorConnectToServer'))
             params.isError.value = true
+            this.myParkings = [] as ParkingDto[]
           }
         )
         .catch((exception) => {})

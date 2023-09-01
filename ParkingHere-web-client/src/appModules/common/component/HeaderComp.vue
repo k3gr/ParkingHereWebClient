@@ -9,7 +9,7 @@
       </button>
       <div class="offcanvas offcanvas-start border-0 w-100" tabindex="-1" id="offcanvasDarkNavbar"
         aria-labelledby="offcanvasDarkNavbarLabel">
-        <div class="d-lg-none offcanvas-header d-flex justify-content-end">
+        <div class="d-lg-none offcanvas-header d-flex justify-content-end m-3">
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end align-items-center">

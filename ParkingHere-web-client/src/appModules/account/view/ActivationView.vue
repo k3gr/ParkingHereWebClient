@@ -10,7 +10,7 @@
 import { useUserRegistrationStore } from '@/appModules/account/store/UserRegistrationStore';
 import OperationMessageComp from '@/appModules/common/component/OperationMessageComp.vue'
 import { storeToRefs } from 'pinia';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 components: {

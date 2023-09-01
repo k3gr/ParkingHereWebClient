@@ -6,6 +6,8 @@ import UserResetPassStep1 from '../domain/dto/UserResetPassStep1'
 import { useToast } from 'vue-toastification'
 import { i18n } from '@/main'
 import UserResetPassStep2 from '../domain/dto/UserResetPassStep2'
+import emailjs from '@emailjs/browser'
+import EmailDto from '@/appModules/common/domain/dto/Email'
 
 const service = new UserService()
 const params = useParams()
@@ -19,7 +21,8 @@ export const useUserRegistrationStore = defineStore({
     resetPasswordSuccess: 0,
     activationSuccess: 0,
     resetPasswordStep: 0,
-    userResetPassStep2: new UserResetPassStep2()
+    userResetPassStep2: new UserResetPassStep2(),
+    errors: []
   }),
   getters: {
     getUserRegistration: (state) => state.userRegistrationDto,
@@ -33,22 +36,44 @@ export const useUserRegistrationStore = defineStore({
   actions: {
     async userRegistration() {
       params.isLoading.value = true
-
       service
         .create(this.userRegistrationDto)
         .then(
           (success) => {
             if (success.status === 201) {
               this.registrationSuccess = 1
-              this.userRegistrationDto = new UserRegistrationDto()
               toast.success(i18n.global.t('RegistrationSuccess'))
+
+              var token = success.data
+              var message = new EmailDto(
+                this.userRegistrationDto.firstName,
+                this.userRegistrationDto.email,
+                token
+              )
+
+              emailjs
+                .send(
+                  'service_phxfwwd',
+                  'template_60eag6p',
+                  message as any,
+                  import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY
+                )
+                .then(
+                  (success) => {},
+                  (error) => {}
+                )
+              this.userRegistrationDto = new UserRegistrationDto()
             }
           },
           (error) => {
             if (error.response) {
-              toast.error(i18n.global.t('ErrorUnknown'))
               if (error.response.status == 400) {
-                this.registrationSuccess = 2
+                if (error.response.data.errors['Email'].length > 0) {
+                  toast.error(i18n.global.t('DuplicateEmail'))
+                } else {
+                  toast.error(i18n.global.t('ErrorUnknown'))
+                  this.registrationSuccess = 2
+                }
               }
             } else {
               toast.error(i18n.global.t('ErrorConnectToServer'))
@@ -127,12 +152,29 @@ export const useUserRegistrationStore = defineStore({
           (success) => {
             if (success.status === 200) {
               toast.success(i18n.global.t('ForgotPasswordEmailSent'))
+              var token = success.data
+              var message = new EmailDto('', userResetPassStep1.email, token)
+
+              emailjs
+                .send(
+                  'service_phxfwwd',
+                  'template_x1uofhp',
+                  message as any,
+                  import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY
+                )
+                .then(
+                  (success) => {},
+                  (error) => {}
+                )
             }
           },
           (error) => {
             if (error.response) {
               if (error.response.status == 401) {
                 toast.error(i18n.global.t('IncorrectEmail'))
+              }
+              if (error.response.status == 403) {
+                toast.error(i18n.global.t('AccountNotActivated'))
               }
             } else {
               toast.error(i18n.global.t('ErrorConnectToServer'))

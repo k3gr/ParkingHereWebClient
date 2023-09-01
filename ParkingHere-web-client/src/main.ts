@@ -74,7 +74,6 @@ import i18n from '@/plugins/i18n'
 export { i18n }
 
 import './styles/main.less'
-import { formatWithOptions } from 'util'
 
 library.add(faSearch)
 

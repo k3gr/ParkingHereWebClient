@@ -20,7 +20,6 @@
       </router-link>
       <div v-if="!getParams.isLoading.value" class="mt-4" v-for="(reservation, index) in props.currentReservation"
         :key="index">
-        <!-- <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)"> -->
         <form class="border-1 rounded p-1">
           <div class="row g-3">
             <div class="col-12 col-lg-10 col-xxl-8">
@@ -62,7 +61,6 @@
       <div class="divider-fluid col-12 col-sm-6"></div>
       <div v-if="!getParams.isLoading.value" class="mt-4" v-for="(reservation, index) in props.pastReservation"
         :key="index">
-        <!-- <form class="border-1 rounded p-3" @submit.prevent="saveParking(parking)"> -->
         <form class="border-1 rounded p-1">
           <div class="row g-3">
             <div class="col-12 col-lg-10 col-xxl-8">

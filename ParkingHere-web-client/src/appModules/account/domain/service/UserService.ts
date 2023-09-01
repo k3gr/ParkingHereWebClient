@@ -6,7 +6,6 @@ import UpdateUserDto from '../dto/UpdateUserDto'
 import UserToken, { UserTokenDto } from '../dto/UserToken'
 import type UserResetPassStep1 from '../dto/UserResetPassStep1'
 import type UserResetPassStep2 from '../dto/UserResetPassStep2'
-import moment from 'moment'
 
 const urlUser = '/api/account'
 const keyUserLocalStorage = 'authUser'

@@ -1,9 +1,7 @@
 <template>
   <div class="bg-color fixed-bottom text-center py-2">
-    <span class="text-light"
-      >{{ $t('AllRightsReserved') }}
-      <a href="http://kiwwwano.com/" class="text-success" target="_blank">kiwwwano.com</a></span
-    >
+    <span class="text-light">{{ $t('AllRightsReserved') }}
+      <a href="http://kiwwwano.com/" class="text-success" target="_blank">kiwwwano.com</a></span>
   </div>
 </template>
 
