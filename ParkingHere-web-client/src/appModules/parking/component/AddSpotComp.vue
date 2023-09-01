@@ -25,7 +25,8 @@
                     <div class="form-floating">
                         <Field as="select" name="type" class="form-select required" :class="{ 'is-invalid': errors.type }"
                             id="type" v-model="getCreateSpotDto.type">
-                            <option v-for="type in types" class="row table-body" :key="type" :value="type">
+                            <option value="" disabled selected hidden>{{ $t('SelectType') }}</option>
+                            <option v-for="(type, index) in types" class="row table-body" :key="index" :value="type">
                                 {{ type }}
                             </option>
                         </Field>

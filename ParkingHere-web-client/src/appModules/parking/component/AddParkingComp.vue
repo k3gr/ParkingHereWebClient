@@ -51,11 +51,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-floating">
-              <Field name="type" type="text" class="form-control required" :class="{ 'is-invalid': errors.type }"
-                id="type" :placeholder="$t('Type')" v-model="getCreateParkingDto.type" />
-              <label class="text-secondary-emphasis" for="type">{{
-                $t('Type')
-              }}</label>
+              <Field as="select" name="type" class="form-select required" :class="{ 'is-invalid': errors.type }" id="type"
+                v-model="getCreateParkingDto.type">
+                <option value="" disabled selected hidden>{{ $t('SelectType') }}</option>
+                <option v-for="(type, index) in types" class="row table-body" :key="index" :value="type">
+                  {{ $t(type) }} </option>
+              </Field>
+              <label class="text-secondary-emphasis" for="type">{{ $t('Type') }}</label>
               <ErrorMessage name="type" class="invalid-feedback" />
             </div>
           </div>
@@ -112,6 +114,7 @@ components: {
 }
 import { storeToRefs } from 'pinia'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
+import { ParkingTypeEnum } from '@/appModules/parking/domain/enumerated/ParkingTypeEnum'
 import i18n from '@/plugins/i18n'
 import * as yup from 'yup'
 import { useForm, Form, Field, ErrorMessage } from 'vee-validate'
@@ -133,20 +136,20 @@ const { errors, validate } = useForm({
     postalCode: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(50, i18n.global.t('TextMaxLength', ['50'])),
+      .max(10, i18n.global.t('TextMaxLength', ['10'])),
     type: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(50, i18n.global.t('TextMaxLength', ['50'])),
+      .max(10, i18n.global.t('TextMaxLength', ['10'])),
     contactNumber: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(50, i18n.global.t('TextMaxLength', ['50'])),
+      .max(20, i18n.global.t('TextMaxLength', ['20'])),
     contactEmail: yup
       .string()
       .email(i18n.global.t("IncorrectFormatEmail"))
       .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(50, i18n.global.t('TextMaxLength', ['50'])),
+      .max(30, i18n.global.t('TextMaxLength', ['30'])),
     description: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
@@ -157,6 +160,8 @@ const { errors, validate } = useForm({
 const parkignStore = useParkingStore()
 const { addParking } = parkignStore
 const { getParams, getCreateParkingDto } = storeToRefs(parkignStore)
+const types = [ParkingTypeEnum.Outdoor, ParkingTypeEnum.Roofed]
+
 
 async function onValidate() {
   let rez = true

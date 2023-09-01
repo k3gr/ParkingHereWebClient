@@ -124,6 +124,7 @@ export const useParkingStore = defineStore({
           (success) => {
             if (success.status === 201) {
               toast.success(i18n.global.t('ParkingWasCreated'))
+              this.createParkingDto = new CreateParkingDto()
             }
           },
           (error) => {

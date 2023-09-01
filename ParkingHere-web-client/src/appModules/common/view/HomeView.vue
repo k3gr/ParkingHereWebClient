@@ -4,7 +4,7 @@
     <div class="col-11 container position-relative path overflow-hidden text-center rounded-4 bg-dark-opacity">
       <div class="header col-12 col-md-6 px-2">
         <p class="display-4 fw-bold text-success">{{ $t('BookParkingOnline') }}</p>
-        <p class="display-6 fw-normal text-light p-2 bg-dark rounded">{{ $t('SaveYourTimeAndMoney') }}</p>
+        <p class="display-6 fw-normal text-light p-2 bg-dark-opacity rounded">{{ $t('SaveYourTimeAndMoney') }}</p>
       </div>
       <div class="mobile"></div>
     </div>

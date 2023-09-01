@@ -9,7 +9,7 @@
         {{ parking.description }}
       </span>
       <div>
-        <span class="fw-bold">{{ $t('Address') }}: </span><span>{{ parking.street }} {{ parking.city }}</span>
+        <span class="fw-bold">{{ $t('Address') }}: </span><span>{{ parking.street }}, {{ parking.city }}</span>
       </div>
       <div>
         <span class="fw-bold">{{ $t('Mobile') }}: </span><span> {{ parking.contactNumber }} </span>

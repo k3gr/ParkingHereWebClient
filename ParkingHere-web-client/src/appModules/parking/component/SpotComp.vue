@@ -9,7 +9,6 @@
       <h5 class="offcanvas-title" id="offcanvasRightLabel">
         {{ $t('DetailsOfReservation') }}
       </h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <p class="fw-bold fs-5">{{ $t('Availability') }}</p>
@@ -34,11 +33,12 @@
       <p class="fw-bold fs-5">{{ $t('Prices') }}</p>
       <div class="d-flex my-3 justify-content-start gap-3">
         <span v-if="standardPrice != null">{{ SpotTypeEnum.Standard }}:
-          <span class="text-success fw-bold">{{ standardPrice }} {{ $t('Currency') }}</span></span>
+          <span class="text-success fw-bold">{{ standardPrice > 0 ? standardPrice : "-" }} {{ $t('Currency')
+          }}</span></span>
         <span v-if="busPrice != null">{{ SpotTypeEnum.Bus }}:
-          <span class="text-primary fw-bold">{{ busPrice }} {{ $t('Currency') }}</span></span>
+          <span class="text-primary fw-bold">{{ busPrice > 0 ? busPrice : "-" }} {{ $t('Currency') }}</span></span>
         <span v-if="vipPrice != null">{{ SpotTypeEnum.Vip }}:
-          <span class="text-dark fw-bold">{{ vipPrice }} {{ $t('Currency') }}</span></span>
+          <span class="text-dark fw-bold">{{ vipPrice > 0 ? vipPrice : "-" }} {{ $t('Currency') }}</span></span>
       </div>
       <div class="divider"></div>
       <p class="fw-bold fs-5">{{ $t('ChooseType') }}</p>
@@ -62,7 +62,7 @@
       <div class="d-flex flex-column border rounded p-3">
         <span class="text-success fw-bold fs-5">{{ getParking.name }}</span>
         <span>{{ $t('Address') }}:
-          <span class="fw-bold">{{ getParking.street }} {{ getParking.city }}</span></span>
+          <span class="fw-bold">{{ getParking.street }}, {{ getParking.city }}</span></span>
         <div>
           <span>{{ $t('Period') }}: </span>
           <span class="fw-bold">{{ moment(getReservationParams.startDate).format('DD.MM.yyyy') }} -
@@ -73,13 +73,13 @@
         </div>
         <span>
           {{ $t('SpotType') }}:
-          <span v-if="getReservationParams.type != SpotTypeEnum.Empty" class="fw-bold">{{
-            getReservationParams.type
+          <span class="fw-bold">{{
+            getReservationParams.type != SpotTypeEnum.Empty ? getReservationParams.type : "-"
           }}</span>
         </span>
         <span class="mt-3">
           {{ $t('ToPay') }}:
-          <span v-if="totalPrice" class="fw-bold">{{ totalPrice }} {{ $t('Currency') }}</span>
+          <span class="fw-bold">{{ totalPrice ? totalPrice : "-" }} {{ $t('Currency') }}</span>
         </span>
       </div>
       <div class="modal-footer mt-3">
@@ -107,7 +107,6 @@ import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 import { watch } from 'vue'
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
-import router from '@/router'
 
 const parkingsStore = useParkingStore()
 const { getPrices, getParking } = storeToRefs(parkingsStore)
