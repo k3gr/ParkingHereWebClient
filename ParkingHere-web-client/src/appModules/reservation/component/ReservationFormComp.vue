@@ -157,7 +157,7 @@ input.date-picker {
   color-scheme: dark;
   font-weight: 700;
   letter-spacing: 1px;
-  width: 120px;
+  width: 135px;
   left: 50%;
   transform: translate(-50%, -25%);
 }

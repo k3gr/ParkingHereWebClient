@@ -128,10 +128,12 @@ import { storeToRefs } from 'pinia'
 import { useForm, Form, Field, ErrorMessage } from 'vee-validate'
 import i18n from '@/plugins/i18n'
 import * as yup from 'yup'
+import UserService from '@/appModules/account/domain/service/UserService';
 
 const store = useUserRegistrationStore()
 const { userRegistration } = store
 const { getParams, getUserRegistration } = storeToRefs(store)
+const service = new UserService()
 
 const { errors, validate } = useForm({
   validationSchema: yup.object().shape({
@@ -151,7 +153,8 @@ const { errors, validate } = useForm({
     password: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .min(8, i18n.global.t('TextMinLength', ['8'])),
+      .min(8, i18n.global.t('TextMinLength', ['8']))
+      .matches(service.MASK_PASSWORD, i18n.global.t('IncorrectPasswordWithMask')),
     confirmPassword: yup
       .string()
       .required(i18n.global.t('FieldCanNotBeEmpty'))

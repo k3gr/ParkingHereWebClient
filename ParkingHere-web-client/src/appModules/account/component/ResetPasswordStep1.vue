@@ -1,7 +1,7 @@
 <template>
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
     <div class="bg-dark h-lg-100">
-        <div class="center-form mx-auto p-4 bg-dark col-12 col-sm-9 col-xl-5" data-bs-theme="dark">
+        <div class="center-form mx-auto p-4 bg-dark col-12 col-sm-9 col-lg-8 col-xl-4" data-bs-theme="dark">
             <form @submit.prevent="submitResetPasswordStep1">
                 <div class="d-flex flex-wrap align-items-center justify-content-center mb-3">
                     <div class="circle-icon">
