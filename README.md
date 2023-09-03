@@ -1,4 +1,4 @@
-# <p align="center" dir="auto">
+<p align="center" dir="auto">
     <img width="980" src="https://kiwwwano.com/img/kiwwwano.png"">
 </p>
 
