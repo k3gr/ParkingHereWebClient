@@ -4,9 +4,7 @@ export interface IUser {
   lastName: string
   email: string
   roleId: number
-  vehicleBrand: string
-  vehicleModel: string
-  vehicleRegistrationPlate: string
+  vehicleId: number
 }
 
 export default class UserDto implements IUser {
@@ -16,8 +14,6 @@ export default class UserDto implements IUser {
     public lastName: string = '',
     public email: string = '',
     public roleId: number = 0,
-    public vehicleBrand: string = '',
-    public vehicleModel: string = '',
-    public vehicleRegistrationPlate: string = ''
+    public vehicleId: number = 0
   ) {}
 }
