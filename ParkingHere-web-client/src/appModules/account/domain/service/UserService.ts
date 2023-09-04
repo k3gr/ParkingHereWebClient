@@ -13,6 +13,8 @@ const keyUserLocalStorage = 'authUser'
 export default class UserService {
   public readonly MASK_PASSWORD =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}$/
+  public readonly MASK_POSTALCODE = /^[0-9]{2}-[0-9]{3}/
+  public readonly MASK_PHONENUMBER = /^[+]?[(]?[0-9]{2,3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/
 
   create(userRegistrationDto: UserRegistrationDto) {
     return axios.post(

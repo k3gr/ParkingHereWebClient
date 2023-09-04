@@ -151,7 +151,7 @@ export const useUserLoginStore = defineStore({
     },
 
     logOutUserWhenTokenExpired() {
-      if (moment(this.getTokenExpiration) < moment()) {
+      if (moment(this.getTokenExpiration).diff(moment(), 'minutes') < 0) {
         service.removeUserFromLocalStorage()
         this.loggedIn = false
         toast.success(i18n.global.t('TokenExpired'))

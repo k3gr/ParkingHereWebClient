@@ -118,7 +118,9 @@ import { ParkingTypeEnum } from '@/appModules/parking/domain/enumerated/ParkingT
 import i18n from '@/plugins/i18n'
 import * as yup from 'yup'
 import { useForm, Form, Field, ErrorMessage } from 'vee-validate'
+import UserService from '@/appModules/account/domain/service/UserService';
 
+const service = new UserService()
 const { errors, validate } = useForm({
   validationSchema: yup.object().shape({
     name: yup
@@ -135,16 +137,17 @@ const { errors, validate } = useForm({
       .max(50, i18n.global.t('TextMaxLength', ['50'])),
     postalCode: yup
       .string()
-      .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(10, i18n.global.t('TextMaxLength', ['10'])),
+      .required(i18n.global.t("FieldCanNotBeEmpty"))
+      .matches(service.MASK_POSTALCODE, i18n.global.t("IncorrectPostalCode"))
+      .max(6, i18n.global.t("TextMaxLength", ["6"])),
     type: yup
       .string()
-      .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(10, i18n.global.t('TextMaxLength', ['10'])),
+      .required(i18n.global.t('FieldCanNotBeEmpty')),
     contactNumber: yup
       .string()
-      .required(i18n.global.t('FieldCanNotBeEmpty'))
-      .max(20, i18n.global.t('TextMaxLength', ['20'])),
+      .required(i18n.global.t("FieldCanNotBeEmpty"))
+      .max(12, i18n.global.t("TextMaxLength", ["12"]))
+      .matches(service.MASK_PHONENUMBER, i18n.global.t("IncorrectPhoneNumber")),
     contactEmail: yup
       .string()
       .email(i18n.global.t("IncorrectFormatEmail"))

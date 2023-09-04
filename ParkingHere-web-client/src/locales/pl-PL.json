@@ -147,5 +147,7 @@
   "AccountNotActivated": "Konto nieaktywne",
   "SelectType": "Wybierz typ",
   "Outdoor": "Na zewnątrz",
-  "Roofed": "Zadaszony"
+  "Roofed": "Zadaszony",
+  "IncorrectPostalCode": "Kod pocztowy musi zawierać 6 znaków, 5 cyfr i myślnik np. 12-345",
+  "IncorrectPhoneNumber": "Numer telefonu musi zawierać 9 cyfr lub numer kierunkowy +48 i 9 cyfr"
 }
