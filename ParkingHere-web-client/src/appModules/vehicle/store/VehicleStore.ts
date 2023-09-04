@@ -48,9 +48,9 @@ export const useVehicleStore = defineStore({
         })
     },
 
-    async findById(id: number) {
+    async findVehicleByUserId(userId: number) {
       service
-        .findById(id)
+        .findById(userId)
         .then(
           (success) => {
             if (success.status === 200) {

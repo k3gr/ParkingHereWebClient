@@ -59,10 +59,11 @@
       <form @submit.prevent="saveVehicle(getUserId)">
         <div class="row g-3">
           <div class="col-12 col-md-6">
-            <label for="vehicleName">{{ $t('VehicleBrand') }}:</label>
+            <label for="vehicleBrand">{{ $t('VehicleBrand') }}:</label>
             <div class="input-group">
-              <input type="text" class="form-control border-0 w-0 fw-medium" id="firstName" v-model="getVehicleDto.brand"
-                :readonly="!vehicleChanged" :class="vehicleChanged ? '' : 'bg-transparent'" />
+              <input type="text" class="form-control border-0 w-0 fw-medium" id="vehicleBrand"
+                v-model="getVehicleDto.brand" :readonly="!vehicleChanged"
+                :class="vehicleChanged ? '' : 'bg-transparent'" />
               <button type="button" class="btn btn-link text-decoration-none text-success fs-6"
                 @click="vehicleChanged = !vehicleChanged">
                 <span v-if="!vehicleChanged">{{ $t('Change').toUpperCase() }}</span>
@@ -73,9 +74,9 @@
         </div>
         <div class="row g-3">
           <div class="col-12 col-md-6">
-            <label for="vehiclePlate">{{ $t('VehicleRegistrationPlate') }}:</label>
+            <label for="vehicleModel">{{ $t('VehicleModel') }}:</label>
             <div class="input-group">
-              <input type="text" class="form-control border-0 w-50 fw-medium" id="vehiclePlate"
+              <input type="text" class="form-control border-0 w-50 fw-medium" id="vehicleModel"
                 v-model="getVehicleDto.model" :readonly="!vehicleChanged"
                 :class="vehicleChanged ? '' : 'bg-transparent'" />
             </div>
@@ -114,7 +115,7 @@ const userStore = useUserLoginStore()
 const { findUser, saveUser } = userStore
 const { getUserId, getUserDto } = storeToRefs(userStore)
 const vehicleStore = useVehicleStore()
-const { findById, saveVehicle, getParams } = vehicleStore
+const { findVehicleByUserId, saveVehicle, getParams } = vehicleStore
 const { getVehicleDto } = storeToRefs(vehicleStore)
 const userChanged = ref(false)
 const vehicleChanged = ref(false)
@@ -122,7 +123,7 @@ const vehicleChanged = ref(false)
 onMounted(() => {
   if (getUserId.value) {
     findUser(getUserId.value)
-    findById(getUserId.value)
+    findVehicleByUserId(getUserId.value)
   }
 })
 </script>
