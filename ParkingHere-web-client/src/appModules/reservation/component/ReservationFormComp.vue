@@ -1,7 +1,7 @@
 <template>
   <div class="col-10 col-md-8 col-lg-9 mb-4">
     <LoadBarComp :isLoading="getParams.isLoading.value" :isError="getParams.isError.value" />
-    <form class="w-100 bg-dark">
+    <form class="w-100 bg-dark" @submit.prevent="submitSearch">
       <div class="d-flex col-12 flex-wrap form-section">
         <div class="enter-location col-12 col-xl-5 position-relative py-4 ps-2">
           <font-awesome-icon :icon="['fas', 'location-dot']" class="icon text-success" />
@@ -12,20 +12,16 @@
         <div class="date col-12 col-md-5 border-black col-xl-3 position-relative ps-2">
           <label>{{ $t('StartDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
-          <input name="startDate" id="startDate" class="date-picker bg-transparent" type="date"
-            v-model="getReservationParams.startDate" />
+          <input name="startDate" id="startDate" class="date-picker bg-transparent" type="date" max="2199-12-31"
+            v-model="getReservationParams.startDate" :min="startMinDate" />
         </div>
         <div class="date col-12 col-md-5 border-black col-xl-3 position-relative ps-2">
           <label>{{ $t('EndDate') }}</label>
           <font-awesome-icon :icon="['fas', 'calendar-days']" class="icon text-success" />
           <input id="endDate" class="date-picker bg-transparent" type="date" max="2199-12-31"
-            v-model="getReservationParams.endDate" />
+            v-model="getReservationParams.endDate" :min="endMinDate" />
         </div>
-        <div
-          class="col-12 col-md-2 col-xl-1 p-2 search-btn d-flex justify-content-center align-items-center bg-success text-decoration-none py-3"
-          type="submit" @click="submitSearch">
-          <span class="text-light">{{ $t('Search') }}</span>
-        </div>
+        <button class="col-12 col-md-2 col-xl-1 p-2 bg-success search-btn border-0">{{ $t('Search') }}</button>
       </div>
     </form>
   </div>
@@ -35,7 +31,7 @@ import { storeToRefs } from 'pinia'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 import LoadBarComp from '@/appModules/common/component/LoadBarComp.vue'
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import moment from 'moment'
 import { useToast } from 'vue-toastification'
 import i18n from '@/plugins/i18n'
@@ -52,12 +48,24 @@ const { getParams } = storeToRefs(store)
 const toast = useToast()
 const router = useRouter();
 
+const startMinDate = computed(() => {
+  return moment().format("yyyy-MM-DD")
+})
+
+const endMinDate = computed(() => {
+  return moment(getReservationParams.value.startDate).add(1, "days").format("yyyy-MM-DD")
+})
+
+
 async function submitSearch() {
   if (!getReservationParams.value.startDate || !getReservationParams.value.endDate) {
     toast.error(i18n.global.t('DateFieldCanNotBeEmpty'))
   }
   else if (moment().isAfter(getReservationParams.value.startDate, "day")) {
     toast.error(i18n.global.t('StartDateCannotBePast'))
+  }
+  else if (moment(getReservationParams.value.endDate).isSameOrBefore(getReservationParams.value.startDate, "day")) {
+    toast.error(i18n.global.t('EndDateCannotBeSameOrBeforeStartDate'))
   }
   else {
     let duration = (moment(getReservationParams.value.endDate).diff(getReservationParams.value.startDate, "days"));
@@ -168,6 +176,7 @@ input.date-picker {
   color: #fff;
   border: 0;
   font-size: 16px;
+  text-align: center;
 }
 
 .date-picker::-webkit-calendar-picker-indicator {

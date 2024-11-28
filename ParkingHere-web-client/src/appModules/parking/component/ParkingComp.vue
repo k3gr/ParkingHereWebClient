@@ -22,7 +22,7 @@
     <div
       class="col-12 col-lg-3 col-xxl-2 d-flex flex-row-reverse flex-lg-column align-items-center align-items-lg-end justify-content-between justify-content-lg-end">
       <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight" href="#" @click="showModal">
+        aria-controls="offcanvasRight" href="#" @click="showModal" :disabled="isDatePeriodCorrect">
         {{ $t('Book') }}
       </button>
       <div class="fs-5 mt-lg-2 d-flex flex-column align-items-start align-items-lg-end">
@@ -70,12 +70,17 @@ import ParkingDto from '@/appModules/parking/domain/dto/Parking'
 import { useSpotStore } from '@/appModules/parking/store/SpotStore'
 import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
+import moment from 'moment';
+import { useToast } from 'vue-toastification';
+import { i18n } from '@/main';
+import { computed } from 'vue';
 const props = defineProps({
   parking: {
     type: ParkingDto,
     required: true
   },
 })
+const toast = useToast()
 const parkingStore = useParkingStore()
 const { findParking } = parkingStore
 
@@ -87,10 +92,19 @@ const { getReservationParams } = reservationStore
 
 const lowestPrice = props.parking.prices[0]
 
+const isDatePeriodCorrect = computed(() => {
+  return moment(getReservationParams.endDate).isSameOrBefore(getReservationParams.startDate)
+})
+
 function showModal() {
   if (props.parking.id) {
-    findSpots(props.parking.id, getReservationParams)
-    findParking(props.parking.id)
+    if (isDatePeriodCorrect) {
+      findSpots(props.parking.id, getReservationParams)
+      findParking(props.parking.id)
+    }
+  }
+  else {
+    toast.error(i18n.global.t('EndDateCannotBeSameOrBeforeStartDate'))
   }
 }
 </script>

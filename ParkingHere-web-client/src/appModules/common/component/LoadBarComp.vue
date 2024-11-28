@@ -17,12 +17,21 @@
         <p class="sr mt-2 text-light bg-dark rounded border border-success border-2">
           {{ $t('PleaseWait') }}...
         </p>
+        <div v-show="delayFlag" class="p-2 text-light bg-dark rounded border border-success border-2">
+          <p class="m-0">{{ $t('DownloadingDataTakesLongerThanUsually') }}
+          </p>
+          <p class="m-0">{{ $t('BePatientAzureServerMustStartAfterPeriodOfInactivity') }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue';
+import { ref } from 'vue';
+
 const props = defineProps({
   isError: {
     type: Boolean,
@@ -33,6 +42,20 @@ const props = defineProps({
     default: false
   }
 })
+const delayFlag = ref(false)
+const timeout = setTimeout(() => {
+  delayFlag.value = true
+}, 5000);
+
+watch(() => props.isLoading, (newValue) => {
+  if (newValue === true) {
+    timeout
+  }
+  else {
+    delayFlag.value = false
+    clearTimeout(timeout)
+  }
+})
 </script>
 
 <style scoped>
@@ -40,6 +63,7 @@ const props = defineProps({
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: 300px;
   transform: translate(-50%, -50%);
   padding-top: 50px;
   padding-bottom: 50px;
