@@ -140,6 +140,7 @@
   "ValueMustByNumber": "Wartość musi być liczbą",
   "ParkingHereBiznes": "ParkingHere Biznes",
   "StartDateCannotBePast": "Data rozpoczęcia nie może być przeszła",
+  "EndDateCannotBeSameOrBeforeStartDate": "Data zakończenia musi być po dacie rozpoczęcia",
   "MaximumReservationPeriodIs30Days": "Maksymalny okres rezerwacji wynosi 30 dni",
   "PageNotFound": "Nie znaleziono strony",
   "GoToHomePage": "Przejdź do strony głównej",
@@ -149,5 +150,7 @@
   "Outdoor": "Na zewnątrz",
   "Roofed": "Zadaszony",
   "IncorrectPostalCode": "Kod pocztowy musi zawierać 6 znaków, 5 cyfr i myślnik np. 12-345",
-  "IncorrectPhoneNumber": "Numer telefonu musi zawierać 9 cyfr lub numer kierunkowy +48 i 9 cyfr"
+  "IncorrectPhoneNumber": "Numer telefonu musi zawierać 9 cyfr lub numer kierunkowy +48 i 9 cyfr",
+  "DownloadingDataTakesLongerThanUsually":"Pobieranie danych trwa dłużej niż zwykle?",
+  "BePatientAzureServerMustStartAfterPeriodOfInactivity":"Bądź cierpliwy. Serwer Azure musi zostać uruchomiony po okresie bezczynności"
 }

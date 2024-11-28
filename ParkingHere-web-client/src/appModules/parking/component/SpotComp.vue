@@ -98,7 +98,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onUnmounted } from 'vue'
 import moment from 'moment'
 import { SpotTypeEnum } from '@/appModules/reservation/domain/enumerated/SpotTypeEnum'
 import { useSpotStore } from '@/appModules/parking/store/SpotStore'
@@ -107,6 +107,11 @@ import { useParkingStore } from '@/appModules/parking/store/ParkingStore'
 import { useReservationStore } from '@/appModules/reservation/store/ReservationStore'
 import { watch } from 'vue'
 import { useUserLoginStore } from '@/appModules/account/store/UserLoginStore'
+
+onUnmounted(() => {
+  document.body.style.overflow = ""
+  document.body.style.padding = ""
+})
 
 const parkingsStore = useParkingStore()
 const { getPrices, getParking } = storeToRefs(parkingsStore)
@@ -172,6 +177,7 @@ function bookSpot() {
 }
 
 const totalPrice = computed(() => {
+  if (rentalDays.value < 0) return
   switch (getReservationParams.value.type) {
     case SpotTypeEnum.Standard:
       return (rentalDays.value * standardPrice.value).toFixed(2)
